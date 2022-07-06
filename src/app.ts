@@ -1,11 +1,6 @@
 import express from 'express';
 
 const app = express();
-
-app.get('/', (req, res) => {
-    return res.send('hey')
+app.listen(1337, () => {
+    console.log('running on port 1337');
 });
-
-app.listen(80, () => {
-    console.log('doin it');
-})

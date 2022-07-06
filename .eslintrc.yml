@@ -1,0 +1,27 @@
+{
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": false,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "env": {
+    "node": true,
+    "mongo": true
+  },
+  "rules": {
+    "indent": [
+      "error",
+      4
+    ],
+    "global-require": [
+      "error"
+    ],
+    "semi": [
+      "error"
+    ]
+  }
+}
