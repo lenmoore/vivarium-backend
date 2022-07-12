@@ -1,5 +1,6 @@
 {
-  "extends": "eslint:recommended",
+  "extends": ["typescript"],
+  "plugins": ["prettier"],
   "parserOptions": {
     "ecmaVersion": 8,
     "sourceType": "module",
@@ -22,6 +23,14 @@
     ],
     "semi": [
       "error"
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "semi": true,
+        "tabWidth": 4,
+        "singleQuote": true
+      }
     ]
   }
 }
