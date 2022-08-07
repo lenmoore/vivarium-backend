@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import { customAlphabet } from 'nanoid';
 import { UserDocument } from '../user.model';
 
@@ -11,6 +11,8 @@ export interface ProductInput {
     price: number;
     image: string;
     humanity_values: object;
+    archived: boolean;
+    qr_code: string;
 }
 
 export interface ProductDocument extends ProductInput, mongoose.Document {
@@ -29,6 +31,7 @@ const productSchema = new mongoose.Schema(
         user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
         title: { type: String, required: true },
         description: { type: String, required: true },
+        qr_code: { type: String, required: false },
         price: { type: Number, required: true },
         image: { type: String, required: true },
         humanity_values: {
@@ -37,12 +40,12 @@ const productSchema = new mongoose.Schema(
             estonian_spiritualist: Number,
             traditionalist: Number,
         },
+        archived: { type: Boolean, required: false },
     },
     {
         timestamps: true,
     }
 );
-
 const ProductModel = mongoose.model<ProductDocument>('Product', productSchema);
 
 export default ProductModel;

@@ -7,12 +7,14 @@ export interface SessionDocument extends mongoose.Document {
     userAgent: string;
     createdAt: Date;
     updatedAt: Date;
+    isAdmin: UserDocument['admin'];
 }
 
 const sessionSchema = new mongoose.Schema(
     {
         user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
         valid: { type: Boolean, default: true },
+        isAdmin: { type: Boolean },
         userAgent: { type: String },
     },
     {

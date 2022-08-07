@@ -21,6 +21,29 @@ import {
     getProductSchema,
     updateProductSchema,
 } from './schema/humanity-shop/product.schema';
+import {
+    createBasketSchema,
+    deleteBasketSchema,
+    getBasketSchema,
+    updateBasketSchema,
+} from './schema/humanity-shop/basket.schema';
+import {
+    createBasketHandler,
+    deleteBasketHandler,
+    getBasketHandler,
+    updateBasketHandler,
+} from './controller/humanity-shop/basket.controller';
+import {
+    createPerformanceSchema,
+    getPerformanceSchema,
+    updatePerformanceSchema,
+} from './schema/performance/performance.schema';
+import {
+    createPerformanceHandler,
+    deletePerformanceHandler,
+    getPerformanceHandler,
+    updatePerformanceHandler,
+} from './controller/performance/performance.controller';
 
 function routes(app: Express) {
     app.get('/health-check', (req: Request, res: Response) => {
@@ -43,6 +66,7 @@ function routes(app: Express) {
 
     app.delete('/api/sessions', requireUser, deleteSessionHandler);
 
+    //    -------------------- admin stuff
     //    products
     app.post(
         '/api/products',
@@ -64,5 +88,52 @@ function routes(app: Express) {
         [requireUser, validateResource(deleteProductSchema)],
         deleteProductHandler
     );
+
+    app.post(
+        '/api/performances',
+        [requireUser, validateResource(createPerformanceSchema)],
+        createPerformanceHandler
+    );
+    app.get(
+        '/api/performances/:performanceId',
+        validateResource(getPerformanceSchema),
+        getPerformanceHandler
+    );
+    app.put(
+        '/api/performances/:performanceId',
+        [requireUser, validateResource(updatePerformanceSchema)],
+        updatePerformanceHandler
+    );
+    app.delete(
+        '/api/performances/:performanceId',
+        [requireUser, validateResource(deleteBasketSchema)],
+        deletePerformanceHandler
+    );
+
+    // todo add visitor routes/visitor-user logic
+
+    //    ----------------------- regular stuff
+    app.post(
+        '/api/baskets',
+        [requireUser, validateResource(createBasketSchema)],
+        createBasketHandler
+    );
+    app.get(
+        '/api/baskets/:basketId',
+        validateResource(getBasketSchema),
+        getBasketHandler
+    );
+    app.put(
+        '/api/baskets/:basketId',
+        [requireUser, validateResource(updateBasketSchema)],
+        updateBasketHandler
+    );
+    app.delete(
+        '/api/baskets/:basketId',
+        [requireUser, validateResource(deleteBasketSchema)],
+        deleteBasketHandler
+    );
+    //    todo add products to basket
+    //    todo remove products from basket
 }
 export default routes;

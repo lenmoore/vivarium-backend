@@ -18,7 +18,6 @@ export async function createProductHandler(
 ) {
     const userId = res.locals.user._id;
 
-    console.log('jou');
     const body = req.body;
 
     const product = await createProduct({ ...body, user: userId });
