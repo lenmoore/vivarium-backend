@@ -4,18 +4,22 @@ import connect from './utils/connect';
 import logger from './utils/logger';
 import routes from './routes';
 import deserializeUser from './middleware/deserializeUser';
-import { crossOriginResourcePolicy } from 'helmet';
+import helmet from 'helmet';
 
 const port = config.get<number>('port');
+console.log(port);
 const app = express();
-app.use(crossOriginResourcePolicy);
+
+app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }));
+app.use(helmet.crossOriginEmbedderPolicy({ policy: 'credentialless' }));
+
 app.use(express.json());
+
 app.use(deserializeUser);
 
 app.listen(port, async () => {
     logger.info('running on port ' + port);
 
-    await connect();
-
     routes(app);
+    await connect();
 });

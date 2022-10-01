@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "ts-node-dev --respawn --transpile-only src/app.ts"
+    "serve": "ts-node-dev --respawn --transpile-only src/app.ts",
+    "start": "ts-node-dev --respawn --transpile-only src/app.ts"
   },
   "repository": {
     "type": "git",
@@ -18,8 +19,8 @@
   },
   "homepage": "https://github.com/lenmoore/vivarium-backend#readme",
   "dependencies": {
-    "bcrypt": "^5.0.1",
     "body-parser": "^1.20.0",
+    "bcrypt": "^5.0.1",
     "bulma": "^0.9.4",
     "config": "^3.3.7",
     "cors": "^2.8.5",
@@ -40,7 +41,6 @@
     "zod": "^3.17.3"
   },
   "devDependencies": {
-    "@types/bcrypt": "^5.0.0",
     "@types/body-parser": "^1.19.2",
     "@types/config": "^0.0.41",
     "@types/cors": "^2.8.12",

@@ -1,4 +1,5 @@
 import { Express, Request, Response } from 'express';
+import cors from 'cors';
 import { createUserHandler } from './controller/user.controller';
 import validateResource from './middleware/validateResource';
 import { createUserSchema } from './schema/user.schema';
@@ -46,7 +47,8 @@ import {
 } from './controller/performance/performance.controller';
 
 function routes(app: Express) {
-    app.get('/health-check', (req: Request, res: Response) => {
+    app.use(cors());
+    app.get('/api/health-check', (req: Request, res: Response) => {
         res.sendStatus(200);
     });
 
