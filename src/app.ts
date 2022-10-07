@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(deserializeUser);
 app.use(
     cors({
-        origin: ['http://localhost:8080', 'http://10.0.0.244:8080'],
+        origin: ['http://localhost:8080', 'http://10.0.0.244:8080', '*'],
         credentials: true,
     })
 );

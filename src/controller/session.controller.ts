@@ -38,7 +38,7 @@ export async function createUserSessionHandler(req: Request, res: Response) {
     );
 
     console.log(accessToken);
-    return { accessToken, refreshToken };
+    return res.send({ accessToken, refreshToken });
 }
 
 export async function getUserSessionsHandler(req: Request, res: Response) {

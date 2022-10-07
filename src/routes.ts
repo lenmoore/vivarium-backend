@@ -60,6 +60,7 @@ function routes(app: Express) {
 
     app.post(
         '/api/users',
+        cors(),
         validateResource(createUserSchema),
         createUserHandler
     );
