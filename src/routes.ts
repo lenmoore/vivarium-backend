@@ -45,17 +45,35 @@ import {
     getPerformanceHandler,
     updatePerformanceHandler,
 } from './controller/performance/performance.controller';
+import { getDataVisInfo } from './controller/humanity-shop/data-vis-controller';
 
 function routes(app: Express) {
-    app.use(cors());
-    app.get('/api/health-check', (req: Request, res: Response) => {
+    app.get('/api/health-check', cors(), (req: Request, res: Response) => {
+        console.log('yo');
         res.sendStatus(200);
+    });
+
+    app.get('/api/products-vis', cors(), (req: Request, res: Response) => {
+        console.log('yo');
+        getDataVisInfo(req, res);
     });
 
     app.post(
         '/api/users',
         validateResource(createUserSchema),
         createUserHandler
+    );
+
+    app.options(
+        '/api/sessions',
+        cors({
+            origin: '*',
+        }),
+        (req: Request, res: Response) => {
+            res.set('Access-Control-Allow-Origin', '*');
+            res.set('Access-Control-Allow-Headers', 'Content-Type');
+            res.sendStatus(204);
+        }
     );
 
     app.post(

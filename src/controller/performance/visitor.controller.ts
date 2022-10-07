@@ -69,12 +69,10 @@ export async function deleteVisitorHandler(
     req: Request<DeleteVisitorInput['params']>,
     res: Response
 ) {
-    console.log('jou');
     const userId = res.locals.user._id;
     const visitorId = req.params.visitorId;
 
     const visitor = await findVisitor({ visitorId });
-    console.log(visitor);
 
     if (!visitor) {
         return res.sendStatus(404);

@@ -10,6 +10,9 @@ import { signJwt } from '../utils/jwt.utils';
 
 export async function createUserSessionHandler(req: Request, res: Response) {
     // Validate the user's password
+    console.log('what');
+
+    console.log('req -> create user session handler', req.body);
     const user = await validatePassword(req.body);
 
     if (!user) {
@@ -24,18 +27,18 @@ export async function createUserSessionHandler(req: Request, res: Response) {
     const accessToken = signJwt(
         { ...user, session: session._id },
         'accessTokenPrivateKey',
-        { expiresIn: config.get('accessTokenTtl') } // 15 minutes,
+        { expiresIn: config.get('accessTokenTtl') }
     );
 
     // create a refresh token
     const refreshToken = signJwt(
         { ...user, session: session._id },
         'refreshTokenPrivateKey',
-        { expiresIn: config.get('refreshTokenTtl') } // 15 minutes
+        { expiresIn: config.get('refreshTokenTtl') }
     );
 
-    // return access & refresh tokens
-    return res.send({ accessToken, refreshToken });
+    console.log(accessToken);
+    return { accessToken, refreshToken };
 }
 
 export async function getUserSessionsHandler(req: Request, res: Response) {
