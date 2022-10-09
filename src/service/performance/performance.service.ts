@@ -54,3 +54,6 @@ export async function deletePerformance(
 ) {
     return PerformanceModel.deleteOne(query);
 }
+export async function getAllPerformances() {
+    return PerformanceModel.find();
+}

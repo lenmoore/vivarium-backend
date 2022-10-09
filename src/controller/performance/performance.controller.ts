@@ -4,6 +4,7 @@ import {
     deletePerformance,
     findAndUpdatePerformance,
     findPerformance,
+    getAllPerformances,
 } from '../../service/performance/performance.service';
 import {
     CreatePerformanceInput,
@@ -67,6 +68,16 @@ export async function getPerformanceHandler(
     }
 
     return res.send(performance);
+}
+
+export async function getPerformancesHandler(req: Request, res: Response) {
+    const performances = await getAllPerformances();
+
+    if (!performances) {
+        return res.sendStatus(404);
+    }
+
+    return res.send(performances);
 }
 
 export async function deletePerformanceHandler(

@@ -45,6 +45,7 @@ import {
     createPerformanceHandler,
     deletePerformanceHandler,
     getPerformanceHandler,
+    getPerformancesHandler,
     updatePerformanceHandler,
 } from './controller/performance/performance.controller';
 import { getDataVisInfo } from './controller/humanity-shop/data-vis-controller';
@@ -84,10 +85,6 @@ function routes(app: Express) {
 
     app.post('/api/sessions/refresh', refreshAccessTokenHandler);
 
-    // app.get('/api/sessions', requireUser, getUserSessionsHandler);
-    //
-    // app.delete('/api/sessions', requireUser, deleteSessionHandler);
-
     //    -------------------- admin stuff
     //    products
     app.post(
@@ -116,6 +113,8 @@ function routes(app: Express) {
         [requireUser, validateResource(createPerformanceSchema)],
         createPerformanceHandler
     );
+    app.get('/api/performances', getPerformancesHandler);
+
     app.get(
         '/api/performances/:performanceId',
         validateResource(getPerformanceSchema),

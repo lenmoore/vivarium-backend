@@ -9,10 +9,9 @@ const port = process.env.PORT || 3000;
 // const port = config.get<number>('port');
 console.log(port);
 const app = express();
+app.use(deserializeUser); // on every single request
 
 app.use(express.json());
-
-app.use(deserializeUser); // on every single request
 
 app.use(
     cors({
