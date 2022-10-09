@@ -8,11 +8,9 @@ import validateResource from './middleware/validateResource';
 import { createUserSchema } from './schema/user.schema';
 import { createSessionSchema } from './schema/session.schema';
 import {
-    createUserSessionHandler,
-    deleteSessionHandler,
-    getUserSessionsHandler,
+    createSessionHandler,
     refreshAccessTokenHandler,
-} from './controller/session.controller';
+} from './controller/auth.controller';
 import requireUser from './middleware/requireUser';
 import {
     createProductHandler,
@@ -81,14 +79,14 @@ function routes(app: Express) {
     app.post(
         '/api/sessions',
         validateResource(createSessionSchema),
-        createUserSessionHandler
+        createSessionHandler
     );
 
     app.post('/api/sessions/refresh', refreshAccessTokenHandler);
 
-    app.get('/api/sessions', requireUser, getUserSessionsHandler);
-
-    app.delete('/api/sessions', requireUser, deleteSessionHandler);
+    // app.get('/api/sessions', requireUser, getUserSessionsHandler);
+    //
+    // app.delete('/api/sessions', requireUser, deleteSessionHandler);
 
     //    -------------------- admin stuff
     //    products

@@ -5,6 +5,7 @@ import { createUser, findUserById } from '../service/user.service';
 import logger from '../utils/logger';
 
 export async function createUserHandler(
+    // eslint-disable-next-line @typescript-eslint/ban-types
     req: Request<{}, {}, CreateUserInput['body']>,
     res: Response
 ) {

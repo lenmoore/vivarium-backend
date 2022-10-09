@@ -1,25 +1,20 @@
 import { Request, Response } from 'express';
-import config from 'config';
-import {
-    createSession,
-    findSessions,
-    updateSession,
-} from '../service/session.service';
-import {
-    findUserByEmail,
-    findUserById,
-    validatePassword,
-} from '../service/user.service';
-import { signJwt, verifyJwt } from '../utils/jwt.utils';
-import { CreateSessionInput } from '../schema/session.schema';
+import { get } from 'lodash';
+
 import {
     findSessionById,
     signAccessToken,
     signRefreshToken,
 } from '../service/auth.service';
-import { get } from 'lodash';
+import {
+    findUserByEmail,
+    findUserById,
+    validatePassword,
+} from '../service/user.service';
+import { CreateSessionInput } from '../schema/session.schema';
+import { verifyJwt } from '../utils/jwt.utils';
 
-export async function createUserSessionHandler(
+export async function createSessionHandler(
     // eslint-disable-next-line @typescript-eslint/ban-types
     req: Request<{}, {}, CreateSessionInput>,
     res: Response
@@ -43,49 +38,17 @@ export async function createUserSessionHandler(
         return res.send(message);
     }
 
-    // create a session
-    // const session = await createSession(user._id, req.get('user-agent') || '');
-
     // sign a access token
     const accessToken = signAccessToken(user);
 
     // sign a refresh token
     const refreshToken = await signRefreshToken({ userId: user._id });
 
-    // create an access token
-    // const accessToken = signJwt(
-    //     { ...user, session: session._id },
-    //     'accessTokenPrivateKey',
-    //     { expiresIn: config.get('accessTokenTtl') }
-    // );
-
-    // create a refresh token
-    // const refreshToken = signJwt(
-    //     { ...user, session: session._id },
-    //     'refreshTokenPrivateKey',
-    //     { expiresIn: config.get('refreshTokenTtl') }
-    // );
-
-    console.log(accessToken);
-    return res.send({ accessToken, refreshToken });
-}
-
-export async function getUserSessionsHandler(req: Request, res: Response) {
-    const userId = res.locals.user._id;
-
-    const sessions = await findSessions({ user: userId, valid: true });
-
-    return res.send(sessions);
-}
-
-export async function deleteSessionHandler(req: Request, res: Response) {
-    const sessionId = res.locals.user.session;
-
-    await updateSession({ _id: sessionId }, { valid: false });
+    // send the tokens
 
     return res.send({
-        accessToken: null,
-        refreshToken: null,
+        accessToken,
+        refreshToken,
     });
 }
 
@@ -94,7 +57,7 @@ export async function refreshAccessTokenHandler(req: Request, res: Response) {
 
     const decoded = verifyJwt<{ session: string }>(
         refreshToken,
-        'refreshTokenPublicKey'
+        'refreshTokenPublicKeyEncoded'
     );
 
     if (!decoded) {
