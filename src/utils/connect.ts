@@ -4,9 +4,8 @@ import logger from './logger';
 
 function connect() {
     let dbUri = '';
-    dbUri = 'mongodb://db/vivarium';
-
-    // dbUri = config.get<string>('dbUri');
+    // dbUri = 'mongodb://db/vivarium';
+    dbUri = config.get<string>('dbUri');
 
     return mongoose
         .connect(dbUri)

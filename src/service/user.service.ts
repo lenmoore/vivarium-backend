@@ -17,8 +17,8 @@ export async function validatePassword({
     email,
     password,
 }: {
-    email: string;
-    password: string;
+    email?: string;
+    password?: string;
 }) {
     const user = await UserModel.findOne({ email });
 
@@ -35,4 +35,11 @@ export async function validatePassword({
 
 export async function findUser(query: FilterQuery<UserDocument>) {
     return UserModel.findOne(query).lean();
+}
+export function findUserById(id: string) {
+    return UserModel.findById(id);
+}
+
+export function findUserByEmail(email: string) {
+    return UserModel.findOne({ email });
 }

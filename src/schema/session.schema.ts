@@ -1,4 +1,4 @@
-import { object, string } from 'zod';
+import { object, string, TypeOf } from 'zod';
 
 export const createSessionSchema = object({
     body: object({
@@ -10,3 +10,5 @@ export const createSessionSchema = object({
         }),
     }),
 });
+
+export type CreateSessionInput = TypeOf<typeof createSessionSchema>['body'];

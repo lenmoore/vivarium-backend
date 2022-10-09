@@ -1,6 +1,6 @@
 export default {
     port: 3000,
-    dbUri: 'mongodb+srv://helena:9sGOPt4IM0c4MlEH@cluster0.yxutt.mongodb.net/?retryWrites=true&w=majority',
+    dbUri: 'mongodb+srv://len:8ZHT4Yvz66hNfCYe@vivarium-testbase.rfwjdah.mongodb.net/?retryWrites=true&w=majority',
     saltWorkFactor: 10,
     accessTokenTtl: '15m',
     refreshTokenTtl: '1y',

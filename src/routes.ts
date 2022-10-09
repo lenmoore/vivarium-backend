@@ -1,6 +1,9 @@
 import { Express, Request, Response } from 'express';
 import cors from 'cors';
-import { createUserHandler } from './controller/user.controller';
+import {
+    createUserHandler,
+    getCurrentUserHandler,
+} from './controller/user.controller';
 import validateResource from './middleware/validateResource';
 import { createUserSchema } from './schema/user.schema';
 import { createSessionSchema } from './schema/session.schema';
@@ -50,6 +53,7 @@ import { getDataVisInfo } from './controller/humanity-shop/data-vis-controller';
 function routes(app: Express) {
     app.get('/api/health-check', cors(), (req: Request, res: Response) => {
         console.log('yo');
+        console.log('im hot reload');
         res.sendStatus(200);
     });
 
@@ -58,6 +62,7 @@ function routes(app: Express) {
         getDataVisInfo(req, res);
     });
 
+    app.get('/api/users/me', getCurrentUserHandler);
     app.post(
         '/api/users',
         cors(),
@@ -79,6 +84,7 @@ function routes(app: Express) {
 
     app.post(
         '/api/sessions',
+        cors(),
         validateResource(createSessionSchema),
         createUserSessionHandler
     );
