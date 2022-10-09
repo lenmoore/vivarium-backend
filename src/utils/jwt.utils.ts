@@ -14,27 +14,19 @@ export function signJwt(
     });
 }
 
-export function verifyJwt(
+export function verifyJwt<T>(
     token: string,
     keyName: 'accessTokenPublicKey' | 'refreshTokenPublicKey'
-) {
-    const publicKey = Buffer.from(config.get<string>(keyName)).toString(
-        'ascii'
-    );
+): T | null {
+    const publicKey = Buffer.from(
+        config.get<string>(keyName),
+        'base64'
+    ).toString('ascii');
 
     try {
-        const decoded = jwt.verify(token, publicKey);
-        return {
-            valid: true,
-            expired: false,
-            decoded,
-        };
-    } catch (e: any) {
-        console.error(e);
-        return {
-            valid: false,
-            expired: e.message === 'jwt expired',
-            decoded: null,
-        };
+        const decoded = jwt.verify(token, publicKey) as T;
+        return decoded;
+    } catch (e) {
+        return null;
     }
 }

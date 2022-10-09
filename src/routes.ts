@@ -11,6 +11,7 @@ import {
     createUserSessionHandler,
     deleteSessionHandler,
     getUserSessionsHandler,
+    refreshAccessTokenHandler,
 } from './controller/session.controller';
 import requireUser from './middleware/requireUser';
 import {
@@ -63,6 +64,7 @@ function routes(app: Express) {
     });
 
     app.get('/api/users/me', getCurrentUserHandler);
+
     app.post(
         '/api/users',
         cors(),
@@ -70,24 +72,19 @@ function routes(app: Express) {
         createUserHandler
     );
 
-    app.options(
-        '/api/sessions',
-        cors({
-            origin: '*',
-        }),
-        (req: Request, res: Response) => {
-            res.set('Access-Control-Allow-Origin', '*');
-            res.set('Access-Control-Allow-Headers', 'Content-Type');
-            res.sendStatus(204);
-        }
-    );
+    app.options('/api/sessions', (req: Request, res: Response) => {
+        res.set('Access-Control-Allow-Origin', '*');
+        res.set('Access-Control-Allow-Headers', 'Content-Type');
+        res.sendStatus(204);
+    });
 
     app.post(
         '/api/sessions',
-        cors(),
         validateResource(createSessionSchema),
         createUserSessionHandler
     );
+
+    app.post('/api/sessions/refresh', refreshAccessTokenHandler);
 
     app.get('/api/sessions', requireUser, getUserSessionsHandler);
 
