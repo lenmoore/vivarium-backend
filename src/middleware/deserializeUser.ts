@@ -12,9 +12,7 @@ const deserializeUser = async (
     next: NextFunction
 ) => {
     try {
-        console.log();
         const accessToken = req.headers.authorization.split(' ')[1];
-
         const refreshToken = get(req, 'headers.x-refresh');
 
         if (!accessToken) {
@@ -38,6 +36,8 @@ const deserializeUser = async (
         const expirationDatetimeInSeconds = exp * 1000;
 
         const isExpired = Date.now() >= expirationDatetimeInSeconds;
+
+        console.log('is expired? ', isExpired);
         if (exp && isExpired && refreshToken) {
             const newAccessToken = await reIssueAccessToken({ refreshToken });
 

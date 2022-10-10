@@ -10,7 +10,9 @@ import {
     deleteProduct,
     findAndUpdateProduct,
     findProduct,
+    getAllProducts,
 } from '../../service/humanity-shop/product.service';
+import { getAllPerformances } from '../../service/performance/performance.service';
 
 export async function createProductHandler(
     req: Request<CreateProductInput>,
@@ -62,6 +64,16 @@ export async function getProductHandler(
     }
 
     return res.send(product);
+}
+
+export async function getProductsHandler(req: Request, res: Response) {
+    const products = await getAllProducts();
+
+    if (!products) {
+        return res.sendStatus(404);
+    }
+
+    return res.send(products);
 }
 
 export async function deleteProductHandler(

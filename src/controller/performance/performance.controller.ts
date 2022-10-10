@@ -60,8 +60,9 @@ export async function getPerformanceHandler(
     req: Request<ReadPerformanceInput['params']>,
     res: Response
 ) {
+    console.log('req.params >>>>>> ', req.params);
     const performanceId = req.params.performanceId;
-    const performance = await findPerformance({ performanceId });
+    const performance = await findPerformance({ _id: performanceId });
 
     if (!performance) {
         return res.sendStatus(404);

@@ -16,6 +16,7 @@ import {
     createProductHandler,
     deleteProductHandler,
     getProductHandler,
+    getProductsHandler,
     updateProductHandler,
 } from './controller/humanity-shop/product.controller';
 import {
@@ -92,6 +93,8 @@ function routes(app: Express) {
         [requireUser, validateResource(createProductSchema)],
         createProductHandler
     );
+    app.get('/api/products', getProductsHandler);
+
     app.get(
         '/api/products/:productId',
         validateResource(getProductSchema),

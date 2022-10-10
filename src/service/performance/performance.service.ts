@@ -33,6 +33,7 @@ export async function findPerformance(
     try {
         const result = await PerformanceModel.findOne(query, {}, options);
         timer({ ...metricsLabels, success: 'true' });
+        console.log(result);
         return result;
     } catch (e) {
         timer({ ...metricsLabels, success: 'false' });

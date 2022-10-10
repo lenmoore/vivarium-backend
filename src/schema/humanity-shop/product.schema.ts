@@ -16,10 +16,10 @@ const payload = {
         }),
         humanity_values: optional(
             object({
-                eco_warrior: number(),
-                humanist: number(),
-                estonian_spiritualist: number(),
-                traditionalist: number(),
+                green: number(),
+                red: number(),
+                blue: number(),
+                orange: number(),
             })
         ),
     }),
