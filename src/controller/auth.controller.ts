@@ -38,8 +38,8 @@ export async function createSessionHandler(
         return res.send(message);
     }
 
-    // sign a access token
-    const accessToken = signAccessToken(user);
+    // sign an access token
+    const accessToken = await signAccessToken(user);
 
     // sign a refresh token
     const refreshToken = await signRefreshToken({ userId: user._id });
@@ -55,16 +55,20 @@ export async function createSessionHandler(
 export async function refreshAccessTokenHandler(req: Request, res: Response) {
     const refreshToken = get(req, 'headers.x-refresh');
 
-    const decoded = verifyJwt<{ session: string }>(
+    const { payload, protectedHeader } = await verifyJwt(
         refreshToken,
         'refreshTokenPublicKeyEncoded'
     );
 
+    const decoded = payload;
     if (!decoded) {
         return res.status(401).send('Could not refresh access token');
     }
 
-    const session = await findSessionById(decoded.session);
+    console.log(decoded);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const session = await findSessionById((await decoded).payload.session);
 
     if (!session || !session.valid) {
         return res.status(401).send('Could not refresh access token');
@@ -76,7 +80,7 @@ export async function refreshAccessTokenHandler(req: Request, res: Response) {
         return res.status(401).send('Could not refresh access token');
     }
 
-    const accessToken = signAccessToken(user);
+    const accessToken = await signAccessToken(user);
 
     return res.send({ accessToken });
 }

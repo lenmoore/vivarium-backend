@@ -27,7 +27,10 @@ export async function reIssueAccessToken({
 }: {
     refreshToken: string;
 }) {
-    const decoded = verifyJwt(refreshToken, 'refreshTokenPublicKeyEncoded');
+    const decoded = await verifyJwt(
+        refreshToken,
+        'refreshTokenPublicKeyEncoded'
+    );
 
     if (!decoded || !get(decoded, 'session')) return false;
 
@@ -39,10 +42,9 @@ export async function reIssueAccessToken({
 
     if (!user) return false;
 
-    const accessToken = signJwt(
+    const accessToken = await signJwt(
         { ...user, session: session._id },
-        'accessTokenPrivateKeyEncoded',
-        { expiresIn: config.get('accessTokenTtl') } // 15 minutes
+        'accessTokenPrivateKeyEncoded'
     );
 
     console.log('NEW ACCESS TOKEN > ', accessToken);

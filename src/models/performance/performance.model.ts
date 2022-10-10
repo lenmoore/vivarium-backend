@@ -8,7 +8,7 @@ export interface PerformanceInput {
     user: UserDocument['_id'];
     title: string;
     date: Date;
-    location: string;
+    location?: string;
 }
 
 export interface PerformanceDocument
@@ -28,7 +28,7 @@ const performanceSchema = new mongoose.Schema(
         },
         user: { type: mongoose.Schema.Types.ObjectId, ref: 'Performance' },
         visitors: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Visitor' }],
-        name: { type: String, required: true },
+        title: { type: String, required: true },
         date: { type: Date, required: true },
         location: { type: String, required: true },
     },

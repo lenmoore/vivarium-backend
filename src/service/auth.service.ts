@@ -9,7 +9,7 @@ export async function createSession({ userId }: { userId: string }) {
     return SessionModel.create({ user: userId });
 }
 
-export async function findSessionById(id: string) {
+export async function findSessionById(id: unknown) {
     return SessionModel.findById(id);
 }
 
@@ -28,7 +28,7 @@ export async function signRefreshToken({ userId }: { userId: string }) {
         userId,
     });
 
-    const refreshToken = signJwt(
+    const refreshToken = await signJwt(
         {
             session: session._id,
         },
@@ -43,13 +43,13 @@ export async function signRefreshToken({ userId }: { userId: string }) {
     return refreshToken;
 }
 
-export function signAccessToken(user: UserDocument) {
+export async function signAccessToken(user: UserDocument) {
     const payload = user.toJSON();
+    console.log(user);
 
-    const accessToken = signJwt(payload, 'accessTokenPrivateKeyEncoded', {
-        expiresIn: '15m',
-    });
+    const accessToken = await signJwt(payload, 'accessTokenPrivateKeyEncoded');
 
     console.log('signed accessToken', accessToken);
+
     return accessToken;
 }

@@ -1,32 +1,38 @@
-import jwt from 'jsonwebtoken';
 import config from 'config';
+import * as jose from 'jose';
+import { JWTPayload, JWTVerifyResult } from 'jose';
 
-export function signJwt(
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    object: Object,
+export async function signJwt(
+    object: JWTPayload,
     keyName: 'accessTokenPrivateKeyEncoded' | 'refreshTokenPrivateKeyEncoded',
-    options?: jwt.SignOptions | undefined
+    options?: any | undefined
 ) {
-    const signingKey = Buffer.from(
-        config.get<string>(keyName),
-        'base64'
-    ).toString('ascii');
-    return jwt.sign(object, signingKey, {
-        ...(options && options),
-        algorithm: 'RS256',
-    });
+    const signingKey = Buffer.from(config.get(keyName));
+
+    console.log('im trying to sign this:', object);
+    const signed = await new jose.SignJWT(object)
+        .setExpirationTime(config.get('accessTokenTtl'))
+        .setProtectedHeader({ alg: 'HS256' })
+        .sign(signingKey);
+
+    console.log(signed);
+    return signed;
 }
 
-export function verifyJwt<T>(
+export async function verifyJwt(
     token: string,
     keyName: 'accessTokenPublicKeyEncoded' | 'refreshTokenPublicKeyEncoded'
-): T | null {
-    const publicKey = config.get<string>(keyName).toString();
+): Promise<JWTVerifyResult> {
+    const publicKey = Buffer.from(config.get<string>(keyName));
     try {
-        const decoded = jwt.verify(token, publicKey) as T;
-        console.log('decoded');
-        console.log(decoded);
-        return decoded;
+        const { payload, protectedHeader } = await jose.jwtVerify(
+            token,
+            publicKey,
+            {}
+        );
+        console.log(payload);
+        console.log(protectedHeader);
+        return { payload, protectedHeader };
     } catch (e) {
         return null;
     }
