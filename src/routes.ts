@@ -50,6 +50,18 @@ import {
     updatePerformanceHandler,
 } from './controller/performance/performance.controller';
 import { getDataVisInfo } from './controller/humanity-shop/data-vis-controller';
+import {
+    createVisitorSchema,
+    deleteVisitorSchema,
+    getVisitorSchema,
+    updateVisitorSchema,
+} from './schema/performance/visitor.schema';
+import {
+    createVisitorHandler,
+    deleteVisitorHandler,
+    getVisitorHandler,
+    updateVisitorHandler,
+} from './controller/performance/visitor.controller';
 
 function routes(app: Express) {
     app.get('/api/health-check', cors(), (req: Request, res: Response) => {
@@ -134,7 +146,26 @@ function routes(app: Express) {
         deletePerformanceHandler
     );
 
-    // todo add visitor routes/visitor-user logic
+    app.post(
+        '/api/visitors',
+        [requireUser, validateResource(createVisitorSchema)],
+        createVisitorHandler
+    );
+    app.get(
+        '/api/visitors/:visitorId',
+        validateResource(getVisitorSchema),
+        getVisitorHandler
+    );
+    app.put(
+        '/api/visitors/:visitorId',
+        [requireUser, validateResource(updateVisitorSchema)],
+        updateVisitorHandler
+    );
+    app.delete(
+        '/api/visitors/:visitorId',
+        [requireUser, validateResource(deleteVisitorSchema)],
+        deleteVisitorHandler
+    );
 
     //    ----------------------- regular stuff
     app.post(
