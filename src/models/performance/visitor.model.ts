@@ -27,7 +27,7 @@ const visitorSchema = new mongoose.Schema(
             unique: true,
             default: () => `visitor_${nanoid()}`,
         },
-        user: { type: mongoose.Schema.Types.ObjectId, ref: 'Visitor' },
+        user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
         humanity_values: {
             green: Number,
             red: Number,

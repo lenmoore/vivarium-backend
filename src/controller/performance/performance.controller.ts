@@ -41,9 +41,9 @@ export async function updatePerformanceHandler(
         return res.sendStatus(404);
     }
 
-    if (String(performance.user) !== userId) {
-        return res.sendStatus(403);
-    }
+    // if (String(performance.user) !== userId) {
+    //     return res.sendStatus(403);
+    // }
 
     const updatedPerformance = await findAndUpdatePerformance(
         { performanceId },

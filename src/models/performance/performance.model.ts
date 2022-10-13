@@ -31,6 +31,7 @@ const performanceSchema = new mongoose.Schema(
         title: { type: String, required: true },
         date: { type: Date, required: true },
         location: { type: String, required: true },
+        active: { type: Boolean, default: false },
     },
     {
         timestamps: true,

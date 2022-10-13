@@ -131,26 +131,34 @@ export async function getDataVisInfo(req: Request, res: Response) {
             humanity_values: {
                 green: {
                     average:
-                        realGoodKey.entries.green.reduce((a, b) => a + b, 0) /
-                            realGoodKey.entries.green.length || 0,
+                        realGoodKey.entries.green.reduce(
+                            (a, b) => (a || 0) + (b || 0),
+                            0
+                        ) / realGoodKey.entries.green.length || 0,
                     entries: realGoodKey.entries.green,
                 },
                 red: {
                     average:
-                        realGoodKey.entries.red.reduce((a, b) => a + b, 0) /
-                            realGoodKey.entries.red.length || 0,
+                        realGoodKey.entries.red.reduce(
+                            (a, b) => (a || 0) + (b || 0),
+                            0
+                        ) / realGoodKey.entries.red.length || 0,
                     entries: realGoodKey.entries.red,
                 },
                 blue: {
                     average:
-                        realGoodKey.entries.blue.reduce((a, b) => a + b, 0) /
-                            realGoodKey.entries.blue.length || 0,
+                        realGoodKey.entries.blue.reduce(
+                            (a, b) => (a || 0) + (b || 0),
+                            0
+                        ) / realGoodKey.entries.blue.length || 0,
                     entries: realGoodKey.entries.blue,
                 },
                 orange: {
                     average:
-                        realGoodKey.entries.orange.reduce((a, b) => a + b, 0) /
-                            realGoodKey.entries.orange.length || 0,
+                        realGoodKey.entries.orange.reduce(
+                            (a, b) => (a || 0) + (b || 0),
+                            0
+                        ) / realGoodKey.entries.orange.length || 0,
                     entries: realGoodKey.entries.orange,
                 },
             },

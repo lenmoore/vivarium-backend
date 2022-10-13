@@ -28,7 +28,7 @@ export async function findPerformance(
     const metricsLabels = {
         operation: 'findPerformance',
     };
-
+    console.log(query);
     const timer = databaseResponseTimeHistogram.startTimer();
     try {
         const result = await PerformanceModel.findOne(query, {}, options);
