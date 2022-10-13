@@ -17,7 +17,7 @@ export async function createProduct(input: ProductInput) {
         return result;
     } catch (e) {
         timer({ ...metricsLabels, success: 'false' });
-        throw e;
+        console.error(e);
     }
 }
 
@@ -37,7 +37,7 @@ export async function findProduct(
     } catch (e) {
         timer({ ...metricsLabels, success: 'false' });
 
-        throw e;
+        console.error(e);
     }
 }
 

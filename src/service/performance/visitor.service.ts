@@ -17,7 +17,7 @@ export async function createVisitor(input: CreateVisitorInput) {
         return result;
     } catch (e) {
         timer({ ...metricsLabels, success: 'false' });
-        throw e;
+        console.error(e);
     }
 }
 
@@ -37,7 +37,7 @@ export async function findVisitor(
     } catch (e) {
         timer({ ...metricsLabels, success: 'false' });
 
-        throw e;
+        console.error(e);
     }
 }
 

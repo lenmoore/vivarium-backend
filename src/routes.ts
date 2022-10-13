@@ -148,7 +148,7 @@ function routes(app: Express) {
 
     app.post(
         '/api/visitors',
-        [requireUser, validateResource(createVisitorSchema)],
+        [validateResource(createVisitorSchema)],
         createVisitorHandler
     );
     app.get(

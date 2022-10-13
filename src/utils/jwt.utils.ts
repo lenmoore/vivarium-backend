@@ -19,6 +19,23 @@ export async function signJwt(
     return signed;
 }
 
+export async function signVisitorJwt(
+    object: JWTPayload,
+    keyName: 'accessTokenPrivateKeyEncoded' | 'refreshTokenPrivateKeyEncoded',
+    options?: any | undefined
+) {
+    const signingKey = Buffer.from(config.get(keyName));
+
+    console.log('im trying to sign this visitors token', object);
+    const signed = await new jose.SignJWT(object)
+        .setExpirationTime('1d')
+        .setProtectedHeader({ alg: 'HS256' })
+        .sign(signingKey);
+
+    console.log(signed);
+    return signed;
+}
+
 export async function verifyJwt(
     token: string,
     keyName: 'accessTokenPublicKeyEncoded' | 'refreshTokenPublicKeyEncoded'

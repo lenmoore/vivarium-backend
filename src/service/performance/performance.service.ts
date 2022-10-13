@@ -17,7 +17,7 @@ export async function createPerformance(input: CreatePerformanceInput) {
         return result;
     } catch (e) {
         timer({ ...metricsLabels, success: 'false' });
-        throw e;
+        console.error(e);
     }
 }
 
@@ -38,7 +38,7 @@ export async function findPerformance(
     } catch (e) {
         timer({ ...metricsLabels, success: 'false' });
 
-        throw e;
+        console.error(e);
     }
 }
 

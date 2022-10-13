@@ -17,6 +17,7 @@ export interface VisitorInput {
 export interface VisitorDocument extends VisitorInput, mongoose.Document {
     createdAt: Date;
     updatedAt: Date;
+    accessToken: string;
 }
 
 const visitorSchema = new mongoose.Schema(
@@ -41,6 +42,7 @@ const visitorSchema = new mongoose.Schema(
         wardrobe_number: { type: Number, required: true },
         wants_newsletter: { type: Boolean, required: true },
         wants_summary: { type: Boolean, required: true },
+        accessToken: { type: String, default: '' },
     },
     {
         timestamps: true,

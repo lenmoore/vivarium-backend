@@ -41,9 +41,11 @@ export async function updatePerformanceHandler(
         return res.sendStatus(404);
     }
 
-    // if (String(performance.user) !== userId) {
-    //     return res.sendStatus(403);
-    // }
+    // todo check if this works
+    // if doesnt do getter for user and check model
+    if (!performance.user.admin) {
+        return res.sendStatus(403);
+    }
 
     const updatedPerformance = await findAndUpdatePerformance(
         { performanceId },

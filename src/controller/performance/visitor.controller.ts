@@ -11,17 +11,37 @@ import {
     findAndUpdateVisitor,
     findVisitor,
 } from '../../service/performance/visitor.service';
+import { createUser } from '../../service/user.service';
+import {
+    createSession,
+    signAccessToken,
+    signRefreshToken,
+    signVisitorAccessToken,
+} from '../../service/auth.service';
 
 export async function createVisitorHandler(
     req: Request<CreateVisitorInput>,
     res: Response
 ) {
-    const userId = res.locals.user._id;
+    const user = await createUser({
+        name: req.body.username,
+        password: req.body.wardrobe_number,
+        passwordConfirmation: req.body.wardrobe_number,
+        email: req.body.email || '',
+    });
+
+    // sign an access token for the visitor; this is a default 1 day length token
+    const accessToken = await signVisitorAccessToken(user);
+    if (accessToken) {
+        res.setHeader('x-access-token', accessToken);
+    }
+
+    const userId = user.id;
 
     const body = req.body;
 
     const visitor = await createVisitor({ ...body, user: userId });
-
+    visitor.accessToken = accessToken; // just in case
     return res.send(visitor);
 }
 

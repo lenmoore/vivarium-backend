@@ -9,7 +9,7 @@ export async function createUser(input: CreateUserInput['body']) {
 
         return omit(user.toJSON(), 'password');
     } catch (e) {
-        throw new Error(e);
+        console.error(e);
     }
 }
 

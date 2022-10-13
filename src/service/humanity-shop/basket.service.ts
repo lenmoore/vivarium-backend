@@ -16,7 +16,7 @@ export async function createBasket(input: BasketInput) {
         return result;
     } catch (e) {
         timer({ ...metricsLabels, success: 'false' });
-        throw e;
+        console.error(e);
     }
 }
 
@@ -36,7 +36,7 @@ export async function findBasket(
     } catch (e) {
         timer({ ...metricsLabels, success: 'false' });
 
-        throw e;
+        console.error(e);
     }
 }
 
