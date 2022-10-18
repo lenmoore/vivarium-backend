@@ -24,16 +24,19 @@ export async function signVisitorJwt(
     keyName: 'accessTokenPrivateKeyEncoded' | 'refreshTokenPrivateKeyEncoded',
     options?: any | undefined
 ) {
-    const signingKey = Buffer.from(config.get(keyName));
+    try {
+        const signingKey = Buffer.from(config.get(keyName));
+        console.log('im trying to sign this visitors token', object);
+        const signed = await new jose.SignJWT(object)
+            .setExpirationTime('1d')
+            .setProtectedHeader({ alg: 'HS256' })
+            .sign(signingKey);
 
-    console.log('im trying to sign this visitors token', object);
-    const signed = await new jose.SignJWT(object)
-        .setExpirationTime('1d')
-        .setProtectedHeader({ alg: 'HS256' })
-        .sign(signingKey);
-
-    console.log(signed);
-    return signed;
+        console.log(signed);
+        return signed;
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 export async function verifyJwt(

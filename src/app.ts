@@ -20,6 +20,7 @@ app.use(
     cors({
         origin: [
             'http://localhost:8080',
+            'https://localhost:8080',
             'http://10.0.0.244:8080',
             'http://192.168.8.102:8080',
             'https://192.168.8.102:8080',
@@ -31,12 +32,11 @@ app.use(
     })
 );
 const key = fs.readFileSync('./key.pem');
-
 const cert = fs.readFileSync('./cert.pem');
 const server = https.createServer({ key: key, cert: cert }, app);
 
-// server.listen(port, async () => {
-app.listen(port, async () => {
+server.listen(port, async () => {
+    // app.listen(port, async () => {
     logger.info('running on port ' + port);
 
     routes(app);
