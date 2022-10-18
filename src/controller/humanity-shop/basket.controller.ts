@@ -8,6 +8,7 @@ import {
 } from '../../schema/humanity-shop/basket.schema';
 import {
     createBasket,
+    findAndUpdateBasket,
     findBasket,
     getAllBaskets,
 } from '../../service/humanity-shop/basket.service';
@@ -43,17 +44,17 @@ export async function updateBasketHandler(
     const basketId = req.params.basketId;
     const update = req.body;
 
-    const basket = await findProduct({ basketId });
+    const basket = await findBasket({ basketId });
 
     if (!basket) {
         return res.sendStatus(404);
     }
 
-    if (String(basket.user) !== userId) {
-        return res.sendStatus(403);
-    }
+    // if (String(basket.user) !== userId) {
+    //     return res.sendStatus(403);
+    // }
 
-    const updatedProduct = await findAndUpdateProduct({ basketId }, update, {
+    const updatedProduct = await findAndUpdateBasket({ basketId }, update, {
         new: true,
     });
 

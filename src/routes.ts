@@ -194,9 +194,10 @@ function routes(app: Express) {
 
     app.get('/api/baskets', getBasketsHandler);
 
+    // todo restore requireUser
     app.put(
         '/api/baskets/:basketId',
-        [requireUser, validateResource(updateBasketSchema)],
+        [validateResource(updateBasketSchema)],
         updateBasketHandler
     );
     app.delete(
