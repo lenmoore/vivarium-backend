@@ -28,8 +28,16 @@ export const deleteBasketSchema = object({
 export const getBasketSchema = object({
     ...params,
 });
+export const getBasketByVisitorSchema = object({
+    params: object({
+        visitorId: string({
+            required_error: 'visitorId is required',
+        }),
+    }),
+});
 
 export type CreateBasketInput = TypeOf<typeof createBasketSchema>;
 export type UpdateBasketInput = TypeOf<typeof updateBasketSchema>;
 export type ReadBasketInput = TypeOf<typeof getBasketSchema>;
+export type ReadBasketByVisitorInput = TypeOf<typeof getBasketByVisitorSchema>;
 export type DeleteBasketInput = TypeOf<typeof deleteBasketSchema>;

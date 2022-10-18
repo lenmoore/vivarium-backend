@@ -28,13 +28,16 @@ import {
 import {
     createBasketSchema,
     deleteBasketSchema,
+    getBasketByVisitorSchema,
     getBasketSchema,
     updateBasketSchema,
 } from './schema/humanity-shop/basket.schema';
 import {
     createBasketHandler,
     deleteBasketHandler,
+    getBasketByVisitorIdHandler,
     getBasketHandler,
+    getBasketsHandler,
     updateBasketHandler,
 } from './controller/humanity-shop/basket.controller';
 import {
@@ -60,6 +63,7 @@ import {
     createVisitorHandler,
     deleteVisitorHandler,
     getVisitorHandler,
+    getVisitorsHandler,
     updateVisitorHandler,
 } from './controller/performance/visitor.controller';
 
@@ -151,11 +155,14 @@ function routes(app: Express) {
         [validateResource(createVisitorSchema)],
         createVisitorHandler
     );
+    app.get('/api/visitors', getVisitorsHandler);
+
     app.get(
         '/api/visitors/:visitorId',
         validateResource(getVisitorSchema),
         getVisitorHandler
     );
+
     app.put(
         '/api/visitors/:visitorId',
         [requireUser, validateResource(updateVisitorSchema)],
@@ -178,6 +185,15 @@ function routes(app: Express) {
         validateResource(getBasketSchema),
         getBasketHandler
     );
+
+    app.get(
+        '/api/baskets/visitor/:visitorId',
+        validateResource(getBasketByVisitorSchema),
+        getBasketByVisitorIdHandler
+    );
+
+    app.get('/api/baskets', getBasketsHandler);
+
     app.put(
         '/api/baskets/:basketId',
         [requireUser, validateResource(updateBasketSchema)],

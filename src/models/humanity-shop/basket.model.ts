@@ -2,11 +2,13 @@ import mongoose from 'mongoose';
 import { customAlphabet } from 'nanoid';
 import { UserDocument } from '../user.model';
 import { ProductDocument } from './product.model';
+import { VisitorDocument } from '../performance/visitor.model';
 
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz0123456789', 10);
 
 export interface BasketInput {
     user: UserDocument['_id'];
+    visitor: VisitorDocument['_id'];
     products: Array<ProductDocument>;
     coins_left: number;
 }
@@ -25,6 +27,7 @@ const basketSchema = new mongoose.Schema(
             default: () => `basket_${nanoid()}`,
         },
         user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+        visitor: { type: mongoose.Schema.Types.ObjectId, ref: 'Visitor' },
         products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }],
         coins_left: Number,
     },

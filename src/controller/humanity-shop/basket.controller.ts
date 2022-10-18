@@ -2,12 +2,14 @@ import { Request, Response } from 'express';
 import {
     CreateBasketInput,
     DeleteBasketInput,
+    ReadBasketByVisitorInput,
     ReadBasketInput,
     UpdateBasketInput,
 } from '../../schema/humanity-shop/basket.schema';
 import {
     createBasket,
     findBasket,
+    getAllBaskets,
 } from '../../service/humanity-shop/basket.service';
 import {
     deleteProduct,
@@ -63,13 +65,35 @@ export async function getBasketHandler(
     res: Response
 ) {
     const basketId = req.params.basketId;
-    const basket = await findProduct({ basketId });
+    const basket = await findBasket({ basketId });
 
     if (!basket) {
         return res.sendStatus(404);
     }
 
     return res.send(basket);
+}
+
+export async function getBasketByVisitorIdHandler(
+    req: Request<ReadBasketByVisitorInput['params']>,
+    res: Response
+) {
+    const visitorId = req.params.visitorId;
+    const basket = await findBasket({ visitorId });
+
+    if (!basket) {
+        return res.sendStatus(404);
+    }
+
+    return res.send(basket);
+}
+
+export async function getBasketsHandler(req: Request, res: Response) {
+    const baskets = await getAllBaskets();
+    if (!baskets) {
+        return res.sendStatus(404);
+    }
+    return res.send(baskets);
 }
 
 export async function deleteBasketHandler(

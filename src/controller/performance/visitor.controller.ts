@@ -10,6 +10,7 @@ import {
     deleteVisitor,
     findAndUpdateVisitor,
     findVisitor,
+    getAllVisitors,
 } from '../../service/performance/visitor.service';
 import { createUser } from '../../service/user.service';
 import {
@@ -18,31 +19,53 @@ import {
     signRefreshToken,
     signVisitorAccessToken,
 } from '../../service/auth.service';
+import { createBasket } from '../../service/humanity-shop/basket.service';
 
 export async function createVisitorHandler(
     req: Request<CreateVisitorInput>,
     res: Response
 ) {
-    const user = await createUser({
-        name: req.body.username,
-        password: req.body.wardrobe_number,
-        passwordConfirmation: req.body.wardrobe_number,
-        email: req.body.email || '',
-    });
+    try {
+        const user = await createUser({
+            name: req.body.username,
+            password: req.body.wardrobe_number,
+            passwordConfirmation: req.body.wardrobe_number,
+            email: req.body.email || '',
+        });
 
-    // sign an access token for the visitor; this is a default 1 day length token
-    const accessToken = await signVisitorAccessToken(user);
-    if (accessToken) {
-        res.setHeader('x-access-token', accessToken);
+        // sign an access token for the visitor; this is a default 1 day length token
+        const accessToken = await signVisitorAccessToken(user);
+        if (accessToken) {
+            res.setHeader('x-access-token', accessToken);
+        }
+
+        const userId = user.id;
+
+        const body = req.body;
+
+        const visitor = await createVisitor({ ...body, user: userId });
+        const visitorBasket = await createBasket({
+            user: user,
+            visitor: visitor,
+            coins_left: 100,
+            products: [],
+        });
+        console.log(visitorBasket);
+        await findAndUpdateVisitor(
+            { visitorId: visitor._id },
+            {
+                basket: visitorBasket,
+            },
+            {
+                new: true,
+            }
+        );
+
+        visitor.accessToken = accessToken; // just in case
+        return res.send(visitor);
+    } catch (e) {
+        console.error(e);
     }
-
-    const userId = user.id;
-
-    const body = req.body;
-
-    const visitor = await createVisitor({ ...body, user: userId });
-    visitor.accessToken = accessToken; // just in case
-    return res.send(visitor);
 }
 
 export async function updateVisitorHandler(
@@ -83,6 +106,14 @@ export async function getVisitorHandler(
     }
 
     return res.send(visitor);
+}
+
+export async function getVisitorsHandler(req: Request, res: Response) {
+    const visitors = await getAllVisitors();
+    if (!visitors) {
+        return res.sendStatus(404);
+    }
+    return res.send(visitors);
 }
 
 export async function deleteVisitorHandler(

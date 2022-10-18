@@ -23,7 +23,7 @@ export async function createVisitor(input: CreateVisitorInput) {
 
 export async function findVisitor(
     query: FilterQuery<VisitorDocument>,
-    options: QueryOptions = { lean: true }
+    options: QueryOptions = {}
 ) {
     const metricsLabels = {
         operation: 'findVisitor',
@@ -31,7 +31,10 @@ export async function findVisitor(
 
     const timer = databaseResponseTimeHistogram.startTimer();
     try {
-        const result = await VisitorModel.findOne(query, {}, options);
+        const result = await VisitorModel.findOne(query, {}, options).populate({
+            path: 'basket',
+        });
+        console.log(result);
         timer({ ...metricsLabels, success: 'true' });
         return result;
     } catch (e) {
@@ -51,4 +54,7 @@ export async function findAndUpdateVisitor(
 
 export async function deleteVisitor(query: FilterQuery<VisitorDocument>) {
     return VisitorModel.deleteOne(query);
+}
+export async function getAllVisitors() {
+    return VisitorModel.find();
 }

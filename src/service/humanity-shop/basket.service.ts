@@ -39,7 +39,9 @@ export async function findBasket(
         console.error(e);
     }
 }
-
+export async function getAllBaskets() {
+    return BasketModel.find();
+}
 export async function findAndUpdateBasket(
     query: FilterQuery<BasketDocument>,
     update: UpdateQuery<BasketDocument>,

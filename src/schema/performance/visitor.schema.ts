@@ -19,7 +19,6 @@ const payload = {
                 basket_id: string(),
             })
         ),
-
         performance: optional(
             object({
                 performance_id: string(),
