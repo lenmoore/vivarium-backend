@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 import { customAlphabet } from 'nanoid';
 import { UserDocument } from '../user.model';
+import { PhaseDocument } from './phase.model';
 
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz0123456789', 10);
 
@@ -9,6 +10,7 @@ export interface PerformanceInput {
     title: string;
     date: Date;
     location?: string;
+    phases: Array<PhaseDocument>;
 }
 
 export interface PerformanceDocument
@@ -31,6 +33,7 @@ const performanceSchema = new mongoose.Schema(
         title: { type: String, required: true },
         date: { type: Date, required: true },
         location: { type: String, required: true },
+        phases: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Phase' }],
         active: { type: Boolean, default: false },
     },
     {

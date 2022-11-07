@@ -9,6 +9,7 @@ const payload = {
         date: string({
             required_error: 'date is required',
         }),
+        phases: optional(object({})),
     }),
 };
 

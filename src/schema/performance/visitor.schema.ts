@@ -1,4 +1,4 @@
-import { object, string, TypeOf, optional, number } from 'zod';
+import { object, string, TypeOf, optional, number, boolean } from 'zod';
 
 const payload = {
     body: object({
@@ -8,10 +8,10 @@ const payload = {
         wardrobe_number: number({
             required_error: 'wardrobe number is required',
         }),
-        wants_newsletter: string({
+        wants_newsletter: boolean({
             required_error: 'newsletter info is required',
         }),
-        wants_summary: string({
+        wants_summary: boolean({
             required_error: 'summary info is required',
         }),
         basket: optional(
