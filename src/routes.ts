@@ -79,6 +79,19 @@ import {
     getPhasesHandler,
     updatePhaseHandler,
 } from './controller/performance/phase.controller';
+import {
+    createGameSchema,
+    deleteGameSchema,
+    getGameSchema,
+    updateGameSchema,
+} from './schema/performance/game.schema';
+import {
+    createGameHandler,
+    deleteGameHandler,
+    getGameHandler,
+    getGamesHandler,
+    updateGameHandler,
+} from './controller/performance/game.controller';
 
 function routes(app: Express) {
     app.get('/api/health-check', cors(), (req: Request, res: Response) => {
@@ -187,6 +200,31 @@ function routes(app: Express) {
         deletePerformanceHandler
     );
     // --- end phases
+
+    // --- games
+    app.post(
+        '/api/games',
+        [requireUser, validateResource(createGameSchema)],
+        createGameHandler
+    );
+    app.get('/api/games', getGamesHandler);
+
+    app.get(
+        '/api/games/:gameId',
+        validateResource(getGameSchema),
+        getGameHandler
+    );
+    app.put(
+        '/api/games/:gameId',
+        [requireUser, validateResource(updateGameSchema)],
+        updateGameHandler
+    );
+    app.delete(
+        '/api/games/:gameId',
+        [requireUser, validateResource(deleteGameSchema)],
+        deleteGameHandler
+    );
+    // --- end games
 
     // --- visitors
     app.post(

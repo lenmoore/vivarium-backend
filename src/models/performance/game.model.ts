@@ -31,7 +31,7 @@ const gameSchema = new mongoose.Schema(
             default: () => `game_${nanoid()}`,
         },
         name: { type: String, required: true },
-        game_type: { type: GAMETYPE, default: GAMETYPE.QUIZ },
+        game_type: { type: String, default: GAMETYPE.QUIZ },
         game_steps: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Step' }],
         game_players: [
             { type: mongoose.Schema.Types.ObjectId, ref: 'Visitor' },
