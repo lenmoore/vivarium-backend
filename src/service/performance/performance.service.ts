@@ -23,7 +23,7 @@ export async function createPerformance(input: CreatePerformanceInput) {
 
 export async function findPerformance(
     query: FilterQuery<PerformanceDocument>,
-    options: QueryOptions = { lean: true }
+    options: QueryOptions = {}
 ) {
     const metricsLabels = {
         operation: 'findPerformance',
@@ -32,8 +32,10 @@ export async function findPerformance(
     const timer = databaseResponseTimeHistogram.startTimer();
     try {
         const result = await PerformanceModel.findOne(query, {}, options);
+        result.populate({ path: 'phases' }); // todo why wont it populate with objects
+
         timer({ ...metricsLabels, success: 'true' });
-        console.log(result);
+        console.log('result findperformances: ', result);
         return result;
     } catch (e) {
         timer({ ...metricsLabels, success: 'false' });

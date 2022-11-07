@@ -1,16 +1,7 @@
-import { object, number, string, TypeOf, optional } from 'zod';
+import { object, string, TypeOf } from 'zod';
 
 const payload = {
-    body: object({
-        title: string({
-            required_error: 'title is required',
-        }),
-        location: optional(string()),
-        date: string({
-            required_error: 'date is required',
-        }),
-        phases: optional(object({})),
-    }),
+    body: object({}),
 };
 
 const params = {

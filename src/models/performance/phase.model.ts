@@ -1,5 +1,5 @@
 import { customAlphabet } from 'nanoid';
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import { GameDocument } from './game.model';
 
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz0123456789', 10);
@@ -25,6 +25,7 @@ const phaseSchema = new mongoose.Schema(
             unique: true,
             default: () => `phase_${nanoid()}`,
         },
+        active: { type: Boolean, required: false },
         name: { type: String, required: true },
         phase_game: { type: mongoose.Schema.Types.ObjectId, ref: 'Game' },
         phase_start: { type: Date, required: false },

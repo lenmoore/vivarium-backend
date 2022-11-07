@@ -42,6 +42,7 @@ import {
 } from './controller/humanity-shop/basket.controller';
 import {
     createPerformanceSchema,
+    deletePerformanceSchema,
     getPerformanceSchema,
     updatePerformanceSchema,
 } from './schema/performance/performance.schema';
@@ -66,6 +67,18 @@ import {
     getVisitorsHandler,
     updateVisitorHandler,
 } from './controller/performance/visitor.controller';
+import {
+    createPhaseSchema,
+    deletePhaseSchema,
+    getPhaseSchema,
+    updatePhaseSchema,
+} from './schema/performance/phase.schema';
+import {
+    createPhaseHandler,
+    getPhaseHandler,
+    getPhasesHandler,
+    updatePhaseHandler,
+} from './controller/performance/phase.controller';
 
 function routes(app: Express) {
     app.get('/api/health-check', cors(), (req: Request, res: Response) => {
@@ -127,6 +140,7 @@ function routes(app: Express) {
         deleteProductHandler
     );
 
+    // ------ performances
     app.post(
         '/api/performances',
         [requireUser, validateResource(createPerformanceSchema)],
@@ -146,10 +160,35 @@ function routes(app: Express) {
     );
     app.delete(
         '/api/performances/:performanceId',
-        [requireUser, validateResource(deleteBasketSchema)],
+        [requireUser, validateResource(deletePerformanceSchema)],
         deletePerformanceHandler
     );
+    // --- phases
+    app.post(
+        '/api/phases',
+        [requireUser, validateResource(createPhaseSchema)],
+        createPhaseHandler
+    );
+    app.get('/api/phases', getPhasesHandler);
 
+    app.get(
+        '/api/phases/:phaseId',
+        validateResource(getPhaseSchema),
+        getPhaseHandler
+    );
+    app.put(
+        '/api/phases/:phaseId',
+        [requireUser, validateResource(updatePhaseSchema)],
+        updatePhaseHandler
+    );
+    app.delete(
+        '/api/phases/:phaseId',
+        [requireUser, validateResource(deletePhaseSchema)],
+        deletePerformanceHandler
+    );
+    // --- end phases
+
+    // --- visitors
     app.post(
         '/api/visitors',
         [validateResource(createVisitorSchema)],
@@ -173,6 +212,7 @@ function routes(app: Express) {
         [requireUser, validateResource(deleteVisitorSchema)],
         deleteVisitorHandler
     );
+    // -- end visitors
 
     //    ----------------------- regular stuff
     app.post(
@@ -205,7 +245,5 @@ function routes(app: Express) {
         [requireUser, validateResource(deleteBasketSchema)],
         deleteBasketHandler
     );
-    //    todo add products to basket
-    //    todo remove products from basket
 }
 export default routes;
