@@ -20,6 +20,7 @@ import {
     signVisitorAccessToken,
 } from '../../service/auth.service';
 import { createBasket } from '../../service/humanity-shop/basket.service';
+import { findPerformance } from '../../service/performance/performance.service';
 
 export async function createVisitorHandler(
     req: Request<CreateVisitorInput>,
@@ -50,11 +51,14 @@ export async function createVisitorHandler(
             coins_left: 100,
             products: [],
         });
-        console.log(visitorBasket);
+        const performance = await findPerformance({
+            performanceId: body.performance,
+        });
         await findAndUpdateVisitor(
             { visitorId: visitor._id },
             {
                 basket: visitorBasket,
+                performance: performance,
             },
             {
                 new: true,

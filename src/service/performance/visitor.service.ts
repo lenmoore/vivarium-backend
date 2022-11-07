@@ -14,6 +14,7 @@ export async function createVisitor(input: CreateVisitorInput) {
     try {
         const result = await VisitorModel.create(input);
         timer({ ...metricsLabels, success: 'true' });
+        console.log('im really creating a visitor->', result);
         return result;
     } catch (e) {
         timer({ ...metricsLabels, success: 'false' });

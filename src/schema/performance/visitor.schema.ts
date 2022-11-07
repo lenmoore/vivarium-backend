@@ -19,11 +19,7 @@ const payload = {
                 basket_id: string(),
             })
         ),
-        performance: optional(
-            object({
-                performance_id: string(),
-            })
-        ),
+        performance: optional(string()),
     }),
 };
 
@@ -32,6 +28,16 @@ const params = {
         visitorId: string({
             required_error: 'visitorId is required',
         }),
+        basket: optional(
+            object({
+                basket_id: string(),
+            })
+        ),
+        performance: optional(
+            object({
+                performance_id: string(),
+            })
+        ),
     }),
 };
 

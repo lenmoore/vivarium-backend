@@ -2,12 +2,14 @@ import mongoose, { Schema } from 'mongoose';
 import { customAlphabet } from 'nanoid';
 import { UserDocument } from '../user.model';
 import { BasketDocument } from '../humanity-shop/basket.model';
+import { PerformanceDocument } from './performance.model';
 
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz0123456789', 10);
 
 export interface VisitorInput {
     user: UserDocument['_id'];
     basket: BasketDocument['_id'];
+    performance: PerformanceDocument['_id'];
     username: string;
     humanity_values: object;
     archived: boolean;
