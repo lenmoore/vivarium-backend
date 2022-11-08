@@ -6,7 +6,7 @@ const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz0123456789', 10);
 
 export interface PhaseInput {
     name: string;
-    phase_game: GameDocument['_id'];
+    phase_game?: GameDocument['_id'];
     active: boolean;
     phase_start?: Date;
     phase_end?: Date;

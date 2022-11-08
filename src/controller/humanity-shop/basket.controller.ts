@@ -80,7 +80,8 @@ export async function getBasketByVisitorIdHandler(
     res: Response
 ) {
     const visitorId = req.params.visitorId;
-    const basket = await findBasket({ visitorId });
+    console.log(visitorId);
+    const basket = await findBasket({ visitor: visitorId });
 
     if (!basket) {
         return res.sendStatus(404);

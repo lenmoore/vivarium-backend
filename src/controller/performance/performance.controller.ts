@@ -17,13 +17,17 @@ export async function createPerformanceHandler(
     req: Request<CreatePerformanceInput>,
     res: Response
 ) {
-    const userId = res.locals.user._id;
+    try {
+        const userId = res.locals.user._id;
 
-    const body = req.body;
+        const body = req.body;
 
-    const performance = await createPerformance({ ...body, user: userId });
+        const performance = await createPerformance({ ...body, user: userId });
 
-    return res.send(performance);
+        return res.send(performance);
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 export async function updatePerformanceHandler(
@@ -43,9 +47,9 @@ export async function updatePerformanceHandler(
 
     // todo check if this works
     // if doesnt do getter for user and check model
-    if (!performance.user.admin) {
-        return res.sendStatus(403);
-    }
+    // if (!performance.user.admin) {
+    //     return res.sendStatus(403);
+    // }
 
     const updatedPerformance = await findAndUpdatePerformance(
         { performanceId },

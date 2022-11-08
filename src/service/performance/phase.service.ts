@@ -12,7 +12,9 @@ export async function createPhase(input: CreatePhaseInput) {
     const timer = databaseResponseTimeHistogram.startTimer();
 
     try {
+        console.log('Bro');
         const result = await PhaseModel.create(input);
+        console.log(input, result);
         timer({ ...metricsLabels, success: 'true' });
         return result;
     } catch (e) {
@@ -54,5 +56,5 @@ export async function deletePhase(query: FilterQuery<PhaseDocument>) {
     return PhaseModel.deleteOne(query);
 }
 export async function getAllPhases() {
-    return PhaseModel.find();
+    return PhaseModel.find().populate('phase_game');
 }

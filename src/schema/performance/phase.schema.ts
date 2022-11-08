@@ -5,11 +5,7 @@ const payload = {
         name: string({
             required_error: 'name is required',
         }),
-        phase_game: optional(
-            object({
-                game_id: string(),
-            })
-        ),
+        phase_game: optional(string()),
         active: boolean({
             required_error: 'active is required',
         }),
