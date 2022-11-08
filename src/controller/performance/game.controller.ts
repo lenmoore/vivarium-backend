@@ -44,6 +44,7 @@ export async function updateGameHandler(
         for (const requestStep of steps) {
             if (requestStep._id) {
                 // if the game step is not a new one
+                stepIds.push(requestStep._id);
 
                 await findAndUpdateStep(
                     { stepId: requestStep._id },
