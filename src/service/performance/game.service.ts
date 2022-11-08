@@ -29,7 +29,9 @@ export async function findGame(
     console.log(query);
     const timer = databaseResponseTimeHistogram.startTimer();
     try {
-        const result = await GameModel.findOne(query, {}, options);
+        const result = await GameModel.findOne(query, {}, options).populate(
+            'game_steps'
+        );
         timer({ ...metricsLabels, success: 'true' });
         console.log(result);
         return result;
@@ -51,6 +53,7 @@ export async function findAndUpdateGame(
 export async function deleteGame(query: FilterQuery<GameDocument>) {
     return GameModel.deleteOne(query);
 }
+
 export async function getAllGames() {
-    return GameModel.find();
+    return GameModel.find().populate('game_steps');
 }

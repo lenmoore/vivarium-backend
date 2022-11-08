@@ -119,8 +119,3 @@ export async function deleteBasketHandler(
 
     return res.sendStatus(200);
 }
-
-// todo
-export async function addProductToBasket() {}
-
-export async function removeProductFromBasket() {}

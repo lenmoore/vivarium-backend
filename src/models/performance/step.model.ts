@@ -5,7 +5,7 @@ const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz0123456789', 10);
 
 export interface StepInput {
     question_text: '';
-    question_options: Array<Option>;
+    question_options?: Array<Option>;
 }
 
 export interface StepDocument extends StepInput, mongoose.Document {

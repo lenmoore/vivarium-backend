@@ -21,7 +21,7 @@ export async function createStep(input: CreateStepInput) {
 
 export async function findStep(
     query: FilterQuery<StepDocument>,
-    options: QueryOptions = { lean: true }
+    options: QueryOptions = {}
 ) {
     const metricsLabels = {
         operation: 'findStep',
