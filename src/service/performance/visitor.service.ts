@@ -32,9 +32,9 @@ export async function findVisitor(
 
     const timer = databaseResponseTimeHistogram.startTimer();
     try {
-        const result = await VisitorModel.findOne(query, {}, options).populate({
-            path: 'basket',
-        });
+        const result = await VisitorModel.findOne(query, {}, options)
+            .populate('basket')
+            .populate('results');
         console.log(result);
         timer({ ...metricsLabels, success: 'true' });
         return result;
@@ -50,7 +50,13 @@ export async function findAndUpdateVisitor(
     update: UpdateQuery<VisitorDocument>,
     options: QueryOptions
 ) {
-    return VisitorModel.findOneAndUpdate(query, update, options);
+    try {
+        return VisitorModel.findOneAndUpdate(query, update, options)
+            .populate('quiz_results')
+            .populate('basket');
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 export async function deleteVisitor(query: FilterQuery<VisitorDocument>) {

@@ -21,6 +21,8 @@ import {
 } from '../../service/auth.service';
 import { createBasket } from '../../service/humanity-shop/basket.service';
 import { findPerformance } from '../../service/performance/performance.service';
+import QuizResultModel from '../../models/performance/quiz-results.model';
+import quizResultsModel from '../../models/performance/quiz-results.model';
 
 export async function createVisitorHandler(
     req: Request<CreateVisitorInput>,
@@ -54,6 +56,7 @@ export async function createVisitorHandler(
         const performance = await findPerformance({
             performanceId: body.performance,
         });
+
         await findAndUpdateVisitor(
             { visitorId: visitor._id },
             {
@@ -76,26 +79,51 @@ export async function updateVisitorHandler(
     req: Request<UpdateVisitorInput['params']>,
     res: Response
 ) {
-    const userId = res.locals.user._id;
+    try {
+        const userId = res.locals.user._id;
+        console.log('kai munny');
+        const visitorId = req.params.visitorId;
+        const update = req.body;
 
-    const visitorId = req.params.visitorId;
-    const update = req.body;
+        const visitor = await findVisitor({ visitorId });
 
-    const visitor = await findVisitor({ visitorId });
+        if (!visitor) {
+            return res.sendStatus(404);
+        }
 
-    if (!visitor) {
-        return res.sendStatus(404);
+        // if (String(visitor.user) !== userId) {
+        //     return res.sendStatus(403);
+        // }
+        console.log('update object:', update);
+        const quizResultsForUpdate = [];
+        if (update.quiz_results) {
+            const quizResults = update.quiz_results;
+            for (const qr of quizResults) {
+                if (qr._id == null) {
+                    console.log('qr', qr);
+
+                    const result = await QuizResultModel.create(qr);
+                    console.log(result);
+                    quizResultsForUpdate.push(result._id);
+                }
+            }
+        }
+        update.quiz_results = quizResultsForUpdate;
+        console.log('this is what im tryna update');
+        console.log(update);
+        const updatedVisitor = await findAndUpdateVisitor(
+            { visitorId },
+            update,
+            {
+                new: true,
+            }
+        );
+
+        return res.send(updatedVisitor);
+    } catch (e) {
+        console.error(e);
+        return res.sendStatus(400);
     }
-
-    if (String(visitor.user) !== userId) {
-        return res.sendStatus(403);
-    }
-
-    const updatedVisitor = await findAndUpdateVisitor({ visitorId }, update, {
-        new: true,
-    });
-
-    return res.send(updatedVisitor);
 }
 
 export async function getVisitorHandler(

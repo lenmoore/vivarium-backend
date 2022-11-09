@@ -1,4 +1,4 @@
-import { object, string, TypeOf, optional, number, boolean } from 'zod';
+import { object, string, TypeOf, optional, number, boolean, array } from 'zod';
 
 const payload = {
     body: object({
@@ -19,6 +19,7 @@ const payload = {
                 basket_id: string(),
             })
         ),
+        quiz_results: optional(array(object({}))),
         performance: optional(string()),
     }),
 };
