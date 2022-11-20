@@ -42,8 +42,11 @@ const visitorSchema = new mongoose.Schema(
             orange: Number,
         },
         archived: { type: Boolean, required: false },
-        basket: { type: mongoose.Types.ObjectId, ref: 'Basket' },
-        performance: { type: mongoose.Types.ObjectId, ref: 'Performance' },
+        basket: { type: mongoose.Schema.Types.ObjectId, ref: 'Basket' },
+        performance: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Performance',
+        },
         username: { type: String, required: false },
         wardrobe_number: { type: Number, required: true },
         wants_newsletter: { type: Boolean, required: true },

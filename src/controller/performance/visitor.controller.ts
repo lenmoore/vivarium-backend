@@ -141,7 +141,7 @@ export async function getVisitorHandler(
 }
 
 export async function getVisitorsHandler(req: Request, res: Response) {
-    const visitors = await getAllVisitors();
+    const visitors = await getAllVisitors({});
     if (!visitors) {
         return res.sendStatus(404);
     }

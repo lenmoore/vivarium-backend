@@ -56,8 +56,9 @@ export async function getProductHandler(
     req: Request<ReadProductInput['params']>,
     res: Response
 ) {
+    console.log(req.params);
     const productId = req.params.productId;
-    const product = await findProduct({ productId });
+    const product = await findProduct({ _id: productId });
 
     if (!product) {
         return res.sendStatus(404);

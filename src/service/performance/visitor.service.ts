@@ -51,9 +51,9 @@ export async function findAndUpdateVisitor(
     options: QueryOptions
 ) {
     try {
-        return VisitorModel.findOneAndUpdate(query, update, options)
-            .populate('quiz_results')
-            .populate('basket');
+        return VisitorModel.findOneAndUpdate(query, update, options).populate(
+            'basket'
+        );
     } catch (e) {
         console.error(e);
     }
@@ -62,6 +62,14 @@ export async function findAndUpdateVisitor(
 export async function deleteVisitor(query: FilterQuery<VisitorDocument>) {
     return VisitorModel.deleteOne(query);
 }
-export async function getAllVisitors() {
-    return VisitorModel.find();
+export async function getAllVisitors(
+    query: FilterQuery<VisitorDocument>,
+    options: QueryOptions = {}
+) {
+    console.log('see ju');
+    const result = await VisitorModel.find(query, {}, options).populate(
+        'basket'
+    );
+    console.log(result.length, ' found');
+    return result;
 }

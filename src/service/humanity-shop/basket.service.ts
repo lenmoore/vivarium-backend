@@ -40,7 +40,7 @@ export async function findBasket(
     }
 }
 export async function getAllBaskets() {
-    return BasketModel.find();
+    return BasketModel.find().populate('products');
 }
 export async function findAndUpdateBasket(
     query: FilterQuery<BasketDocument>,
