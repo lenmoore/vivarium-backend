@@ -31,11 +31,16 @@ app.use(
             'https://192.168.1.153:8080',
             'https://192.168.1.187:8080',
             'http://192.168.1.187:8080',
+            'https://10.0.0.244:8080',
+            'http://10.0.0.244:8080',
+            'https://172.16.1.206:8080',
+            'http://172.16.1.206:8080',
             '*',
         ],
         credentials: true,
     })
 );
+
 const key = fs.readFileSync('./key.pem');
 const cert = fs.readFileSync('./cert.pem');
 const server = https.createServer({ key: key, cert: cert }, app);

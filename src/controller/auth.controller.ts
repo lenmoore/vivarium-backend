@@ -56,7 +56,7 @@ export async function refreshAccessTokenHandler(req: Request, res: Response) {
     const refreshToken = get(req, 'headers.x-refresh');
 
     const { payload, protectedHeader } = await verifyJwt(
-        refreshToken,
+        refreshToken[0],
         'refreshTokenPublicKeyEncoded'
     );
 
