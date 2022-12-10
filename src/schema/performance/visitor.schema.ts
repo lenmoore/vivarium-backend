@@ -14,11 +14,7 @@ const payload = {
         wants_summary: boolean({
             required_error: 'summary info is required',
         }),
-        basket: optional(
-            object({
-                basket_id: string(),
-            })
-        ),
+        basket: optional(object({})),
         quiz_results: optional(array(object({}))),
         performance: optional(string()),
     }),
@@ -34,6 +30,7 @@ const params = {
                 basket_id: string(),
             })
         ),
+        quiz_results: optional(array(object({}))),
         performance: optional(
             object({
                 performance_id: string(),

@@ -52,6 +52,7 @@ export async function createVisitorHandler(
             visitor: visitor,
             coins_left: 100,
             products: [],
+            confirmed: false,
         });
         const performance = await findPerformance({
             performanceId: body.performance,
@@ -101,9 +102,23 @@ export async function updateVisitorHandler(
             for (const qr of quizResults) {
                 if (qr._id == null) {
                     console.log('qr', qr);
+                    const createPayload = {
+                        ...qr,
+                        result_text: qr.result_text,
+                        result_humanity_values: {
+                            green: parseInt(qr.result_humanity_values.green),
+                            red: parseInt(qr.result_humanity_values.red),
+                            blue: parseInt(qr.result_humanity_values.blue),
+                            orange: parseInt(qr.result_humanity_values.orange),
+                        },
+                    };
 
-                    const result = await QuizResultModel.create(qr);
+                    console.log('Create result payload-', createPayload);
+                    const result = await QuizResultModel.create(createPayload);
                     console.log(result);
+                    quizResultsForUpdate.push(result._id);
+                } else {
+                    const result = await QuizResultModel.findByIdAndUpdate(qr);
                     quizResultsForUpdate.push(result._id);
                 }
             }
@@ -118,6 +133,7 @@ export async function updateVisitorHandler(
                 new: true,
             }
         );
+        console.log('updatedvisitor', updatedVisitor);
 
         return res.send(updatedVisitor);
     } catch (e) {

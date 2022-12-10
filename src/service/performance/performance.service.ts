@@ -31,8 +31,12 @@ export async function findPerformance(
     console.log(query);
     const timer = databaseResponseTimeHistogram.startTimer();
     try {
-        const result = await PerformanceModel.findOne(query, {}, options);
-        result.populate({ path: 'phases' }); // todo why wont it populate with objects
+        const result = await PerformanceModel.findOne(
+            { _id: query.performanceId },
+            {},
+            options
+        );
+        result?.populate({ path: 'phases' }); // todo why wont it populate with objects
 
         timer({ ...metricsLabels, success: 'true' });
         console.log('result findperformances: ', result);

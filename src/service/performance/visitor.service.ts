@@ -34,8 +34,8 @@ export async function findVisitor(
     try {
         const result = await VisitorModel.findOne(query, {}, options)
             .populate('basket')
-            .populate('results');
-        console.log(result);
+            .populate('quiz_results');
+        console.log('VISITOR RESULT', result);
         timer({ ...metricsLabels, success: 'true' });
         return result;
     } catch (e) {
@@ -51,9 +51,10 @@ export async function findAndUpdateVisitor(
     options: QueryOptions
 ) {
     try {
-        return VisitorModel.findOneAndUpdate(query, update, options).populate(
-            'basket'
-        );
+        console.log(update);
+        return VisitorModel.findOneAndUpdate(query, update, options)
+            .populate('basket')
+            .populate('quiz_results');
     } catch (e) {
         console.error(e);
     }

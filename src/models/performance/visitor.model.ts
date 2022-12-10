@@ -17,7 +17,6 @@ export interface VisitorInput {
     archived: boolean;
     wardrobe_number: number;
     wants_newsletter: boolean;
-    wants_summary: boolean;
 }
 
 export interface VisitorDocument extends VisitorInput, mongoose.Document {
@@ -50,7 +49,6 @@ const visitorSchema = new mongoose.Schema(
         username: { type: String, required: false },
         wardrobe_number: { type: Number, required: true },
         wants_newsletter: { type: Boolean, required: true },
-        wants_summary: { type: Boolean, required: true },
         quiz_results: [
             { type: mongoose.Schema.Types.ObjectId, ref: 'QuizResult' },
         ],

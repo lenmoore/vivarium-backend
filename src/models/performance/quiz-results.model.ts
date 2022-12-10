@@ -6,22 +6,17 @@ import { StepDocument } from './step.model';
 
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz0123456789', 10);
 
-export interface Result {
-    step: StepDocument['_id'];
-    selected_value: {
-        selected_text: string;
-        selected_humanity_values: object;
-    };
-}
-
-export interface ResultDocument extends Result, mongoose.Document {
-    createdAt: Date;
-    updatedAt: Date;
-}
 export interface QuizResultInput {
     visitor: VisitorDocument['_id'];
     game: GameDocument['_id'];
-    results: Array<ResultDocument>;
+    step: StepDocument['_id'];
+    result_text: '';
+    result_humanity_values: {
+        green: 0;
+        red: 0;
+        blue: 0;
+        orange: 0;
+    };
 }
 
 export interface QuizResultDocument extends QuizResultInput, mongoose.Document {
@@ -38,7 +33,9 @@ const quizResultSchema = new mongoose.Schema({
     },
     visitor: { type: mongoose.Schema.Types.ObjectId, ref: 'Visitor' },
     game: { type: mongoose.Schema.Types.ObjectId, ref: 'Game' },
-    results: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Result' }],
+    step: { type: mongoose.Schema.Types.ObjectId, ref: 'Step' },
+    result_text: { type: String, required: true },
+    result_humanity_values: { type: Object, required: true },
 });
 
 const QuizResultModel = mongoose.model<QuizResultDocument>(

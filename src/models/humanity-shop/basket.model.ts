@@ -11,6 +11,7 @@ export interface BasketInput {
     visitor: VisitorDocument['_id'];
     products: Array<ProductDocument>;
     coins_left: number;
+    confirmed: boolean;
 }
 
 export interface BasketDocument extends BasketInput, mongoose.Document {
@@ -30,6 +31,7 @@ const basketSchema = new mongoose.Schema(
         visitor: { type: mongoose.Schema.Types.ObjectId, ref: 'Visitor' },
         products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }],
         coins_left: Number,
+        confirmed: Boolean,
     },
     {
         timestamps: true,
