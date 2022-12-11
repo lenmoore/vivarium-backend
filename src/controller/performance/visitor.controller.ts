@@ -20,7 +20,10 @@ import {
     signVisitorAccessToken,
 } from '../../service/auth.service';
 import { createBasket } from '../../service/humanity-shop/basket.service';
-import { findPerformance } from '../../service/performance/performance.service';
+import {
+    findAndUpdatePerformance,
+    findPerformance,
+} from '../../service/performance/performance.service';
 import QuizResultModel from '../../models/performance/quiz-results.model';
 import quizResultsModel from '../../models/performance/quiz-results.model';
 
@@ -68,7 +71,13 @@ export async function createVisitorHandler(
                 new: true,
             }
         );
-
+        await findAndUpdatePerformance(
+            { performanceId: body.performance },
+            { visitors: [...performance.visitors, visitor._id] },
+            {
+                new: true,
+            }
+        );
         visitor.accessToken = accessToken; // just in case
         return res.send(visitor);
     } catch (e) {
@@ -81,8 +90,6 @@ export async function updateVisitorHandler(
     res: Response
 ) {
     try {
-        const userId = res.locals.user._id;
-        console.log('kai munny');
         const visitorId = req.params.visitorId;
         const update = req.body;
 
@@ -92,16 +99,11 @@ export async function updateVisitorHandler(
             return res.sendStatus(404);
         }
 
-        // if (String(visitor.user) !== userId) {
-        //     return res.sendStatus(403);
-        // }
-        console.log('update object:', update);
         const quizResultsForUpdate = [];
         if (update.quiz_results) {
             const quizResults = update.quiz_results;
             for (const qr of quizResults) {
                 if (qr._id == null) {
-                    console.log('qr', qr);
                     const createPayload = {
                         ...qr,
                         result_text: qr.result_text,
@@ -113,9 +115,7 @@ export async function updateVisitorHandler(
                         },
                     };
 
-                    console.log('Create result payload-', createPayload);
                     const result = await QuizResultModel.create(createPayload);
-                    console.log(result);
                     quizResultsForUpdate.push(result._id);
                 } else {
                     const result = await QuizResultModel.findByIdAndUpdate(qr);
@@ -124,7 +124,6 @@ export async function updateVisitorHandler(
             }
         }
         update.quiz_results = quizResultsForUpdate;
-        console.log('this is what im tryna update');
         console.log(update);
         const updatedVisitor = await findAndUpdateVisitor(
             { visitorId },
@@ -133,7 +132,6 @@ export async function updateVisitorHandler(
                 new: true,
             }
         );
-        console.log('updatedvisitor', updatedVisitor);
 
         return res.send(updatedVisitor);
     } catch (e) {
@@ -146,42 +144,76 @@ export async function getVisitorHandler(
     req: Request<ReadVisitorInput['params']>,
     res: Response
 ) {
-    const visitorId = req.params.visitorId;
-    const visitor = await findVisitor({ visitorId });
+    try {
+        const visitorId = req.params.visitorId;
+        const visitor = await findVisitor({ visitorId });
 
-    if (!visitor) {
-        return res.sendStatus(404);
+        if (!visitor) {
+            return res.sendStatus(404);
+        }
+
+        return res.send(visitor);
+    } catch (err) {
+        console.error(err);
+        return res.sendStatus(400);
     }
+}
 
-    return res.send(visitor);
+export async function getPerformanceVisitorsHandler(
+    req: Request<ReadVisitorInput['params']>,
+    res: Response
+) {
+    try {
+        console.log(req.params);
+        const visitors = await getAllVisitors({
+            performance: req.params.performance,
+        });
+        if (!visitors) {
+            return res.sendStatus(404);
+        }
+        return res.send(visitors);
+    } catch (e) {
+        console.error(e);
+        return res.sendStatus(400);
+    }
 }
 
 export async function getVisitorsHandler(req: Request, res: Response) {
-    const visitors = await getAllVisitors({});
-    if (!visitors) {
-        return res.sendStatus(404);
+    try {
+        const visitors = await getAllVisitors({});
+        if (!visitors) {
+            return res.sendStatus(404);
+        }
+        return res.send(visitors);
+    } catch (e) {
+        console.error(e);
+        return res.sendStatus(400);
     }
-    return res.send(visitors);
 }
 
 export async function deleteVisitorHandler(
     req: Request<DeleteVisitorInput['params']>,
     res: Response
 ) {
-    const userId = res.locals.user._id;
-    const visitorId = req.params.visitorId;
+    try {
+        const userId = res.locals.user._id;
+        const visitorId = req.params.visitorId;
 
-    const visitor = await findVisitor({ visitorId });
+        const visitor = await findVisitor({ visitorId });
 
-    if (!visitor) {
-        return res.sendStatus(404);
+        if (!visitor) {
+            return res.sendStatus(404);
+        }
+
+        if (String(visitor.user) !== userId) {
+            return res.sendStatus(403);
+        }
+
+        await deleteVisitor({ visitorId });
+
+        return res.sendStatus(200);
+    } catch (e) {
+        console.error(e);
+        return res.sendStatus(400);
     }
-
-    if (String(visitor.user) !== userId) {
-        return res.sendStatus(403);
-    }
-
-    await deleteVisitor({ visitorId });
-
-    return res.sendStatus(200);
 }

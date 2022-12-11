@@ -2,6 +2,7 @@ import mongoose, { Schema } from 'mongoose';
 import { customAlphabet } from 'nanoid';
 import { UserDocument } from '../user.model';
 import { PhaseDocument } from './phase.model';
+import { VisitorDocument } from './visitor.model';
 
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz0123456789', 10);
 
@@ -11,6 +12,7 @@ export interface PerformanceInput {
     date: Date;
     location?: string;
     phases: Array<PhaseDocument>;
+    visitors: Array<VisitorDocument>;
 }
 
 export interface PerformanceDocument

@@ -35,8 +35,9 @@ export async function findPerformance(
             { _id: query.performanceId },
             {},
             options
-        );
-        result?.populate({ path: 'phases' }); // todo why wont it populate with objects
+        )
+            .populate('phases')
+            .populate('visitors');
 
         timer({ ...metricsLabels, success: 'true' });
         console.log('result findperformances: ', result);
@@ -53,7 +54,9 @@ export async function findAndUpdatePerformance(
     update: UpdateQuery<PerformanceDocument>,
     options: QueryOptions
 ) {
-    return PerformanceModel.findOneAndUpdate(query, update, options);
+    return PerformanceModel.findOneAndUpdate(query, update, options).populate(
+        'visitors'
+    );
 }
 
 export async function deletePerformance(

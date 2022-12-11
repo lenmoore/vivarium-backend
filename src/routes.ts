@@ -63,6 +63,7 @@ import {
 import {
     createVisitorHandler,
     deleteVisitorHandler,
+    getPerformanceVisitorsHandler,
     getVisitorHandler,
     getVisitorsHandler,
     updateVisitorHandler,
@@ -231,6 +232,10 @@ function routes(app: Express) {
         '/api/visitors',
         [validateResource(createVisitorSchema)],
         createVisitorHandler
+    );
+    app.get(
+        '/api/performance-visitors/:performance',
+        getPerformanceVisitorsHandler
     );
     app.get('/api/visitors', getVisitorsHandler);
 
