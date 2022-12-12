@@ -30,7 +30,9 @@ export async function findBasket(
 
     const timer = databaseResponseTimeHistogram.startTimer();
     try {
-        const result = await BasketModel.findOne(query, {}, options);
+        const result = await BasketModel.findOne(query, {}, options).populate(
+            'products'
+        );
         timer({ ...metricsLabels, success: 'true' });
         return result;
     } catch (e) {

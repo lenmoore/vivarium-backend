@@ -11,6 +11,7 @@ export async function createGame(input: CreateGameInput) {
 
     try {
         const result = await GameModel.create(input);
+        console.log(result);
         timer({ ...metricsLabels, success: 'true' });
         return result;
     } catch (e) {

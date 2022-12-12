@@ -17,6 +17,7 @@ export interface VisitorInput {
     archived: boolean;
     wardrobe_number: number;
     wants_newsletter: boolean;
+    confirmed_humanity_value: string;
 }
 
 export interface VisitorDocument extends VisitorInput, mongoose.Document {
@@ -36,7 +37,7 @@ const visitorSchema = new mongoose.Schema(
         user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
         humanity_values: {
             green: Number,
-            red: Number,
+            fuchsia: Number,
             blue: Number,
             orange: Number,
         },
@@ -53,6 +54,7 @@ const visitorSchema = new mongoose.Schema(
             { type: mongoose.Schema.Types.ObjectId, ref: 'QuizResult' },
         ],
         accessToken: { type: String, default: '' },
+        confirmed_humanity_value: { type: String, default: 'none' },
     },
     {
         timestamps: true,

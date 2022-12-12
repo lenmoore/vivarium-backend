@@ -36,6 +36,8 @@ const gameSchema = new mongoose.Schema(
         game_players: [
             { type: mongoose.Schema.Types.ObjectId, ref: 'Visitor' },
         ],
+        open_for_colors: [{ type: String, default: 'all' }],
+        pre_capsule: { type: Boolean, default: true },
     },
     {
         timestamps: true,

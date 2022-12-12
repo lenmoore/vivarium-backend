@@ -16,7 +16,7 @@ export class Option {
     option_text: '';
     humanity_values: {
         green: 0;
-        red: 0;
+        fuchsia: 0;
         blue: 0;
         orange: 0;
     };

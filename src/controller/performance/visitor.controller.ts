@@ -109,7 +109,9 @@ export async function updateVisitorHandler(
                         result_text: qr.result_text,
                         result_humanity_values: {
                             green: parseInt(qr.result_humanity_values.green),
-                            red: parseInt(qr.result_humanity_values.red),
+                            fuchsia: parseInt(
+                                qr.result_humanity_values.fuchsia
+                            ),
                             blue: parseInt(qr.result_humanity_values.blue),
                             orange: parseInt(qr.result_humanity_values.orange),
                         },

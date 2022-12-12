@@ -25,7 +25,11 @@ export async function createGameHandler(
 ) {
     const body = req.body;
 
-    const Game = await createGame({ ...body });
+    console.log(body);
+    const Game = await createGame({
+        ...body,
+        open_for_colors: body.open_for_colors.split(','),
+    });
 
     return res.send(Game);
 }

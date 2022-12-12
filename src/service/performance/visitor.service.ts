@@ -68,9 +68,9 @@ export async function getAllVisitors(
     options: QueryOptions = {}
 ) {
     console.log('see ju');
-    const result = await VisitorModel.find(query, {}, options).populate(
-        'basket'
-    );
+    const result = await VisitorModel.find(query, {}, options)
+        .populate('basket')
+        .populate('quiz_results');
     console.log(result.length, ' found');
     return result;
 }

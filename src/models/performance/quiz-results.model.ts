@@ -13,7 +13,7 @@ export interface QuizResultInput {
     result_text: '';
     result_humanity_values: {
         green: 0;
-        red: 0;
+        fuchsia: 0;
         blue: 0;
         orange: 0;
     };

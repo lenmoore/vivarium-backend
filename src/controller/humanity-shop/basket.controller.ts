@@ -39,26 +39,30 @@ export async function updateBasketHandler(
     req: Request<UpdateBasketInput['params']>,
     res: Response
 ) {
-    const userId = res.locals.user._id;
+    try {
+        console.log(req.params);
+        const basketId = req.params.basketId;
+        const update = req.body;
 
-    const basketId = req.params.basketId;
-    const update = req.body;
+        const basket = await findBasket({ basketId });
 
-    const basket = await findBasket({ basketId });
+        if (!basket) {
+            return res.sendStatus(404);
+        }
 
-    if (!basket) {
-        return res.sendStatus(404);
+        // if (String(basket.user) !== userId) {
+        //     return res.sendStatus(403);
+        // }
+
+        const updatedProduct = await findAndUpdateBasket({ basketId }, update, {
+            new: true,
+        });
+
+        return res.send(updatedProduct);
+    } catch (e) {
+        console.error(e);
+        return res.sendStatus(400);
     }
-
-    // if (String(basket.user) !== userId) {
-    //     return res.sendStatus(403);
-    // }
-
-    const updatedProduct = await findAndUpdateBasket({ basketId }, update, {
-        new: true,
-    });
-
-    return res.send(updatedProduct);
 }
 
 export async function getBasketHandler(

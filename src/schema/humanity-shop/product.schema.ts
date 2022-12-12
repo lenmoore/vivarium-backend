@@ -17,7 +17,7 @@ const payload = {
         humanity_values: optional(
             object({
                 green: number(),
-                red: number(),
+                fuchsia: number(),
                 blue: number(),
                 orange: number(),
             })

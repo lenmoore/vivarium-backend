@@ -13,6 +13,7 @@ export interface PerformanceInput {
     location?: string;
     phases: Array<PhaseDocument>;
     visitors: Array<VisitorDocument>;
+    are_visitors_in_groups: boolean;
 }
 
 export interface PerformanceDocument
@@ -37,6 +38,7 @@ const performanceSchema = new mongoose.Schema(
         location: { type: String, required: true },
         phases: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Phase' }],
         active: { type: Boolean, default: false },
+        are_visitors_in_groups: { type: Boolean, default: false },
     },
     {
         timestamps: true,

@@ -250,6 +250,7 @@ function routes(app: Express) {
         [requireUser, validateResource(updateVisitorSchema)],
         updateVisitorHandler
     );
+
     app.delete(
         '/api/visitors/:visitorId',
         [requireUser, validateResource(deleteVisitorSchema)],
