@@ -66,6 +66,7 @@ import {
     getPerformanceVisitorsHandler,
     getVisitorHandler,
     getVisitorsHandler,
+    updateVisitorColorsHandler,
     updateVisitorHandler,
 } from './controller/performance/visitor.controller';
 import {
@@ -250,6 +251,7 @@ function routes(app: Express) {
         [requireUser, validateResource(updateVisitorSchema)],
         updateVisitorHandler
     );
+    app.put('/api/visitors-update/colors', updateVisitorColorsHandler);
 
     app.delete(
         '/api/visitors/:visitorId',

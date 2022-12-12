@@ -50,11 +50,30 @@ export async function findAndUpdateVisitor(
     update: UpdateQuery<VisitorDocument>,
     options: QueryOptions
 ) {
+    console.log('updada');
     try {
         console.log(update);
         return VisitorModel.findOneAndUpdate(query, update, options)
             .populate('basket')
             .populate('quiz_results');
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+export async function confirmVisitorColors(update: Array<any>) {
+    try {
+        for (const visitor of update) {
+            console.log(visitor);
+            console.log(visitor != undefined);
+            await VisitorModel.findOneAndUpdate(
+                { visitorId: visitor.visitorId },
+                {
+                    confirmed_humanity_value: visitor.confirmed_humanity_value,
+                },
+                {}
+            );
+        }
     } catch (e) {
         console.error(e);
     }

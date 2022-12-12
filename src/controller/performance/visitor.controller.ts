@@ -6,6 +6,7 @@ import {
     UpdateVisitorInput,
 } from '../../schema/performance/visitor.schema';
 import {
+    confirmVisitorColors,
     createVisitor,
     deleteVisitor,
     findAndUpdateVisitor,
@@ -82,6 +83,15 @@ export async function createVisitorHandler(
         return res.send(visitor);
     } catch (e) {
         console.error(e);
+    }
+}
+export async function updateVisitorColorsHandler(req: Request, res: Response) {
+    try {
+        await confirmVisitorColors(req.body);
+        return res.sendStatus(204);
+    } catch (e) {
+        console.error(e);
+        return res.sendStatus(400);
     }
 }
 
