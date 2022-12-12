@@ -120,7 +120,7 @@ export async function getDataVisInfo(req: Request, res: Response) {
     });
     console.log('>>>>>>>>>>>>>>>> >>>>>> ', realGoodKeys);
 
-    const usr = await findUserByEmail(res.locals.user.email);
+    const usr = (await findUserByEmail(res.locals?.user?.email)) || null;
     realGoodKeys.forEach((realGoodKey) => {
         const productToAddToDb: ProductInput = {
             user: usr,

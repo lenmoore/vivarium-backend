@@ -34,31 +34,20 @@ export async function updatePerformanceHandler(
     req: Request<UpdatePerformanceInput['params']>,
     res: Response
 ) {
-    const userId = res.locals.user._id;
-
     const performanceId = req.params.performanceId;
+    console.log(req.params);
     const update = req.body;
-
-    const performance = await findPerformance({ performanceId });
-
-    if (!performance) {
-        return res.sendStatus(404);
-    }
-
-    // todo check if this works
-    // if doesnt do getter for user and check model
-    // if (!performance.user.admin) {
-    //     return res.sendStatus(403);
-    // }
+    console.log(update.active);
 
     const updatedPerformance = await findAndUpdatePerformance(
-        { performanceId },
+        { _id: performanceId },
         update,
         {
             new: true,
         }
     );
 
+    console.log(updatedPerformance);
     return res.send(updatedPerformance);
 }
 
@@ -68,7 +57,7 @@ export async function getPerformanceHandler(
 ) {
     console.log('req.params >>>>>> ', req.params);
     const performanceId = req.params.performanceId;
-    const performance = await findPerformance({ _id: performanceId });
+    const performance = await findPerformance({ performanceId: performanceId });
 
     if (!performance) {
         return res.sendStatus(404);

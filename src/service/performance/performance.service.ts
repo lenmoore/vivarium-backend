@@ -51,12 +51,11 @@ export async function findPerformance(
 
 export async function findAndUpdatePerformance(
     query: FilterQuery<PerformanceDocument>,
+
     update: UpdateQuery<PerformanceDocument>,
     options: QueryOptions
 ) {
-    return PerformanceModel.findOneAndUpdate(query, update, options).populate(
-        'visitors'
-    );
+    return PerformanceModel.findOneAndUpdate(query, update, options);
 }
 
 export async function deletePerformance(
