@@ -251,6 +251,10 @@ function routes(app: Express) {
         [requireUser, validateResource(updateVisitorSchema)],
         updateVisitorHandler
     );
+    // app.put(
+    //     '/api/visitors/:visitorId/quiz-results/:stepId',
+    //     updateVisitorStepsHandler
+    // );
     app.put('/api/visitors-update/colors', updateVisitorColorsHandler);
 
     app.delete(

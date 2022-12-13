@@ -109,37 +109,43 @@ export async function updateVisitorHandler(
             return res.sendStatus(404);
         }
 
-        const quizResultsForUpdate = [];
+        const addQuizResults = [];
         if (update.quiz_results) {
             const quizResults = update.quiz_results;
+            console.log(quizResults);
             for (const qr of quizResults) {
-                if (qr._id == null) {
-                    const createPayload = {
-                        ...qr,
-                        result_text: qr.result_text,
-                        result_humanity_values: {
-                            green: parseInt(qr.result_humanity_values.green),
-                            fuchsia: parseInt(
-                                qr.result_humanity_values.fuchsia
-                            ),
-                            blue: parseInt(qr.result_humanity_values.blue),
-                            orange: parseInt(qr.result_humanity_values.orange),
-                        },
-                    };
+                console.log('QUIZ RESULT QUIZ RESULT ------------------', qr);
 
-                    const result = await QuizResultModel.create(createPayload);
-                    quizResultsForUpdate.push(result._id);
+                console.log(qr._id);
+                if (qr._id == null) {
+                    const result = await QuizResultModel.create({
+                        ...qr,
+                        visitor: visitor,
+                        result_humanity_values: {
+                            green: 0,
+                            red: 0,
+                            blue: 0,
+                            orange: 0,
+                        },
+                    });
+                    console.log(result);
+                    addQuizResults.push(result);
                 } else {
-                    const result = await QuizResultModel.findByIdAndUpdate(qr);
-                    quizResultsForUpdate.push(result._id);
+                    const result = await QuizResultModel.findByIdAndUpdate(
+                        { _id: qr._id },
+                        qr
+                    );
+                    addQuizResults.push(result);
+                    console.log('SHOULD HAVE UPDATED', result);
                 }
             }
         }
-        update.quiz_results = quizResultsForUpdate;
-        console.log(update);
         const updatedVisitor = await findAndUpdateVisitor(
             { visitorId },
-            update,
+            {
+                ...update,
+                quiz_results: addQuizResults,
+            },
             {
                 new: true,
             }

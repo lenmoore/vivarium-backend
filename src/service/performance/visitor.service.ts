@@ -50,9 +50,9 @@ export async function findAndUpdateVisitor(
     update: UpdateQuery<VisitorDocument>,
     options: QueryOptions
 ) {
-    console.log('updada');
+    // console.log('updada');
     try {
-        console.log(update);
+        // console.log(update);
         return VisitorModel.findOneAndUpdate(query, update, options)
             .populate('basket')
             .populate('quiz_results');

@@ -13,7 +13,7 @@ export interface QuizResultInput {
     result_text: '';
     result_humanity_values: {
         green: 0;
-        fuchsia: 0;
+        red: 0;
         blue: 0;
         orange: 0;
     };
@@ -32,10 +32,14 @@ const quizResultSchema = new mongoose.Schema({
         default: () => `quiz_result_${nanoid()}`,
     },
     visitor: { type: mongoose.Schema.Types.ObjectId, ref: 'Visitor' },
-    game: { type: mongoose.Schema.Types.ObjectId, ref: 'Game' },
+    game: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Game',
+        required: false,
+    },
     step: { type: mongoose.Schema.Types.ObjectId, ref: 'Step' },
     result_text: { type: String, required: true },
-    result_humanity_values: { type: Object, required: true },
+    result_humanity_values: { type: Object, required: false },
 });
 
 const QuizResultModel = mongoose.model<QuizResultDocument>(
