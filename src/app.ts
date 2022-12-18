@@ -54,6 +54,7 @@ const server = https.createServer({ key: key, cert: cert }, app);
 
 // server.listen(port, async () => {
 app.listen(port, async () => {
+    console.log('Broo;');
     logger.info('running on port ' + port);
 
     routes(app);
