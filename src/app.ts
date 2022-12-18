@@ -48,9 +48,9 @@ app.use(
     })
 );
 
-const key = fs.readFileSync('./localhost-key.pem');
-const cert = fs.readFileSync('./localhost.pem');
-const server = https.createServer({ key: key, cert: cert }, app);
+// const key = fs.readFileSync('./localhost-key.pem');
+// const cert = fs.readFileSync('./localhost.pem');
+// const server = https.createServer({ key: key, cert: cert }, app);
 
 // server.listen(port, async () => {
 app.listen(port, async () => {
