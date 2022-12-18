@@ -2,7 +2,7 @@
   "name": "vivarium-backend",
   "version": "1.0.0",
   "description": "theatre awaits",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
