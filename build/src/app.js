@@ -40,7 +40,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
-var connect_1 = __importDefault(require("./utils/connect"));
 var logger_1 = __importDefault(require("./utils/logger"));
 var routes_1 = __importDefault(require("./routes"));
 var deserializeUser_1 = __importDefault(require("./middleware/deserializeUser"));
@@ -88,15 +87,9 @@ app.use((0, cors_1.default)({
 // server.listen(port, async () => {
 app.listen(port, function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                console.log('Broo;');
-                logger_1.default.info('running on port ' + port);
-                (0, routes_1.default)(app);
-                return [4 /*yield*/, (0, connect_1.default)()];
-            case 1:
-                _a.sent();
-                return [2 /*return*/];
-        }
+        console.log('Broo;');
+        logger_1.default.info('running on port ' + port);
+        (0, routes_1.default)(app);
+        return [2 /*return*/];
     });
 }); });

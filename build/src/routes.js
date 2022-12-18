@@ -24,10 +24,8 @@ var phase_controller_1 = require("./controller/performance/phase.controller");
 var game_schema_1 = require("./schema/performance/game.schema");
 var game_controller_1 = require("./controller/performance/game.controller");
 function routes(app) {
-    app.get('/', function (req, res) {
-        console.log('yo');
-        console.log('im hot reload');
-        res.sendStatus(200);
+    app.route('/').get(function (req, res) {
+        res.sendFile(process.cwd() + '/index.html');
     });
     app.get('/api/health-check', (0, cors_1.default)(), function (req, res) {
         console.log('yo');
