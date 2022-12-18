@@ -7,7 +7,7 @@
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "ts-node-dev --respawn --transpile-only src/app.ts",
-    "start": "set NODE_ENV=production&& nodemon -r dotenv/config src/app.ts",
+    "start": "set NODE_ENV=production&&NODE_OPTIONS=--max-old-space-size=8192&& nodemon -r dotenv/config src/app.ts",
     "start:dev": "nodemon -r dotenv/config src/app.ts",
     "start:watch": "nodemon -r dotenv/config src/app.ts"
   },
