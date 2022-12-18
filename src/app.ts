@@ -8,7 +8,7 @@ import https from 'https';
 import config from 'config';
 import * as fs from 'fs';
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 // const port = config.get<number>('port');
 console.log(port);
 const app = express();
@@ -16,6 +16,8 @@ app.use(deserializeUser); // on every single request
 
 app.use(express.json());
 
+// use the express-static middleware
+app.use(express.static('public'));
 app.use(
     cors({
         origin: [
