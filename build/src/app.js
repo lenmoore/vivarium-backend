@@ -70,7 +70,7 @@ var deserializeUser_1 = __importDefault(require("./middleware/deserializeUser"))
 var cors_1 = __importDefault(require("cors"));
 var https_1 = __importDefault(require("https"));
 var fs = __importStar(require("fs"));
-var port = 8080;
+var port = process.env.PORT || 8080;
 // const port = config.get<number>('port');
 console.log(port);
 var app = (0, express_1.default)();
@@ -108,11 +108,12 @@ app.use((0, cors_1.default)({
 var key = fs.readFileSync('./localhost-key.pem');
 var cert = fs.readFileSync('./localhost.pem');
 var server = https_1.default.createServer({ key: key, cert: cert }, app);
-server.listen(port, function () { return __awaiter(void 0, void 0, void 0, function () {
+// server.listen(port, async () => {
+app.listen(port, function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                // app.listen(port, async () => {
+                console.log('Broo;');
                 logger_1.default.info('running on port ' + port);
                 (0, routes_1.default)(app);
                 return [4 /*yield*/, (0, connect_1.default)()];
