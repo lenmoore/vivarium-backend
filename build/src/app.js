@@ -1,27 +1,4 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -68,14 +45,14 @@ var logger_1 = __importDefault(require("./utils/logger"));
 var routes_1 = __importDefault(require("./routes"));
 var deserializeUser_1 = __importDefault(require("./middleware/deserializeUser"));
 var cors_1 = __importDefault(require("cors"));
-var https_1 = __importDefault(require("https"));
-var fs = __importStar(require("fs"));
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 3000;
 // const port = config.get<number>('port');
 console.log(port);
 var app = (0, express_1.default)();
 app.use(deserializeUser_1.default); // on every single request
 app.use(express_1.default.json());
+// use the express-static middleware
+app.use(express_1.default.static('public'));
 app.use((0, cors_1.default)({
     origin: [
         'http://localhost:8080',
@@ -105,9 +82,9 @@ app.use((0, cors_1.default)({
     ],
     credentials: true,
 }));
-var key = fs.readFileSync('./localhost-key.pem');
-var cert = fs.readFileSync('./localhost.pem');
-var server = https_1.default.createServer({ key: key, cert: cert }, app);
+// const key = fs.readFileSync('./localhost-key.pem');
+// const cert = fs.readFileSync('./localhost.pem');
+// const server = https.createServer({ key: key, cert: cert }, app);
 // server.listen(port, async () => {
 app.listen(port, function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
