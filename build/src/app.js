@@ -70,7 +70,7 @@ var deserializeUser_1 = __importDefault(require("./middleware/deserializeUser"))
 var cors_1 = __importDefault(require("cors"));
 var https_1 = __importDefault(require("https"));
 var fs = __importStar(require("fs"));
-var port = process.env.PORT || 3000;
+var port = 8080;
 // const port = config.get<number>('port');
 console.log(port);
 var app = (0, express_1.default)();
