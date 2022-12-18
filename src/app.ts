@@ -7,6 +7,7 @@ import cors from 'cors';
 import https from 'https';
 import config from 'config';
 import * as fs from 'fs';
+import helmet from 'helmet';
 
 const port = process.env.PORT || 3000;
 // const port = config.get<number>('port');
@@ -15,7 +16,7 @@ const app = express();
 app.use(deserializeUser); // on every single request
 
 app.use(express.json());
-
+app.use(helmet);
 // use the express-static middleware
 app.use(express.static('public'));
 app.use(
