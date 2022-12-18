@@ -60,5 +60,5 @@ app.listen(port, async () => {
     logger.info('running on port ' + port);
 
     routes(app);
-    // await connect();
+    await connect();
 });
