@@ -44,6 +44,7 @@ app.use(
             'https://192.168.1.166:8080',
             'https://192.168.237.106:80/',
             'https://10.0.0.244:80/',
+            'https://vat-vivaarium.herokuapp.com/',
             '*',
         ],
         credentials: true,
