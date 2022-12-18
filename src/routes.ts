@@ -254,9 +254,10 @@ function routes(app: Express) {
     );
     app.put(
         '/api/visitors/:visitorId',
-        [requireUser, validateResource(updateVisitorSchema)],
+        [validateResource(updateVisitorSchema)],
         updateVisitorHandler
     );
+
     // app.put(
     //     '/api/visitors/:visitorId/quiz-results/:stepId',
     //     updateVisitorStepsHandler

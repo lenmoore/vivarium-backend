@@ -33,7 +33,12 @@ export async function findVisitor(
     const timer = databaseResponseTimeHistogram.startTimer();
     try {
         const result = await VisitorModel.findOne(query, {}, options)
-            .populate('basket')
+            .populate({
+                path: 'basket',
+                populate: {
+                    path: 'products',
+                },
+            })
             .populate('quiz_results');
         console.log('VISITOR RESULT', result);
         timer({ ...metricsLabels, success: 'true' });
@@ -52,9 +57,14 @@ export async function findAndUpdateVisitor(
 ) {
     // console.log('updada');
     try {
-        // console.log(update);
+        console.log(update);
         return VisitorModel.findOneAndUpdate(query, update, options)
-            .populate('basket')
+            .populate({
+                path: 'basket',
+                populate: {
+                    path: 'products',
+                },
+            })
             .populate('quiz_results');
     } catch (e) {
         console.error(e);

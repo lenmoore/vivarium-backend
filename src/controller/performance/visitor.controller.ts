@@ -52,7 +52,7 @@ export async function createVisitorHandler(
 
         const body = req.body;
 
-        const visitor = await createVisitor({ ...body, user: userId });
+        let visitor = await createVisitor({ ...body, user: userId });
         const visitorBasket = await createBasket({
             user: user,
             visitor: visitor,
@@ -64,8 +64,8 @@ export async function createVisitorHandler(
             performanceId: body.performance,
         });
 
-        await findAndUpdateVisitor(
-            { visitorId: visitor._id },
+        visitor = await findAndUpdateVisitor(
+            { _id: visitor._id },
             {
                 basket: visitorBasket,
                 performance: performance,
@@ -81,6 +81,7 @@ export async function createVisitorHandler(
                 new: true,
             }
         );
+        console.log('i created this visitor', visitor);
         visitor.accessToken = accessToken; // just in case
         return res.send(visitor);
     } catch (e) {
