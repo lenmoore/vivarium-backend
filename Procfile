@@ -1,1 +1,1 @@
-web: npm run start
+web:nodemon -r dotenv/config src/app.ts

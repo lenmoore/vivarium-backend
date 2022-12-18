@@ -97,11 +97,10 @@ import {
 } from './controller/performance/game.controller';
 
 function routes(app: Express) {
-    app.get('/', (req: Request, res: Response) => {
-        console.log('yo');
-        console.log('im hot reload');
-        res.sendStatus(200);
+    app.route('/').get(function (req, res) {
+        res.sendFile(process.cwd() + '/index.html');
     });
+
     app.get('/api/health-check', cors(), (req: Request, res: Response) => {
         console.log('yo');
         console.log('im hot reload');
