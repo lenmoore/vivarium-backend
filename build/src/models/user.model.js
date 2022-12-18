@@ -1,4 +1,27 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -40,7 +63,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = __importDefault(require("mongoose"));
-var bcrypt_1 = __importDefault(require("bcrypt"));
+var bcrypt = __importStar(require("bcryptjs"));
 var config_1 = __importDefault(require("config"));
 var userSchema = new mongoose_1.default.Schema({
     email: { type: String, required: true },
@@ -62,10 +85,10 @@ userSchema.pre('save', function (next) {
                     if (!user.isModified('password')) {
                         return [2 /*return*/, next()];
                     }
-                    return [4 /*yield*/, bcrypt_1.default.genSalt(config_1.default.get('saltWorkFactor'))];
+                    return [4 /*yield*/, bcrypt.genSalt(config_1.default.get('saltWorkFactor'))];
                 case 1:
                     salt = _a.sent();
-                    hash = bcrypt_1.default.hashSync(user.password, salt);
+                    hash = bcrypt.hashSync(user.password, salt);
                     user.password = hash;
                     return [2 /*return*/, next()];
             }
@@ -77,7 +100,7 @@ userSchema.methods.comparePassword = function (candidatePassword) {
         var user;
         return __generator(this, function (_a) {
             user = this;
-            return [2 /*return*/, bcrypt_1.default.compare(candidatePassword, user.password).catch(function (e) { return false; })];
+            return [2 /*return*/, bcrypt.compare(candidatePassword, user.password).catch(function (e) { return false; })];
         });
     });
 };
