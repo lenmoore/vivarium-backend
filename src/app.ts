@@ -16,7 +16,6 @@ const app = express();
 app.use(deserializeUser); // on every single request
 
 app.use(express.json());
-app.use(helmet);
 // use the express-static middleware
 app.use(express.static('public'));
 app.use(
