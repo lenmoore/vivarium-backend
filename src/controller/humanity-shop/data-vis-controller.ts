@@ -64,7 +64,7 @@ const colors = {
     Roheline: 'green',
     Sinine: 'blue',
     Oranž: 'orange',
-    Punane: 'red',
+    Punane: 'fuchsia',
 };
 export async function getDataVisInfo(req: Request, res: Response) {
     const str =
@@ -79,7 +79,7 @@ export async function getDataVisInfo(req: Request, res: Response) {
                 realGoodKeys.push({
                     name: splitK,
                     entries: {
-                        red: [],
+                        fuchsia: [],
                         green: [],
                         blue: [],
                         orange: [],
@@ -105,7 +105,7 @@ export async function getDataVisInfo(req: Request, res: Response) {
                 realGoodKeys.push({
                     name: product,
                     entries: {
-                        red: [],
+                        fuchsia: [],
                         green: [],
                         blue: [],
                         orange: [],
@@ -137,13 +137,13 @@ export async function getDataVisInfo(req: Request, res: Response) {
                         ) / realGoodKey.entries.green.length || 0,
                     entries: realGoodKey.entries.green,
                 },
-                red: {
+                fuchsia: {
                     average:
-                        realGoodKey.entries.red.reduce(
+                        realGoodKey.entries.fuchsia.reduce(
                             (a, b) => (a || 0) + (b || 0),
                             0
-                        ) / realGoodKey.entries.red.length || 0,
-                    entries: realGoodKey.entries.red,
+                        ) / realGoodKey.entries.fuchsia.length || 0,
+                    entries: realGoodKey.entries.fuchsia,
                 },
                 blue: {
                     average:

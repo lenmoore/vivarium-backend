@@ -88,8 +88,14 @@ export async function getAllVisitors(
 ) {
     console.log('see ju');
     const result = await VisitorModel.find(query, {}, options)
-        .populate('basket')
+        .populate({
+            path: 'basket',
+            populate: {
+                path: 'products',
+            },
+        })
         .populate('quiz_results');
     console.log(result.length, ' found');
+    console.log(result, ' found');
     return result;
 }

@@ -61,6 +61,7 @@ import {
     updateVisitorSchema,
 } from './schema/performance/visitor.schema';
 import {
+    archiveVisitorsHandler,
     createVisitorHandler,
     deleteVisitorHandler,
     getPerformanceVisitorsHandler,
@@ -146,7 +147,7 @@ function routes(app: Express) {
     );
     app.put(
         '/api/products/:productId',
-        [requireUser, validateResource(updateProductSchema)],
+        [validateResource(updateProductSchema)],
         updateProductHandler
     );
     app.delete(
@@ -246,6 +247,11 @@ function routes(app: Express) {
         getVisitorHandler
     );
 
+    app.put(
+        '/api/performances/:id/archive-visitors',
+        [requireUser],
+        archiveVisitorsHandler
+    );
     app.put(
         '/api/visitors/:visitorId',
         [requireUser, validateResource(updateVisitorSchema)],

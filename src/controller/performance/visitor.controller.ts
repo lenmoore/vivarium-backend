@@ -27,6 +27,8 @@ import {
 } from '../../service/performance/performance.service';
 import QuizResultModel from '../../models/performance/quiz-results.model';
 import quizResultsModel from '../../models/performance/quiz-results.model';
+import VisitorModel from '../../models/performance/visitor.model';
+import performanceModel from '../../models/performance/performance.model';
 
 export async function createVisitorHandler(
     req: Request<CreateVisitorInput>,
@@ -92,6 +94,29 @@ export async function updateVisitorColorsHandler(req: Request, res: Response) {
     } catch (e) {
         console.error(e);
         return res.sendStatus(400);
+    }
+}
+export async function archiveVisitorsHandler(req: Request, res: Response) {
+    console.log('trying to archive vistiors');
+    try {
+        await archiveVisitors(req.body);
+        console.log(req.body);
+        return res.sendStatus(204);
+    } catch (e) {
+        console.error(e);
+        return res.sendStatus(400);
+    }
+}
+
+export async function archiveVisitors(update: any) {
+    try {
+        console.log('update:', update);
+        await VisitorModel.updateMany(
+            { performance: update._id },
+            { archived: true }
+        );
+    } catch (e) {
+        console.error(e);
     }
 }
 

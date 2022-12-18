@@ -40,11 +40,6 @@ export async function updateProductHandler(
     if (!product) {
         return res.sendStatus(404);
     }
-
-    if (String(product.user) !== userId) {
-        return res.sendStatus(403);
-    }
-
     const updatedProduct = await findAndUpdateProduct({ productId }, update, {
         new: true,
     });

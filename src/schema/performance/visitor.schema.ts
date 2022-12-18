@@ -17,6 +17,7 @@ const payload = {
         basket: optional(object({})),
         quiz_results: optional(array(object({}))),
         performance: optional(string()),
+        archived: optional(boolean()),
     }),
 };
 
@@ -36,6 +37,7 @@ const params = {
                 performance_id: string(),
             })
         ),
+        archived: optional(boolean()),
     }),
 };
 

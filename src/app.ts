@@ -39,14 +39,17 @@ app.use(
             'http://10.0.0.244:8080',
             'https://192.168.237.106:8080',
             'http://192.168.237.106:8080',
+            'https://192.168.1.166:8080',
+            'https://192.168.237.106:80/',
+            'https://10.0.0.244:80/',
             '*',
         ],
         credentials: true,
     })
 );
 
-const key = fs.readFileSync('./key.pem');
-const cert = fs.readFileSync('./cert.pem');
+const key = fs.readFileSync('./localhost-key.pem');
+const cert = fs.readFileSync('./localhost.pem');
 const server = https.createServer({ key: key, cert: cert }, app);
 
 server.listen(port, async () => {

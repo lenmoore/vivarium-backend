@@ -41,7 +41,7 @@ const visitorSchema = new mongoose.Schema(
             blue: Number,
             orange: Number,
         },
-        archived: { type: Boolean, required: false },
+        archived: { type: Boolean, default: false },
         basket: { type: mongoose.Schema.Types.ObjectId, ref: 'Basket' },
         performance: {
             type: mongoose.Schema.Types.ObjectId,
