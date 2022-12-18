@@ -8,7 +8,7 @@ import https from 'https';
 import config from 'config';
 import * as fs from 'fs';
 
-const port = 8080;
+const port = process.env.PORT || 8080;
 // const port = config.get<number>('port');
 console.log(port);
 const app = express();
