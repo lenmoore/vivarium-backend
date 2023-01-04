@@ -148,10 +148,10 @@ export async function updateVisitorHandler(
                         ...qr,
                         visitor: visitor,
                         result_humanity_values: {
-                            green: 0,
-                            red: 0,
-                            blue: 0,
-                            orange: 0,
+                            lime: 0,
+                            fuchsia: 0,
+                            silver: 0,
+                            turq: 0,
                         },
                     });
                     console.log(result);

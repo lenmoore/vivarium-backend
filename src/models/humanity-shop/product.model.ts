@@ -35,10 +35,10 @@ const productSchema = new mongoose.Schema(
         price: { type: Number, required: true },
         image: { type: String, required: false },
         humanity_values: {
-            green: { average: Number, entries: [] },
+            lime: { average: Number, entries: [] },
             fuchsia: { average: Number, entries: [] },
-            blue: { average: Number, entries: [] },
-            orange: { average: Number, entries: [] },
+            silver: { average: Number, entries: [] },
+            turq: { average: Number, entries: [] },
         },
         archived: { type: Boolean, required: false },
     },

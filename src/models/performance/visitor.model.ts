@@ -36,10 +36,10 @@ const visitorSchema = new mongoose.Schema(
         },
         user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
         humanity_values: {
-            green: Number,
+            lime: Number,
             fuchsia: Number,
-            blue: Number,
-            orange: Number,
+            silver: Number,
+            turq: Number,
         },
         archived: { type: Boolean, default: false },
         basket: { type: mongoose.Schema.Types.ObjectId, ref: 'Basket' },

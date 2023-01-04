@@ -15,10 +15,10 @@ export interface StepDocument extends StepInput, mongoose.Document {
 export class Option {
     option_text: '';
     humanity_values: {
-        green: 0;
+        lime: 0;
         fuchsia: 0;
-        blue: 0;
-        orange: 0;
+        silver: 0;
+        turq: 0;
     };
 }
 const stepSchema = new mongoose.Schema(

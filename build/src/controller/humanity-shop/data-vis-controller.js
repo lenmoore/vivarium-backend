@@ -1,45 +1,150 @@
-"use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
+'use strict';
+var __awaiter =
+    (this && this.__awaiter) ||
+    function (thisArg, _arguments, P, generator) {
+        function adopt(value) {
+            return value instanceof P
+                ? value
+                : new P(function (resolve) {
+                      resolve(value);
+                  });
+        }
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) {
+                try {
+                    step(generator.next(value));
+                } catch (e) {
+                    reject(e);
+                }
             }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-Object.defineProperty(exports, "__esModule", { value: true });
+            function rejected(value) {
+                try {
+                    step(generator['throw'](value));
+                } catch (e) {
+                    reject(e);
+                }
+            }
+            function step(result) {
+                result.done
+                    ? resolve(result.value)
+                    : adopt(result.value).then(fulfilled, rejected);
+            }
+            step(
+                (generator = generator.apply(thisArg, _arguments || [])).next()
+            );
+        });
+    };
+var __generator =
+    (this && this.__generator) ||
+    function (thisArg, body) {
+        var _ = {
+                label: 0,
+                sent: function () {
+                    if (t[0] & 1) throw t[1];
+                    return t[1];
+                },
+                trys: [],
+                ops: [],
+            },
+            f,
+            y,
+            t,
+            g;
+        return (
+            (g = { next: verb(0), throw: verb(1), return: verb(2) }),
+            typeof Symbol === 'function' &&
+                (g[Symbol.iterator] = function () {
+                    return this;
+                }),
+            g
+        );
+        function verb(n) {
+            return function (v) {
+                return step([n, v]);
+            };
+        }
+        function step(op) {
+            if (f) throw new TypeError('Generator is already executing.');
+            while ((g && ((g = 0), op[0] && (_ = 0)), _))
+                try {
+                    if (
+                        ((f = 1),
+                        y &&
+                            (t =
+                                op[0] & 2
+                                    ? y['return']
+                                    : op[0]
+                                    ? y['throw'] ||
+                                      ((t = y['return']) && t.call(y), 0)
+                                    : y.next) &&
+                            !(t = t.call(y, op[1])).done)
+                    )
+                        return t;
+                    if (((y = 0), t)) op = [op[0] & 2, t.value];
+                    switch (op[0]) {
+                        case 0:
+                        case 1:
+                            t = op;
+                            break;
+                        case 4:
+                            _.label++;
+                            return { value: op[1], done: false };
+                        case 5:
+                            _.label++;
+                            y = op[1];
+                            op = [0];
+                            continue;
+                        case 7:
+                            op = _.ops.pop();
+                            _.trys.pop();
+                            continue;
+                        default:
+                            if (
+                                !((t = _.trys),
+                                (t = t.length > 0 && t[t.length - 1])) &&
+                                (op[0] === 6 || op[0] === 2)
+                            ) {
+                                _ = 0;
+                                continue;
+                            }
+                            if (
+                                op[0] === 3 &&
+                                (!t || (op[1] > t[0] && op[1] < t[3]))
+                            ) {
+                                _.label = op[1];
+                                break;
+                            }
+                            if (op[0] === 6 && _.label < t[1]) {
+                                _.label = t[1];
+                                t = op;
+                                break;
+                            }
+                            if (t && _.label < t[2]) {
+                                _.label = t[2];
+                                _.ops.push(op);
+                                break;
+                            }
+                            if (t[2]) _.ops.pop();
+                            _.trys.pop();
+                            continue;
+                    }
+                    op = body.call(thisArg, _);
+                } catch (e) {
+                    op = [6, e];
+                    y = 0;
+                } finally {
+                    f = t = 0;
+                }
+            if (op[0] & 5) throw op[1];
+            return { value: op[0] ? op[1] : void 0, done: true };
+        }
+    };
+Object.defineProperty(exports, '__esModule', { value: true });
 exports.getDataVisInfo = void 0;
-var product_service_1 = require("../../service/humanity-shop/product.service");
-var user_service_1 = require("../../service/user.service");
-var shitString = '5 - Ülioluline,2 - Mitte eriti oluline,5 - Ülioluline,1 - Ebaoluline,4 - Väga oluline,1 - Ebaoluline,5 - Ülioluline,4 - Väga oluline,1 - Ebaoluline,4 - Väga oluline,3 - Neutraalne,4 - Väga oluline,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,5 - Ülioluline,3 - Neutraalne,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,1 - Ebaoluline,4 - Väga oluline,4 - Väga oluline,1 - Ebaoluline,4 - Väga oluline,5 - Ülioluline,4 - Väga oluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,5 - Ülioluline,5 - Ülioluline,4 - Väga oluline,5 - Ülioluline,2 - Mitte eriti oluline,4 - Väga oluline,3 - Neutraalne,5 - Ülioluline,3 - Neutraalne,5 - Ülioluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,5 - Ülioluline,5 - Ülioluline,3 - Neutraalne,1 - Ebaoluline,5 - Ülioluline,5 - Ülioluline,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,3 - Neutraalne,2 - Mitte eriti oluline,5 - Ülioluline,1 - Ebaoluline,1 - Ebaoluline,2 - Mitte eriti oluline,5 - Ülioluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,4 - Väga oluline,5 - Ülioluline,3 - Neutraalne,2 - Mitte eriti oluline,4 - Väga oluline,3 - Neutraalne,3 - Neutraalne,2 - Mitte eriti oluline,2 - Mitte eriti oluline,5 - Ülioluline,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,4 - Väga oluline,3 - Neutraalne,2 - Mitte eriti oluline,1 - Ebaoluline,5 - Ülioluline,5 - Ülioluline,3 - Neutraalne,2 - Mitte eriti oluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,5 - Ülioluline,5 - Ülioluline,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,2 - Mitte eriti oluline,1 - Ebaoluline,4 - Väga oluline,4 - Väga oluline,5 - Ülioluline,2 - Mitte eriti oluline,5 - Ülioluline,5 - Ülioluline,2 - Mitte eriti oluline,5 - Ülioluline,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,5 - Ülioluline,5 - Ülioluline,1 - Ebaoluline,4 - Väga oluline,4 - Väga oluline,5 - Ülioluline,4 - Väga oluline,1 - Ebaoluline,4 - Väga oluline,4 - Väga oluline,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,2 - Mitte eriti oluline,1 - Ebaoluline,3 - Neutraalne,5 - Ülioluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,5 - Ülioluline,4 - Väga oluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,4 - Väga oluline,4 - Väga oluline,3 - Neutraalne,4 - Väga oluline,4 - Väga oluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,5 - Ülioluline,4 - Väga oluline,4 - Väga oluline,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,4 - Väga oluline,5 - Ülioluline,1 - Ebaoluline,3 - Neutraalne,5 - Ülioluline,2 - Mitte eriti oluline,3 - Neutraalne,4 - Väga oluline,5 - Ülioluline,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,5 - Ülioluline,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,5 - Ülioluline,1 - Ebaoluline,4 - Väga oluline,4 - Väga oluline,4 - Väga oluline,5 - Ülioluline,4 - Väga oluline,4 - Väga oluline,5 - Ülioluline,2 - Mitte eriti oluline,1 - Ebaoluline,5 - Ülioluline,4 - Väga oluline,1 - Ebaoluline,3 - Neutraalne,5 - Ülioluline,1 - Ebaoluline,5 - Ülioluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,5 - Ülioluline,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,5 - Ülioluline,3 - Neutraalne,5 - Ülioluline,1 - Ebaoluline,2 - Mitte eriti oluline,1 - Ebaoluline,5 - Ülioluline,3 - Neutraalne,5 - Ülioluline,1 - Ebaoluline,2 - Mitte eriti oluline,4 - Väga oluline,1 - Ebaoluline\n' +
+var product_service_1 = require('../../service/humanity-shop/product.service');
+var user_service_1 = require('../../service/user.service');
+var shitString =
+    '5 - Ülioluline,2 - Mitte eriti oluline,5 - Ülioluline,1 - Ebaoluline,4 - Väga oluline,1 - Ebaoluline,5 - Ülioluline,4 - Väga oluline,1 - Ebaoluline,4 - Väga oluline,3 - Neutraalne,4 - Väga oluline,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,5 - Ülioluline,3 - Neutraalne,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,1 - Ebaoluline,4 - Väga oluline,4 - Väga oluline,1 - Ebaoluline,4 - Väga oluline,5 - Ülioluline,4 - Väga oluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,5 - Ülioluline,5 - Ülioluline,4 - Väga oluline,5 - Ülioluline,2 - Mitte eriti oluline,4 - Väga oluline,3 - Neutraalne,5 - Ülioluline,3 - Neutraalne,5 - Ülioluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,5 - Ülioluline,5 - Ülioluline,3 - Neutraalne,1 - Ebaoluline,5 - Ülioluline,5 - Ülioluline,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,3 - Neutraalne,2 - Mitte eriti oluline,5 - Ülioluline,1 - Ebaoluline,1 - Ebaoluline,2 - Mitte eriti oluline,5 - Ülioluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,4 - Väga oluline,5 - Ülioluline,3 - Neutraalne,2 - Mitte eriti oluline,4 - Väga oluline,3 - Neutraalne,3 - Neutraalne,2 - Mitte eriti oluline,2 - Mitte eriti oluline,5 - Ülioluline,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,4 - Väga oluline,3 - Neutraalne,2 - Mitte eriti oluline,1 - Ebaoluline,5 - Ülioluline,5 - Ülioluline,3 - Neutraalne,2 - Mitte eriti oluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,5 - Ülioluline,5 - Ülioluline,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,2 - Mitte eriti oluline,1 - Ebaoluline,4 - Väga oluline,4 - Väga oluline,5 - Ülioluline,2 - Mitte eriti oluline,5 - Ülioluline,5 - Ülioluline,2 - Mitte eriti oluline,5 - Ülioluline,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,5 - Ülioluline,5 - Ülioluline,1 - Ebaoluline,4 - Väga oluline,4 - Väga oluline,5 - Ülioluline,4 - Väga oluline,1 - Ebaoluline,4 - Väga oluline,4 - Väga oluline,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,2 - Mitte eriti oluline,1 - Ebaoluline,3 - Neutraalne,5 - Ülioluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,5 - Ülioluline,4 - Väga oluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,4 - Väga oluline,4 - Väga oluline,3 - Neutraalne,4 - Väga oluline,4 - Väga oluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,5 - Ülioluline,4 - Väga oluline,4 - Väga oluline,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,4 - Väga oluline,5 - Ülioluline,1 - Ebaoluline,3 - Neutraalne,5 - Ülioluline,2 - Mitte eriti oluline,3 - Neutraalne,4 - Väga oluline,5 - Ülioluline,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,5 - Ülioluline,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,5 - Ülioluline,1 - Ebaoluline,4 - Väga oluline,4 - Väga oluline,4 - Väga oluline,5 - Ülioluline,4 - Väga oluline,4 - Väga oluline,5 - Ülioluline,2 - Mitte eriti oluline,1 - Ebaoluline,5 - Ülioluline,4 - Väga oluline,1 - Ebaoluline,3 - Neutraalne,5 - Ülioluline,1 - Ebaoluline,5 - Ülioluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,5 - Ülioluline,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,5 - Ülioluline,3 - Neutraalne,5 - Ülioluline,1 - Ebaoluline,2 - Mitte eriti oluline,1 - Ebaoluline,5 - Ülioluline,3 - Neutraalne,5 - Ülioluline,1 - Ebaoluline,2 - Mitte eriti oluline,4 - Väga oluline,1 - Ebaoluline\n' +
     '4 - Väga oluline,3 - Neutraalne,3 - Neutraalne,5 - Ülioluline,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,5 - Ülioluline,2 - Mitte eriti oluline,3 - Neutraalne,4 - Väga oluline,5 - Ülioluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,4 - Väga oluline,4 - Väga oluline,2 - Mitte eriti oluline,3 - Neutraalne,1 - Ebaoluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,4 - Väga oluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,4 - Väga oluline,5 - Ülioluline,3 - Neutraalne,2 - Mitte eriti oluline,2 - Mitte eriti oluline,1 - Ebaoluline,2 - Mitte eriti oluline,5 - Ülioluline,3 - Neutraalne,2 - Mitte eriti oluline,1 - Ebaoluline,5 - Ülioluline,3 - Neutraalne,4 - Väga oluline,4 - Väga oluline,5 - Ülioluline,2 - Mitte eriti oluline,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,4 - Väga oluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,3 - Neutraalne,4 - Väga oluline,4 - Väga oluline,4 - Väga oluline,4 - Väga oluline,4 - Väga oluline,2 - Mitte eriti oluline,1 - Ebaoluline,5 - Ülioluline,1 - Ebaoluline,2 - Mitte eriti oluline,1 - Ebaoluline,4 - Väga oluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,4 - Väga oluline,5 - Ülioluline,3 - Neutraalne,4 - Väga oluline,4 - Väga oluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,4 - Väga oluline,5 - Ülioluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,2 - Mitte eriti oluline,4 - Väga oluline,5 - Ülioluline,4 - Väga oluline,2 - Mitte eriti oluline,3 - Neutraalne,5 - Ülioluline,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,4 - Väga oluline,5 - Ülioluline,4 - Väga oluline,3 - Neutraalne,4 - Väga oluline,3 - Neutraalne,4 - Väga oluline,5 - Ülioluline,5 - Ülioluline,3 - Neutraalne,2 - Mitte eriti oluline,4 - Väga oluline,5 - Ülioluline,4 - Väga oluline,3 - Neutraalne,5 - Ülioluline,2 - Mitte eriti oluline,4 - Väga oluline,2 - Mitte eriti oluline,5 - Ülioluline,5 - Ülioluline,3 - Neutraalne,5 - Ülioluline,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,5 - Ülioluline,4 - Väga oluline,1 - Ebaoluline,2 - Mitte eriti oluline,4 - Väga oluline,5 - Ülioluline,3 - Neutraalne,2 - Mitte eriti oluline,5 - Ülioluline,3 - Neutraalne,3 - Neutraalne,5 - Ülioluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,5 - Ülioluline,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,5 - Ülioluline,3 - Neutraalne,4 - Väga oluline,5 - Ülioluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,5 - Ülioluline,4 - Väga oluline,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,2 - Mitte eriti oluline,1 - Ebaoluline,5 - Ülioluline,4 - Väga oluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,4 - Väga oluline,5 - Ülioluline,5 - Ülioluline,3 - Neutraalne,4 - Väga oluline,2 - Mitte eriti oluline,5 - Ülioluline,2 - Mitte eriti oluline,3 - Neutraalne,1 - Ebaoluline,4 - Väga oluline,3 - Neutraalne,5 - Ülioluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,5 - Ülioluline,5 - Ülioluline,4 - Väga oluline,1 - Ebaoluline,5 - Ülioluline,4 - Väga oluline,2 - Mitte eriti oluline,1 - Ebaoluline,3 - Neutraalne,5 - Ülioluline,1 - Ebaoluline,1 - Ebaoluline,5 - Ülioluline,4 - Väga oluline,4 - Väga oluline,3 - Neutraalne,5 - Ülioluline,3 - Neutraalne,4 - Väga oluline,3 - Neutraalne,3 - Neutraalne,5 - Ülioluline,2 - Mitte eriti oluline,5 - Ülioluline,4 - Väga oluline,5 - Ülioluline,5 - Ülioluline,3 - Neutraalne,3 - Neutraalne,5 - Ülioluline,5 - Ülioluline,1 - Ebaoluline,3 - Neutraalne,5 - Ülioluline,1 - Ebaoluline,4 - Väga oluline,4 - Väga oluline,5 - Ülioluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,1 - Ebaoluline,5 - Ülioluline,3 - Neutraalne,5 - Ülioluline,1 - Ebaoluline,2 - Mitte eriti oluline,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,5 - Ülioluline,4 - Väga oluline,3 - Neutraalne\n' +
     '4 - Väga oluline,4 - Väga oluline,4 - Väga oluline,1 - Ebaoluline,4 - Väga oluline,3 - Neutraalne,5 - Ülioluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,5 - Ülioluline,1 - Ebaoluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,1 - Ebaoluline,2 - Mitte eriti oluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,4 - Väga oluline,2 - Mitte eriti oluline,3 - Neutraalne,5 - Ülioluline,0 - n,4 - Väga oluline,0 - n,5 - Ülioluline,5 - Ülioluline,3 - Neutraalne,1 - Ebaoluline,5 - Ülioluline,1 - Ebaoluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,4 - Väga oluline,1 - Ebaoluline,4 - Väga oluline,1 - Ebaoluline,4 - Väga oluline,3 - Neutraalne,4 - Väga oluline,4 - Väga oluline,3 - Neutraalne,5 - Ülioluline,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,5 - Ülioluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,5 - Ülioluline,3 - Neutraalne,5 - Ülioluline,5 - Ülioluline,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,5 - Ülioluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,2 - Mitte eriti oluline,4 - Väga oluline,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,4 - Väga oluline,2 - Mitte eriti oluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,5 - Ülioluline,2 - Mitte eriti oluline,1 - Ebaoluline,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,5 - Ülioluline,4 - Väga oluline,5 - Ülioluline,4 - Väga oluline,3 - Neutraalne,5 - Ülioluline,5 - Ülioluline,5 - Ülioluline,3 - Neutraalne,4 - Väga oluline,5 - Ülioluline,2 - Mitte eriti oluline,4 - Väga oluline,5 - Ülioluline,3 - Neutraalne,5 - Ülioluline,4 - Väga oluline,3 - Neutraalne,2 - Mitte eriti oluline,5 - Ülioluline,5 - Ülioluline,1 - Ebaoluline,5 - Ülioluline,4 - Väga oluline,5 - Ülioluline,5 - Ülioluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,3 - Neutraalne,1 - Ebaoluline,5 - Ülioluline,4 - Väga oluline,1 - Ebaoluline,2 - Mitte eriti oluline,5 - Ülioluline,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,5 - Ülioluline,3 - Neutraalne,2 - Mitte eriti oluline,4 - Väga oluline,5 - Ülioluline,2 - Mitte eriti oluline,1 - Ebaoluline,4 - Väga oluline,3 - Neutraalne,4 - Väga oluline,3 - Neutraalne,5 - Ülioluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,2 - Mitte eriti oluline,1 - Ebaoluline,2 - Mitte eriti oluline,4 - Väga oluline,5 - Ülioluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,2 - Mitte eriti oluline,5 - Ülioluline,1 - Ebaoluline,4 - Väga oluline,5 - Ülioluline,3 - Neutraalne,3 - Neutraalne,5 - Ülioluline,5 - Ülioluline,2 - Mitte eriti oluline,4 - Väga oluline,1 - Ebaoluline,1 - Ebaoluline,5 - Ülioluline,2 - Mitte eriti oluline,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,5 - Ülioluline,5 - Ülioluline,3 - Neutraalne,1 - Ebaoluline,4 - Väga oluline,3 - Neutraalne,4 - Väga oluline,1 - Ebaoluline,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,5 - Ülioluline,4 - Väga oluline,3 - Neutraalne,5 - Ülioluline,5 - Ülioluline,2 - Mitte eriti oluline,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,2 - Mitte eriti oluline,4 - Väga oluline,5 - Ülioluline,3 - Neutraalne,4 - Väga oluline,5 - Ülioluline,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,5 - Ülioluline,1 - Ebaoluline,4 - Väga oluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,5 - Ülioluline,4 - Väga oluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,2 - Mitte eriti oluline\n' +
     '3 - Neutraalne,2 - Mitte eriti oluline,4 - Väga oluline,2 - Mitte eriti oluline,1 - Ebaoluline,2 - Mitte eriti oluline,4 - Väga oluline,3 - Neutraalne,2 - Mitte eriti oluline,4 - Väga oluline,3 - Neutraalne,5 - Ülioluline,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,4 - Väga oluline,4 - Väga oluline,2 - Mitte eriti oluline,3 - Neutraalne,5 - Ülioluline,2 - Mitte eriti oluline,3 - Neutraalne,4 - Väga oluline,5 - Ülioluline,1 - Ebaoluline,4 - Väga oluline,3 - Neutraalne,2 - Mitte eriti oluline,5 - Ülioluline,4 - Väga oluline,2 - Mitte eriti oluline,1 - Ebaoluline,2 - Mitte eriti oluline,1 - Ebaoluline,5 - Ülioluline,4 - Väga oluline,4 - Väga oluline,2 - Mitte eriti oluline,4 - Väga oluline,1 - Ebaoluline,1 - Ebaoluline,2 - Mitte eriti oluline,3 - Neutraalne,5 - Ülioluline,1 - Ebaoluline,2 - Mitte eriti oluline,4 - Väga oluline,5 - Ülioluline,4 - Väga oluline,2 - Mitte eriti oluline,5 - Ülioluline,1 - Ebaoluline,2 - Mitte eriti oluline,4 - Väga oluline,5 - Ülioluline,3 - Neutraalne,5 - Ülioluline,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,1 - Ebaoluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,4 - Väga oluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,3 - Neutraalne,2 - Mitte eriti oluline,4 - Väga oluline,5 - Ülioluline,5 - Ülioluline,1 - Ebaoluline,2 - Mitte eriti oluline,4 - Väga oluline,5 - Ülioluline,2 - Mitte eriti oluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,5 - Ülioluline,2 - Mitte eriti oluline,5 - Ülioluline,1 - Ebaoluline,4 - Väga oluline,2 - Mitte eriti oluline,4 - Väga oluline,2 - Mitte eriti oluline,1 - Ebaoluline,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,4 - Väga oluline,5 - Ülioluline,2 - Mitte eriti oluline,3 - Neutraalne,5 - Ülioluline,4 - Väga oluline,2 - Mitte eriti oluline,3 - Neutraalne,4 - Väga oluline,2 - Mitte eriti oluline,3 - Neutraalne,2 - Mitte eriti oluline,1 - Ebaoluline,4 - Väga oluline,3 - Neutraalne,2 - Mitte eriti oluline,1 - Ebaoluline,4 - Väga oluline,3 - Neutraalne,5 - Ülioluline,4 - Väga oluline,1 - Ebaoluline,5 - Ülioluline,2 - Mitte eriti oluline,4 - Väga oluline,3 - Neutraalne,4 - Väga oluline,1 - Ebaoluline,5 - Ülioluline,2 - Mitte eriti oluline,5 - Ülioluline,4 - Väga oluline,2 - Mitte eriti oluline,1 - Ebaoluline,4 - Väga oluline,1 - Ebaoluline,2 - Mitte eriti oluline,3 - Neutraalne,2 - Mitte eriti oluline,4 - Väga oluline,5 - Ülioluline,1 - Ebaoluline,2 - Mitte eriti oluline,3 - Neutraalne,1 - Ebaoluline,4 - Väga oluline,3 - Neutraalne,2 - Mitte eriti oluline,4 - Väga oluline,5 - Ülioluline,2 - Mitte eriti oluline,4 - Väga oluline,5 - Ülioluline,1 - Ebaoluline,3 - Neutraalne,2 - Mitte eriti oluline,4 - Väga oluline,5 - Ülioluline,1 - Ebaoluline,4 - Väga oluline,3 - Neutraalne,2 - Mitte eriti oluline,2 - Mitte eriti oluline,5 - Ülioluline,4 - Väga oluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,5 - Ülioluline,4 - Väga oluline,3 - Neutraalne,5 - Ülioluline,2 - Mitte eriti oluline,4 - Väga oluline,2 - Mitte eriti oluline,3 - Neutraalne,5 - Ülioluline,4 - Väga oluline,2 - Mitte eriti oluline,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,4 - Väga oluline,2 - Mitte eriti oluline,1 - Ebaoluline,3 - Neutraalne,2 - Mitte eriti oluline,5 - Ülioluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,3 - Neutraalne,2 - Mitte eriti oluline,4 - Väga oluline,3 - Neutraalne,2 - Mitte eriti oluline,5 - Ülioluline,3 - Neutraalne,2 - Mitte eriti oluline,5 - Ülioluline,4 - Väga oluline,1 - Ebaoluline,2 - Mitte eriti oluline,4 - Väga oluline,5 - Ülioluline,3 - Neutraalne,2 - Mitte eriti oluline,4 - Väga oluline,5 - Ülioluline,1 - Ebaoluline,5 - Ülioluline,4 - Väga oluline,2 - Mitte eriti oluline,1 - Ebaoluline,2 - Mitte eriti oluline,4 - Väga oluline,5 - Ülioluline,2 - Mitte eriti oluline,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,2 - Mitte eriti oluline,3 - Neutraalne,4 - Väga oluline,5 - Ülioluline,2 - Mitte eriti oluline,5 - Ülioluline,4 - Väga oluline,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,5 - Ülioluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,4 - Väga oluline,2 - Mitte eriti oluline,3 - Neutraalne\n' +
@@ -95,9 +200,9 @@ var shitString = '5 - Ülioluline,2 - Mitte eriti oluline,5 - Ülioluline,1 - Eb
     '4 - Väga oluline,3 - Neutraalne,5 - Ülioluline,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,5 - Ülioluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,4 - Väga oluline,4 - Väga oluline,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,4 - Väga oluline,3 - Neutraalne,4 - Väga oluline,3 - Neutraalne,4 - Väga oluline,5 - Ülioluline,3 - Neutraalne,2 - Mitte eriti oluline,4 - Väga oluline,2 - Mitte eriti oluline,1 - Ebaoluline,4 - Väga oluline,4 - Väga oluline,2 - Mitte eriti oluline,1 - Ebaoluline,4 - Väga oluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,5 - Ülioluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,4 - Väga oluline,1 - Ebaoluline,2 - Mitte eriti oluline,3 - Neutraalne,3 - Neutraalne,2 - Mitte eriti oluline,2 - Mitte eriti oluline,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,4 - Väga oluline,2 - Mitte eriti oluline,3 - Neutraalne,3 - Neutraalne,5 - Ülioluline,2 - Mitte eriti oluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,4 - Väga oluline,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,4 - Väga oluline,1 - Ebaoluline,3 - Neutraalne,5 - Ülioluline,3 - Neutraalne,2 - Mitte eriti oluline,1 - Ebaoluline,2 - Mitte eriti oluline,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,4 - Väga oluline,5 - Ülioluline,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,4 - Väga oluline,2 - Mitte eriti oluline,4 - Väga oluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,2 - Mitte eriti oluline,3 - Neutraalne,4 - Väga oluline,4 - Väga oluline,5 - Ülioluline,5 - Ülioluline,3 - Neutraalne,5 - Ülioluline,4 - Väga oluline,3 - Neutraalne,2 - Mitte eriti oluline,4 - Väga oluline,2 - Mitte eriti oluline,3 - Neutraalne,4 - Väga oluline,4 - Väga oluline,4 - Väga oluline,4 - Väga oluline,4 - Väga oluline,4 - Väga oluline,3 - Neutraalne,2 - Mitte eriti oluline,4 - Väga oluline,2 - Mitte eriti oluline,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,5 - Ülioluline,3 - Neutraalne,4 - Väga oluline,3 - Neutraalne,5 - Ülioluline,3 - Neutraalne,4 - Väga oluline,5 - Ülioluline,4 - Väga oluline,2 - Mitte eriti oluline,4 - Väga oluline,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,2 - Mitte eriti oluline,4 - Väga oluline,1 - Ebaoluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,4 - Väga oluline,3 - Neutraalne,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,2 - Mitte eriti oluline,1 - Ebaoluline,4 - Väga oluline,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,5 - Ülioluline,3 - Neutraalne,2 - Mitte eriti oluline,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,3 - Neutraalne,2 - Mitte eriti oluline,4 - Väga oluline,4 - Väga oluline,2 - Mitte eriti oluline,4 - Väga oluline,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,4 - Väga oluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,4 - Väga oluline,4 - Väga oluline,4 - Väga oluline,3 - Neutraalne,5 - Ülioluline,4 - Väga oluline,2 - Mitte eriti oluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,4 - Väga oluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne\n' +
     '4 - Väga oluline,4 - Väga oluline,5 - Ülioluline,4 - Väga oluline,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,2 - Mitte eriti oluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,2 - Mitte eriti oluline,2 - Mitte eriti oluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,2 - Mitte eriti oluline,4 - Väga oluline,2 - Mitte eriti oluline,1 - Ebaoluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,4 - Väga oluline,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,2 - Mitte eriti oluline,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,2 - Mitte eriti oluline,3 - Neutraalne,1 - Ebaoluline,2 - Mitte eriti oluline,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,2 - Mitte eriti oluline,4 - Väga oluline,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,2 - Mitte eriti oluline,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,2 - Mitte eriti oluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,2 - Mitte eriti oluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,2 - Mitte eriti oluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,2 - Mitte eriti oluline,4 - Väga oluline,4 - Väga oluline,4 - Väga oluline,3 - Neutraalne,3 - Neutraalne,2 - Mitte eriti oluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,2 - Mitte eriti oluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,1 - Ebaoluline,2 - Mitte eriti oluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,3 - Neutraalne,2 - Mitte eriti oluline,2 - Mitte eriti oluline,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,2 - Mitte eriti oluline,4 - Väga oluline,1 - Ebaoluline,2 - Mitte eriti oluline,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,1 - Ebaoluline,2 - Mitte eriti oluline,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,2 - Mitte eriti oluline,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,3 - Neutraalne,2 - Mitte eriti oluline,2 - Mitte eriti oluline,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,2 - Mitte eriti oluline,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,2 - Mitte eriti oluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,2 - Mitte eriti oluline';
 var colors = {
-    Roheline: 'green',
-    Sinine: 'blue',
-    Oranž: 'orange',
+    Roheline: 'lime',
+    Sinine: 'silver',
+    Oranž: 'turq',
     Punane: 'fuchsia',
 };
 function getDataVisInfo(req, res) {
@@ -107,27 +212,35 @@ function getDataVisInfo(req, res) {
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0:
-                    str = 'Taskunuga [Roheline],Taskunuga [Sinine],Taskunuga [Punane],Taskunuga [Oranž],Revolver [Roheline],Revolver [Sinine],Revolver [Punane],Revolver [Oranž],Peegel [Roheline],Peegel [Sinine],Peegel [Punane],Peegel [Oranž],Ruubiku kuubik [Roheline],Ruubiku kuubik [Sinine],Ruubiku kuubik [Punane],Ruubiku kuubik [Oranž],Joonistusplokk ja pliiatsid [Roheline],Joonistusplokk ja pliiatsid [Sinine],Joonistusplokk ja pliiatsid [Punane],Joonistusplokk ja pliiatsid [Oranž],LEGO-komplekt [Roheline],LEGO-komplekt [Sinine],LEGO-komplekt [Punane],LEGO-komplekt [Oranž],Lapsepõlve jo-jo [Roheline],Lapsepõlve jo-jo [Sinine],Lapsepõlve jo-jo [Punane],Lapsepõlve jo-jo [Oranž],Parmupill [Roheline],Parmupill [Sinine],Parmupill [Punane],Parmupill [Oranž],Duolingo keeleõppe programm [Roheline],Duolingo keeleõppe programm [Sinine],Duolingo keeleõppe programm [Punane],Duolingo keeleõppe programm [Oranž],Meditatsioonimuusika CD [Roheline],Meditatsioonimuusika CD [Sinine],Meditatsioonimuusika CD [Punane],Meditatsioonimuusika CD [Oranž],Kõrvaklapid [Roheline],Kõrvaklapid [Sinine],Kõrvaklapid [Punane],Kõrvaklapid [Oranž],Boombox [Roheline],Boombox [Sinine],Boombox [Punane],Boombox [Oranž],Aroomiküünlad [Roheline],Aroomiküünlad [Sinine],Aroomiküünlad [Punane],Aroomiküünlad [Oranž],Kitarr [Roheline],Kitarr [Sinine],Kitarr [Punane],Kitarr [Oranž],Kondoomid [Roheline],Kondoomid [Sinine],Kondoomid [Punane],Kondoomid [Oranž],Veip/e-sigaret [Roheline],Veip/e-sigaret [Sinine],Veip/e-sigaret [Punane],Veip/e-sigaret [Oranž],Niisutav kätekreem [Roheline],Niisutav kätekreem [Sinine],Niisutav kätekreem [Punane],Niisutav kätekreem [Oranž],Tühi märkmik kirjutamiseks [Roheline],Tühi märkmik kirjutamiseks [Sinine],Tühi märkmik kirjutamiseks [Punane],Tühi märkmik kirjutamiseks [Oranž],Joogamatt [Roheline],Joogamatt [Sinine],Joogamatt [Punane],Joogamatt [Oranž],Bonsai puu [Roheline],Bonsai puu [Sinine],Bonsai puu [Punane],Bonsai puu [Oranž],Mängukaardid [Roheline],Mängukaardid [Sinine],Mängukaardid [Punane],Mängukaardid [Oranž],Džembe trumm [Roheline],Džembe trumm [Sinine],Džembe trumm [Punane],Džembe trumm [Oranž],Viirukid [Roheline],Viirukid [Sinine],Viirukid [Punane],Viirukid [Oranž],Päikseprillid [Roheline],Päikseprillid [Sinine],Päikseprillid [Punane],Päikseprillid [Oranž],Pinksireket ja -pallid [Roheline],Pinksireket ja -pallid [Sinine],Pinksireket ja -pallid [Punane],Pinksireket ja -pallid [Oranž],Lemmikautori maali repro [Roheline],Lemmikautori maali repro [Sinine],Lemmikautori maali repro [Punane],Lemmikautori maali repro [Oranž],Plakat Mendelejevi perioodilisustabeliga [Roheline],Plakat Mendelejevi perioodilisustabeliga [Sinine],Plakat Mendelejevi perioodilisustabeliga [Punane],Plakat Mendelejevi perioodilisustabeliga [Oranž],Diktofon [Roheline],Diktofon [Sinine],Diktofon [Punane],Diktofon [Oranž],Perekonnaalbum [Roheline],Perekonnaalbum [Sinine],Perekonnaalbum [Punane],Perekonnaalbum [Oranž],Peotäis tõrusid ja seemneid [Roheline],Peotäis tõrusid ja seemneid [Sinine],Peotäis tõrusid ja seemneid [Punane],Peotäis tõrusid ja seemneid [Oranž],Peotäis hallutsinogeenseid seeni [Roheline],Peotäis hallutsinogeenseid seeni [Sinine],Peotäis hallutsinogeenseid seeni [Punane],Peotäis hallutsinogeenseid seeni [Oranž],Villased sokid [Roheline],Villased sokid [Sinine],Villased sokid [Punane],Villased sokid [Oranž],Joogariided [Roheline],Joogariided [Sinine],Joogariided [Punane],Joogariided [Oranž],Dressid [Roheline],Dressid [Sinine],Dressid [Punane],Dressid [Oranž],Silmaklapid [Roheline],Silmaklapid [Sinine],Silmaklapid [Punane],Silmaklapid [Oranž],Kõrvatropid [Roheline],Kõrvatropid [Sinine],Kõrvatropid [Punane],Kõrvatropid [Oranž],Jalgpall või korvpall [Roheline],Jalgpall või korvpall [Sinine],Jalgpall või korvpall [Punane],Jalgpall või korvpall [Oranž],MacGyveri teip [Roheline],MacGyveri teip [Sinine],MacGyveri teip [Punane],MacGyveri teip [Oranž],Lumegloobus [Roheline],Lumegloobus [Sinine],Lumegloobus [Punane],Lumegloobus [Oranž],Eesti põhiseadus raamatuna [Roheline],Eesti põhiseadus raamatuna [Sinine],Eesti põhiseadus raamatuna [Punane],Eesti põhiseadus raamatuna [Oranž],Monopoli lauamäng [Roheline],Monopoli lauamäng [Sinine],Monopoli lauamäng [Punane],Monopoli lauamäng [Oranž],Kogumik teadusajakirju [Roheline],Kogumik teadusajakirju [Sinine],Kogumik teadusajakirju [Punane],Kogumik teadusajakirju [Oranž],Kogumik pornoajakirju  [Roheline],Kogumik pornoajakirju  [Sinine],Kogumik pornoajakirju  [Punane],Kogumik pornoajakirju  [Oranž],Eesti naisluuletajate antoloogia [Roheline],Eesti naisluuletajate antoloogia [Sinine],Eesti naisluuletajate antoloogia [Punane],Eesti naisluuletajate antoloogia [Oranž],Õmblusmasin [Roheline],Õmblusmasin [Sinine],Õmblusmasin [Punane],Õmblusmasin [Oranž],Soolalamp [Roheline],Soolalamp [Sinine],Soolalamp [Punane],Soolalamp [Oranž],Tarokaardid või ouija laud [Roheline],Tarokaardid või ouija laud [Sinine],Tarokaardid või ouija laud [Punane],Tarokaardid või ouija laud [Oranž],Võrkkiik [Roheline],Võrkkiik [Sinine],Võrkkiik [Punane],Võrkkiik [Oranž],Pussnuga [Roheline],Pussnuga [Sinine],Pussnuga [Punane],Pussnuga [Oranž],Psühholoogia õpik [Roheline],Psühholoogia õpik [Sinine],Psühholoogia õpik [Punane],Psühholoogia õpik [Oranž],Esmaabiõpik [Roheline],Esmaabiõpik [Sinine],Esmaabiõpik [Punane],Esmaabiõpik [Oranž],"""Eesti"" lauamäng [Roheline]","""Eesti"" lauamäng [Sinine]","""Eesti"" lauamäng [Punane]","""Eesti"" lauamäng [Oranž]",Kamasuutra õpik [Roheline],Kamasuutra õpik [Sinine],Kamasuutra õpik [Punane],Kamasuutra õpik [Oranž],Vaktsiinid [Roheline],Vaktsiinid [Sinine],Vaktsiinid [Punane],Vaktsiinid [Oranž],Vlogimise komplekt [Roheline],Vlogimise komplekt [Sinine],Vlogimise komplekt [Punane],Vlogimise komplekt [Oranž],"Raamat ""Unenägude seletaja"" [Roheline]","Raamat ""Unenägude seletaja"" [Sinine]","Raamat ""Unenägude seletaja"" [Punane]","Raamat ""Unenägude seletaja"" [Oranž]",100L viskit [Roheline],100L viskit [Sinine],100L viskit [Punane],100L viskit [Oranž],Klaver [Roheline],Klaver [Sinine],Klaver [Punane],Klaver [Oranž]';
+                    str =
+                        'Taskunuga [Roheline],Taskunuga [Sinine],Taskunuga [Punane],Taskunuga [Oranž],Revolver [Roheline],Revolver [Sinine],Revolver [Punane],Revolver [Oranž],Peegel [Roheline],Peegel [Sinine],Peegel [Punane],Peegel [Oranž],Ruubiku kuubik [Roheline],Ruubiku kuubik [Sinine],Ruubiku kuubik [Punane],Ruubiku kuubik [Oranž],Joonistusplokk ja pliiatsid [Roheline],Joonistusplokk ja pliiatsid [Sinine],Joonistusplokk ja pliiatsid [Punane],Joonistusplokk ja pliiatsid [Oranž],LEGO-komplekt [Roheline],LEGO-komplekt [Sinine],LEGO-komplekt [Punane],LEGO-komplekt [Oranž],Lapsepõlve jo-jo [Roheline],Lapsepõlve jo-jo [Sinine],Lapsepõlve jo-jo [Punane],Lapsepõlve jo-jo [Oranž],Parmupill [Roheline],Parmupill [Sinine],Parmupill [Punane],Parmupill [Oranž],Duolingo keeleõppe programm [Roheline],Duolingo keeleõppe programm [Sinine],Duolingo keeleõppe programm [Punane],Duolingo keeleõppe programm [Oranž],Meditatsioonimuusika CD [Roheline],Meditatsioonimuusika CD [Sinine],Meditatsioonimuusika CD [Punane],Meditatsioonimuusika CD [Oranž],Kõrvaklapid [Roheline],Kõrvaklapid [Sinine],Kõrvaklapid [Punane],Kõrvaklapid [Oranž],Boombox [Roheline],Boombox [Sinine],Boombox [Punane],Boombox [Oranž],Aroomiküünlad [Roheline],Aroomiküünlad [Sinine],Aroomiküünlad [Punane],Aroomiküünlad [Oranž],Kitarr [Roheline],Kitarr [Sinine],Kitarr [Punane],Kitarr [Oranž],Kondoomid [Roheline],Kondoomid [Sinine],Kondoomid [Punane],Kondoomid [Oranž],Veip/e-sigaret [Roheline],Veip/e-sigaret [Sinine],Veip/e-sigaret [Punane],Veip/e-sigaret [Oranž],Niisutav kätekreem [Roheline],Niisutav kätekreem [Sinine],Niisutav kätekreem [Punane],Niisutav kätekreem [Oranž],Tühi märkmik kirjutamiseks [Roheline],Tühi märkmik kirjutamiseks [Sinine],Tühi märkmik kirjutamiseks [Punane],Tühi märkmik kirjutamiseks [Oranž],Joogamatt [Roheline],Joogamatt [Sinine],Joogamatt [Punane],Joogamatt [Oranž],Bonsai puu [Roheline],Bonsai puu [Sinine],Bonsai puu [Punane],Bonsai puu [Oranž],Mängukaardid [Roheline],Mängukaardid [Sinine],Mängukaardid [Punane],Mängukaardid [Oranž],Džembe trumm [Roheline],Džembe trumm [Sinine],Džembe trumm [Punane],Džembe trumm [Oranž],Viirukid [Roheline],Viirukid [Sinine],Viirukid [Punane],Viirukid [Oranž],Päikseprillid [Roheline],Päikseprillid [Sinine],Päikseprillid [Punane],Päikseprillid [Oranž],Pinksireket ja -pallid [Roheline],Pinksireket ja -pallid [Sinine],Pinksireket ja -pallid [Punane],Pinksireket ja -pallid [Oranž],Lemmikautori maali repro [Roheline],Lemmikautori maali repro [Sinine],Lemmikautori maali repro [Punane],Lemmikautori maali repro [Oranž],Plakat Mendelejevi perioodilisustabeliga [Roheline],Plakat Mendelejevi perioodilisustabeliga [Sinine],Plakat Mendelejevi perioodilisustabeliga [Punane],Plakat Mendelejevi perioodilisustabeliga [Oranž],Diktofon [Roheline],Diktofon [Sinine],Diktofon [Punane],Diktofon [Oranž],Perekonnaalbum [Roheline],Perekonnaalbum [Sinine],Perekonnaalbum [Punane],Perekonnaalbum [Oranž],Peotäis tõrusid ja seemneid [Roheline],Peotäis tõrusid ja seemneid [Sinine],Peotäis tõrusid ja seemneid [Punane],Peotäis tõrusid ja seemneid [Oranž],Peotäis hallutsinogeenseid seeni [Roheline],Peotäis hallutsinogeenseid seeni [Sinine],Peotäis hallutsinogeenseid seeni [Punane],Peotäis hallutsinogeenseid seeni [Oranž],Villased sokid [Roheline],Villased sokid [Sinine],Villased sokid [Punane],Villased sokid [Oranž],Joogariided [Roheline],Joogariided [Sinine],Joogariided [Punane],Joogariided [Oranž],Dressid [Roheline],Dressid [Sinine],Dressid [Punane],Dressid [Oranž],Silmaklapid [Roheline],Silmaklapid [Sinine],Silmaklapid [Punane],Silmaklapid [Oranž],Kõrvatropid [Roheline],Kõrvatropid [Sinine],Kõrvatropid [Punane],Kõrvatropid [Oranž],Jalgpall või korvpall [Roheline],Jalgpall või korvpall [Sinine],Jalgpall või korvpall [Punane],Jalgpall või korvpall [Oranž],MacGyveri teip [Roheline],MacGyveri teip [Sinine],MacGyveri teip [Punane],MacGyveri teip [Oranž],Lumegloobus [Roheline],Lumegloobus [Sinine],Lumegloobus [Punane],Lumegloobus [Oranž],Eesti põhiseadus raamatuna [Roheline],Eesti põhiseadus raamatuna [Sinine],Eesti põhiseadus raamatuna [Punane],Eesti põhiseadus raamatuna [Oranž],Monopoli lauamäng [Roheline],Monopoli lauamäng [Sinine],Monopoli lauamäng [Punane],Monopoli lauamäng [Oranž],Kogumik teadusajakirju [Roheline],Kogumik teadusajakirju [Sinine],Kogumik teadusajakirju [Punane],Kogumik teadusajakirju [Oranž],Kogumik pornoajakirju  [Roheline],Kogumik pornoajakirju  [Sinine],Kogumik pornoajakirju  [Punane],Kogumik pornoajakirju  [Oranž],Eesti naisluuletajate antoloogia [Roheline],Eesti naisluuletajate antoloogia [Sinine],Eesti naisluuletajate antoloogia [Punane],Eesti naisluuletajate antoloogia [Oranž],Õmblusmasin [Roheline],Õmblusmasin [Sinine],Õmblusmasin [Punane],Õmblusmasin [Oranž],Soolalamp [Roheline],Soolalamp [Sinine],Soolalamp [Punane],Soolalamp [Oranž],Tarokaardid või ouija laud [Roheline],Tarokaardid või ouija laud [Sinine],Tarokaardid või ouija laud [Punane],Tarokaardid või ouija laud [Oranž],Võrkkiik [Roheline],Võrkkiik [Sinine],Võrkkiik [Punane],Võrkkiik [Oranž],Pussnuga [Roheline],Pussnuga [Sinine],Pussnuga [Punane],Pussnuga [Oranž],Psühholoogia õpik [Roheline],Psühholoogia õpik [Sinine],Psühholoogia õpik [Punane],Psühholoogia õpik [Oranž],Esmaabiõpik [Roheline],Esmaabiõpik [Sinine],Esmaabiõpik [Punane],Esmaabiõpik [Oranž],"""Eesti"" lauamäng [Roheline]","""Eesti"" lauamäng [Sinine]","""Eesti"" lauamäng [Punane]","""Eesti"" lauamäng [Oranž]",Kamasuutra õpik [Roheline],Kamasuutra õpik [Sinine],Kamasuutra õpik [Punane],Kamasuutra õpik [Oranž],Vaktsiinid [Roheline],Vaktsiinid [Sinine],Vaktsiinid [Punane],Vaktsiinid [Oranž],Vlogimise komplekt [Roheline],Vlogimise komplekt [Sinine],Vlogimise komplekt [Punane],Vlogimise komplekt [Oranž],"Raamat ""Unenägude seletaja"" [Roheline]","Raamat ""Unenägude seletaja"" [Sinine]","Raamat ""Unenägude seletaja"" [Punane]","Raamat ""Unenägude seletaja"" [Oranž]",100L viskit [Roheline],100L viskit [Sinine],100L viskit [Punane],100L viskit [Oranž],Klaver [Roheline],Klaver [Sinine],Klaver [Punane],Klaver [Oranž]';
                     keys = str.split(',');
                     realGoodKeys = [];
                     keys.forEach(function (k) {
                         if (k.includes('[')) {
                             var splitK_1 = k.split('[')[0].trim();
-                            var inArray = realGoodKeys.find(function (p) { return p.name === splitK_1; });
+                            var inArray = realGoodKeys.find(function (p) {
+                                return p.name === splitK_1;
+                            });
                             if (!inArray) {
                                 realGoodKeys.push({
                                     name: splitK_1,
                                     entries: {
                                         fuchsia: [],
-                                        green: [],
-                                        blue: [],
-                                        orange: [],
+                                        lime: [],
+                                        silver: [],
+                                        turq: [],
                                     },
                                 });
                             }
                         }
                     });
-                    console.log('realgoodkeys: ', realGoodKeys.length, '>>> ', realGoodKeys);
+                    console.log(
+                        'realgoodkeys: ',
+                        realGoodKeys.length,
+                        '>>> ',
+                        realGoodKeys
+                    );
                     contents = shitString.split('\n');
                     products = [];
                     counter = 0;
@@ -137,30 +250,47 @@ function getDataVisInfo(req, res) {
                         var rowItems = row.slice(0, -1).split(',');
                         var _loop_1 = function (i) {
                             var product = keys[i].split('[')[0].trim();
-                            var color = keys[i].split('[')[1].split(']')[0].trim(); // color in Estonian
-                            var productInList = realGoodKeys.find(function (p) { return p.name === product; });
+                            var color = keys[i]
+                                .split('[')[1]
+                                .split(']')[0]
+                                .trim(); // color in Estonian
+                            var productInList = realGoodKeys.find(function (p) {
+                                return p.name === product;
+                            });
                             if (!productInList) {
                                 realGoodKeys.push({
                                     name: product,
                                     entries: {
                                         fuchsia: [],
-                                        green: [],
-                                        blue: [],
-                                        orange: [],
+                                        lime: [],
+                                        silver: [],
+                                        turq: [],
                                     },
                                 });
                             }
                             var colorInEnglish = colors[color];
-                            productInList.entries[colorInEnglish].push(parseInt(rowItems[i].split(' ')[0]));
+                            productInList.entries[colorInEnglish].push(
+                                parseInt(rowItems[i].split(' ')[0])
+                            );
                         };
                         for (var i = 0; i < keys.length; i++) {
                             _loop_1(i);
                         }
                     });
                     console.log('>>>>>>>>>>>>>>>> >>>>>> ', realGoodKeys);
-                    return [4 /*yield*/, (0, user_service_1.findUserByEmail)((_b = (_a = res.locals) === null || _a === void 0 ? void 0 : _a.user) === null || _b === void 0 ? void 0 : _b.email)];
+                    return [
+                        4 /*yield*/,
+                        (0, user_service_1.findUserByEmail)(
+                            (_b =
+                                (_a = res.locals) === null || _a === void 0
+                                    ? void 0
+                                    : _a.user) === null || _b === void 0
+                                ? void 0
+                                : _b.email
+                        ),
+                    ];
                 case 1:
-                    usr = (_c.sent()) || null;
+                    usr = _c.sent() || null;
                     realGoodKeys.forEach(function (realGoodKey) {
                         var productToAddToDb = {
                             user: usr,
@@ -169,21 +299,50 @@ function getDataVisInfo(req, res) {
                             price: 10,
                             image: 'imageUrl',
                             humanity_values: {
-                                green: {
-                                    average: realGoodKey.entries.green.reduce(function (a, b) { return (a || 0) + (b || 0); }, 0) / realGoodKey.entries.green.length || 0,
-                                    entries: realGoodKey.entries.green,
+                                lime: {
+                                    average:
+                                        realGoodKey.entries.lime.reduce(
+                                            function (a, b) {
+                                                return (a || 0) + (b || 0);
+                                            },
+                                            0
+                                        ) / realGoodKey.entries.lime.length ||
+                                        0,
+                                    entries: realGoodKey.entries.lime,
                                 },
                                 fuchsia: {
-                                    average: realGoodKey.entries.fuchsia.reduce(function (a, b) { return (a || 0) + (b || 0); }, 0) / realGoodKey.entries.fuchsia.length || 0,
+                                    average:
+                                        realGoodKey.entries.fuchsia.reduce(
+                                            function (a, b) {
+                                                return (a || 0) + (b || 0);
+                                            },
+                                            0
+                                        ) /
+                                            realGoodKey.entries.fuchsia
+                                                .length || 0,
                                     entries: realGoodKey.entries.fuchsia,
                                 },
-                                blue: {
-                                    average: realGoodKey.entries.blue.reduce(function (a, b) { return (a || 0) + (b || 0); }, 0) / realGoodKey.entries.blue.length || 0,
-                                    entries: realGoodKey.entries.blue,
+                                silver: {
+                                    average:
+                                        realGoodKey.entries.silver.reduce(
+                                            function (a, b) {
+                                                return (a || 0) + (b || 0);
+                                            },
+                                            0
+                                        ) / realGoodKey.entries.silver.length ||
+                                        0,
+                                    entries: realGoodKey.entries.silver,
                                 },
-                                orange: {
-                                    average: realGoodKey.entries.orange.reduce(function (a, b) { return (a || 0) + (b || 0); }, 0) / realGoodKey.entries.orange.length || 0,
-                                    entries: realGoodKey.entries.orange,
+                                turq: {
+                                    average:
+                                        realGoodKey.entries.turq.reduce(
+                                            function (a, b) {
+                                                return (a || 0) + (b || 0);
+                                            },
+                                            0
+                                        ) / realGoodKey.entries.turq.length ||
+                                        0,
+                                    entries: realGoodKey.entries.turq,
                                 },
                             },
                             archived: false,
@@ -192,7 +351,10 @@ function getDataVisInfo(req, res) {
                         console.log('fresh product -> ', productToAddToDb);
                         (0, product_service_1.createProduct)(productToAddToDb);
                     });
-                    return [2 /*return*/, res.send({ realGoodKeys: realGoodKeys })];
+                    return [
+                        2 /*return*/,
+                        res.send({ realGoodKeys: realGoodKeys }),
+                    ];
             }
         });
     });

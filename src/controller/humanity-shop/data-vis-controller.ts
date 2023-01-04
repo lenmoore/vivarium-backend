@@ -61,9 +61,9 @@ const shitString =
     '4 - Väga oluline,4 - Väga oluline,5 - Ülioluline,4 - Väga oluline,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,2 - Mitte eriti oluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,2 - Mitte eriti oluline,2 - Mitte eriti oluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,2 - Mitte eriti oluline,4 - Väga oluline,2 - Mitte eriti oluline,1 - Ebaoluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,4 - Väga oluline,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,2 - Mitte eriti oluline,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,2 - Mitte eriti oluline,3 - Neutraalne,1 - Ebaoluline,2 - Mitte eriti oluline,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,2 - Mitte eriti oluline,4 - Väga oluline,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,2 - Mitte eriti oluline,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,2 - Mitte eriti oluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,2 - Mitte eriti oluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,2 - Mitte eriti oluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,2 - Mitte eriti oluline,4 - Väga oluline,4 - Väga oluline,4 - Väga oluline,3 - Neutraalne,3 - Neutraalne,2 - Mitte eriti oluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,2 - Mitte eriti oluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,1 - Ebaoluline,2 - Mitte eriti oluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,1 - Ebaoluline,3 - Neutraalne,4 - Väga oluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,2 - Mitte eriti oluline,3 - Neutraalne,2 - Mitte eriti oluline,2 - Mitte eriti oluline,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,2 - Mitte eriti oluline,4 - Väga oluline,1 - Ebaoluline,2 - Mitte eriti oluline,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,1 - Ebaoluline,2 - Mitte eriti oluline,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,2 - Mitte eriti oluline,3 - Neutraalne,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,3 - Neutraalne,2 - Mitte eriti oluline,2 - Mitte eriti oluline,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,3 - Neutraalne,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,2 - Mitte eriti oluline,3 - Neutraalne,2 - Mitte eriti oluline,1 - Ebaoluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,3 - Neutraalne,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,4 - Väga oluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,1 - Ebaoluline,2 - Mitte eriti oluline,1 - Ebaoluline,1 - Ebaoluline,3 - Neutraalne,3 - Neutraalne,2 - Mitte eriti oluline';
 
 const colors = {
-    Roheline: 'green',
-    Sinine: 'blue',
-    Oranž: 'orange',
+    Roheline: 'lime',
+    Sinine: 'silver',
+    Oranž: 'turq',
     Punane: 'fuchsia',
 };
 export async function getDataVisInfo(req: Request, res: Response) {
@@ -80,9 +80,9 @@ export async function getDataVisInfo(req: Request, res: Response) {
                     name: splitK,
                     entries: {
                         fuchsia: [],
-                        green: [],
-                        blue: [],
-                        orange: [],
+                        lime: [],
+                        silver: [],
+                        turq: [],
                     },
                 });
             }
@@ -106,9 +106,9 @@ export async function getDataVisInfo(req: Request, res: Response) {
                     name: product,
                     entries: {
                         fuchsia: [],
-                        green: [],
-                        blue: [],
-                        orange: [],
+                        lime: [],
+                        silver: [],
+                        turq: [],
                     },
                 });
             }
@@ -129,13 +129,13 @@ export async function getDataVisInfo(req: Request, res: Response) {
             price: 10,
             image: 'imageUrl',
             humanity_values: {
-                green: {
+                lime: {
                     average:
-                        realGoodKey.entries.green.reduce(
+                        realGoodKey.entries.lime.reduce(
                             (a, b) => (a || 0) + (b || 0),
                             0
-                        ) / realGoodKey.entries.green.length || 0,
-                    entries: realGoodKey.entries.green,
+                        ) / realGoodKey.entries.lime.length || 0,
+                    entries: realGoodKey.entries.lime,
                 },
                 fuchsia: {
                     average:
@@ -145,21 +145,21 @@ export async function getDataVisInfo(req: Request, res: Response) {
                         ) / realGoodKey.entries.fuchsia.length || 0,
                     entries: realGoodKey.entries.fuchsia,
                 },
-                blue: {
+                silver: {
                     average:
-                        realGoodKey.entries.blue.reduce(
+                        realGoodKey.entries.silver.reduce(
                             (a, b) => (a || 0) + (b || 0),
                             0
-                        ) / realGoodKey.entries.blue.length || 0,
-                    entries: realGoodKey.entries.blue,
+                        ) / realGoodKey.entries.silver.length || 0,
+                    entries: realGoodKey.entries.silver,
                 },
-                orange: {
+                turq: {
                     average:
-                        realGoodKey.entries.orange.reduce(
+                        realGoodKey.entries.turq.reduce(
                             (a, b) => (a || 0) + (b || 0),
                             0
-                        ) / realGoodKey.entries.orange.length || 0,
-                    entries: realGoodKey.entries.orange,
+                        ) / realGoodKey.entries.turq.length || 0,
+                    entries: realGoodKey.entries.turq,
                 },
             },
             archived: false,
