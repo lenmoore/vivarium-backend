@@ -11,7 +11,7 @@ export interface VisitorInput {
     user: UserDocument['_id'];
     basket: BasketDocument['_id'];
     performance: PerformanceDocument['_id'];
-    quiz_results?: Array<QuizResultDocument>;
+    quiz_results: Array<QuizResultDocument>;
     username: string;
     humanity_values: object;
     archived: boolean;

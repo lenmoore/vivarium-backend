@@ -15,6 +15,7 @@ export async function createVisitor(input: CreateVisitorInput) {
         const result = await VisitorModel.create(input);
         timer({ ...metricsLabels, success: 'true' });
         console.log('im really creating a visitor->', result);
+
         return result;
     } catch (e) {
         timer({ ...metricsLabels, success: 'false' });
@@ -57,7 +58,7 @@ export async function findAndUpdateVisitor(
 ) {
     // console.log('updada');
     try {
-        console.log(update);
+        // console.log('Update: __ ', update.quiz_results);
         return VisitorModel.findOneAndUpdate(query, update, options)
             .populate({
                 path: 'basket',
@@ -65,7 +66,7 @@ export async function findAndUpdateVisitor(
                     path: 'products',
                 },
             })
-            .populate('quiz_results');
+            .populate({ path: 'quiz_results' });
     } catch (e) {
         console.error(e);
     }

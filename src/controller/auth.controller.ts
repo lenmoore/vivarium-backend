@@ -50,6 +50,9 @@ export async function createSessionHandler(
         return res.send({
             accessToken,
             refreshToken,
+            admin: user.admin,
+            actor_color: user.actor_color,
+            actor: user.actor,
         });
     } catch (e) {
         console.error(e);
