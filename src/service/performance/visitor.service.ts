@@ -40,7 +40,7 @@ export async function findVisitor(
                     path: 'products',
                 },
             })
-            .populate('quiz_results');
+            .populate({ path: 'quiz_results', populate: 'step' });
         console.log('VISITOR RESULT', result);
         timer({ ...metricsLabels, success: 'true' });
         return result;

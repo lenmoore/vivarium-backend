@@ -63,6 +63,8 @@ export async function updatePhaseHandler(
                 console.log(typeof visitor);
                 const addQuizResults = [];
                 const visitorId = visitor._id.toString();
+                // todo check if visitor doesn't have step
+                // todo shuffle the steps for visitor
                 for (const game_step of phaseGame.game_steps) {
                     console.log(
                         'GAME STEP:',
