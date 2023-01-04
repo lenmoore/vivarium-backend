@@ -23,16 +23,20 @@ export async function createBasketHandler(
     req: Request<CreateBasketInput>,
     res: Response
 ) {
-    const userId = res.locals.user._id;
+    try {
+        const userId = res.locals.user._id;
 
-    const body = req.body;
+        const body = req.body;
 
-    // todo add current performance to basket
-    // const currentPerformance = findPerformance()
+        // todo add current performance to basket
+        // const currentPerformance = findPerformance()
 
-    const basket = await createBasket({ ...body, user: userId });
+        const basket = await createBasket({ ...body, user: userId });
 
-    return res.send(basket);
+        return res.send(basket);
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 export async function updateBasketHandler(
@@ -69,58 +73,74 @@ export async function getBasketHandler(
     req: Request<ReadBasketInput['params']>,
     res: Response
 ) {
-    const basketId = req.params.basketId;
-    const basket = await findBasket({ basketId });
+    try {
+        const basketId = req.params.basketId;
+        const basket = await findBasket({ basketId });
 
-    if (!basket) {
-        return res.sendStatus(404);
+        if (!basket) {
+            return res.sendStatus(404);
+        }
+
+        return res.send(basket);
+    } catch (e) {
+        console.error(e);
     }
-
-    return res.send(basket);
 }
 
 export async function getBasketByVisitorIdHandler(
     req: Request<ReadBasketByVisitorInput['params']>,
     res: Response
 ) {
-    const visitorId = req.params.visitorId;
-    console.log(visitorId);
-    const basket = await findBasket({ visitor: visitorId });
+    try {
+        const visitorId = req.params.visitorId;
+        console.log(visitorId);
+        const basket = await findBasket({ visitor: visitorId });
 
-    if (!basket) {
-        return res.sendStatus(404);
+        if (!basket) {
+            return res.sendStatus(404);
+        }
+
+        return res.send(basket);
+    } catch (e) {
+        console.error(e);
     }
-
-    return res.send(basket);
 }
 
 export async function getBasketsHandler(req: Request, res: Response) {
-    const baskets = await getAllBaskets();
-    if (!baskets) {
-        return res.sendStatus(404);
+    try {
+        const baskets = await getAllBaskets();
+        if (!baskets) {
+            return res.sendStatus(404);
+        }
+        return res.send(baskets);
+    } catch (e) {
+        console.error(e);
     }
-    return res.send(baskets);
 }
 
 export async function deleteBasketHandler(
     req: Request<DeleteBasketInput['params']>,
     res: Response
 ) {
-    const userId = res.locals.user._id;
-    const basketId = req.params.basketId;
+    try {
+        const userId = res.locals.user._id;
+        const basketId = req.params.basketId;
 
-    const basket = await findProduct({ basketId });
-    console.log(basket);
+        const basket = await findProduct({ basketId });
+        console.log(basket);
 
-    if (!basket) {
-        return res.sendStatus(404);
+        if (!basket) {
+            return res.sendStatus(404);
+        }
+
+        if (String(basket.user) !== userId) {
+            return res.sendStatus(403);
+        }
+
+        await deleteProduct({ basketId });
+
+        return res.sendStatus(200);
+    } catch (e) {
+        console.error(e);
     }
-
-    if (String(basket.user) !== userId) {
-        return res.sendStatus(403);
-    }
-
-    await deleteProduct({ basketId });
-
-    return res.sendStatus(200);
 }
