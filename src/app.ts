@@ -50,6 +50,8 @@ app.use(
             'https://192.168.237.106:80/',
             'http://127.0.0.1:5173',
             'https://127.0.0.1:5173',
+            'https://192.168.95.106:8080',
+            'http://192.168.95.106:8080',
             'https://10.0.0.244:80/',
             'https://vat-vivaarium.herokuapp.com/',
             herokuapi,
@@ -62,7 +64,9 @@ app.use(
         credentials: true,
     })
 );
-// app.use(cors());
+// app.use(cors()); // comment this for deploy
+// and do app.listen for deploy
+
 // const key = fs.readFileSync('./localhost-key.pem');
 // const cert = fs.readFileSync('./localhost.pem');
 // const server = https.createServer({ key: key, cert: cert }, app);
