@@ -16,7 +16,7 @@ import {
     findAndUpdateVisitor,
     getAllVisitors,
 } from '../../service/performance/visitor.service';
-import { cloneDeep, now } from 'lodash';
+import { cloneDeep, now, shuffle } from 'lodash';
 import { Schema } from 'mongoose';
 
 import QuizResultModel from '../../models/performance/quiz-results.model';
@@ -58,49 +58,62 @@ export async function updatePhaseHandler(
             console.log('I FOUND VISITORS: ', visitors.length);
             const phaseGame = await findGame({ _id: phase.phase_game });
             console.log('PHASE_______ ', phase);
+            console.log('PHASE_______ ');
+            console.log('PHASE_______ ');
+            console.log('PHASE_______ ');
+            console.log('PHASE_______ ');
+            console.log('PHASE_______ ');
             for (const visitor of visitors) {
-                console.log(visitor);
-                console.log(typeof visitor);
+                console.log(
+                    visitor.wardrobe_number,
+                    visitor.confirmed_humanity_value
+                );
                 const addQuizResults = [];
                 const visitorId = visitor._id.toString();
-                // todo check if visitor doesn't have step
-                // todo shuffle the steps for visitor
-                for (const game_step of phaseGame.game_steps) {
-                    console.log(
-                        'GAME STEP:',
-                        game_step.question_text,
-                        '    VISITOR: ',
-                        visitor.wardrobe_number
-                    );
-
-                    const createResult = await QuizResultModel.create({
-                        step: game_step,
-                        game: phaseGame,
-                        result_text: '-',
-                        result_humanity_values: {
-                            lime: 0,
-                            fuchsia: 0,
-                            silver: 0,
-                            turq: 0,
-                        },
-                        visitor: visitorId,
-                    });
-                    console.log(createResult._id);
-                    addQuizResults.push(createResult);
-
-                    visitor.quiz_results.push(createResult);
-                }
-                console.log(addQuizResults);
-                await findAndUpdateVisitor(
-                    { visitorId: visitorId },
-                    {
-                        quiz_results: addQuizResults,
-                    },
-                    {
-                        new: true,
+                const addResults = visitor.quiz_results.filter((qr) => {
+                    if (qr.game.toString() === phaseGame._id.toString()) {
+                        return qr;
                     }
-                );
-                visitor.save();
+                }).length;
+                if (addResults === 0) {
+                    const shuffled = shuffle(phaseGame.game_steps);
+
+                    for (const game_step of shuffled) {
+                        if (
+                            (visitor.confirmed_humanity_value &&
+                                phaseGame.open_for_colors.includes(
+                                    visitor.confirmed_humanity_value
+                                )) ||
+                            visitor.confirmed_humanity_value === 'none'
+                        ) {
+                            const createResult = await QuizResultModel.create({
+                                step: game_step,
+                                game: phaseGame,
+                                result_text: '-',
+                                result_humanity_values: {
+                                    lime: 0,
+                                    fuchsia: 0,
+                                    silver: 0,
+                                    turq: 0,
+                                },
+                                visitor: visitorId,
+                            });
+                            addQuizResults.push(createResult);
+                            visitor.quiz_results.push(createResult);
+                        }
+                    }
+
+                    await findAndUpdateVisitor(
+                        { visitorId: visitorId },
+                        {
+                            quiz_results: addQuizResults,
+                        },
+                        {
+                            new: true,
+                        }
+                    );
+                    visitor.save();
+                }
             }
         }
         console.log('done activating phase.');

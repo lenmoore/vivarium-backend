@@ -37,7 +37,7 @@ const quizResultSchema = new mongoose.Schema({
         ref: 'Game',
         required: false,
     },
-    step: { type: mongoose.Schema.Types.ObjectId, ref: 'Step' },
+    step: { type: mongoose.Schema.Types.ObjectId, ref: 'Step', unique: true },
     result_text: { type: String, required: true },
     result_humanity_values: { type: Object, required: false },
 });
