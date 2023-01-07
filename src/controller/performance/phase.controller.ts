@@ -76,9 +76,7 @@ export async function updatePhaseHandler(
                     }
                 }).length;
                 if (addResults === 0) {
-                    const shuffled = shuffle(phaseGame.game_steps);
-
-                    for (const game_step of shuffled) {
+                    for (const game_step of phaseGame.game_steps) {
                         if (
                             (visitor.confirmed_humanity_value &&
                                 phaseGame.open_for_colors.includes(
