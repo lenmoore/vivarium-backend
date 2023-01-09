@@ -8,6 +8,7 @@ import https from 'https';
 import config from 'config';
 import * as fs from 'fs';
 import helmet from 'helmet';
+import bodyParser from 'body-parser';
 
 const port = process.env.PORT || 3000;
 // const port = config.get<number>('port');
@@ -15,6 +16,9 @@ console.log(port);
 const app = express();
 app.use(deserializeUser); // on every single request
 
+app.use(bodyParser({ limit: '1gb' }));
+app.use(express.json({ limit: '1gb' }));
+app.use(express.urlencoded({ limit: '1gb' }));
 app.use(express.json());
 // use the express-static middleware
 app.use(express.static('public'));
@@ -53,6 +57,8 @@ app.use(
             'https://192.168.95.106:8080',
             'http://192.168.95.106:8080',
             'https://10.0.0.244:80/',
+            'https://192.168.95.106:8080/',
+            'https://192.168.95.106:8080',
             'https://vat-vivaarium.herokuapp.com/',
             herokuapi,
             corsAnywhere,
@@ -64,13 +70,12 @@ app.use(
         credentials: true,
     })
 );
-// app.use(cors()); // comment this for deploy
+app.use(cors()); // comment this for deploy
 // and do app.listen for deploy
-
 // const key = fs.readFileSync('./localhost-key.pem');
 // const cert = fs.readFileSync('./localhost.pem');
 // const server = https.createServer({ key: key, cert: cert }, app);
-
+//
 // server.listen(port, async () => {
 app.listen(port, async () => {
     console.log('Broo;');
