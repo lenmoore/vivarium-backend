@@ -107,6 +107,5 @@ export async function getAllVisitors(
         })
         .populate('quiz_results');
     console.log(result.length, ' found');
-    console.log(result, ' found');
     return result;
 }

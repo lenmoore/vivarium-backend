@@ -29,6 +29,7 @@ import QuizResultModel from '../../models/performance/quiz-results.model';
 import quizResultsModel from '../../models/performance/quiz-results.model';
 import VisitorModel from '../../models/performance/visitor.model';
 import performanceModel from '../../models/performance/performance.model';
+import PerformanceModel from '../../models/performance/performance.model';
 
 export async function createVisitorHandler(
     req: Request<CreateVisitorInput>,
@@ -204,14 +205,25 @@ export async function getVisitorHandler(
 }
 
 export async function getPerformanceVisitorsHandler(
-    req: Request<ReadVisitorInput['params']>,
+    req: Request,
     res: Response
 ) {
+    let visitors = [];
     try {
         console.log(req.params);
-        const visitors = await getAllVisitors({
-            performance: req.params.performance,
-        });
+        if (req.params.performance) {
+            visitors = await getAllVisitors({
+                performance: req.params.performance,
+            });
+        } else {
+            const activePerformance = await PerformanceModel.findOne({
+                active: true,
+            });
+            visitors = await getAllVisitors({
+                performance: activePerformance._id,
+            });
+        }
+
         if (!visitors) {
             return res.sendStatus(404);
         }

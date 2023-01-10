@@ -95,6 +95,13 @@ import {
     getGamesHandler,
     updateGameHandler,
 } from './controller/performance/game.controller';
+import {
+    createActorStateHandler,
+    getActorStateAudienceListHandler,
+    getActorStateHandler,
+    getActorStateProductsHandler,
+    updateActorStateHandler,
+} from './controller/performance/actor-state.controller';
 
 function routes(app: Express) {
     app.route('/').get(function (req, res) {
@@ -243,6 +250,7 @@ function routes(app: Express) {
         '/api/performance-visitors/:performance',
         getPerformanceVisitorsHandler
     );
+    app.get('/api/performance-visitors', getPerformanceVisitorsHandler);
     app.get('/api/visitors', getVisitorsHandler);
 
     app.get(
@@ -306,5 +314,21 @@ function routes(app: Express) {
         [requireUser, validateResource(deleteBasketSchema)],
         deleteBasketHandler
     );
+
+    app.get(
+        '/api/actor-state/audience-list',
+        [requireUser],
+        getActorStateAudienceListHandler
+    );
+    app.get(
+        '/api/actor-state/products-in-capsule',
+        [requireUser],
+        getActorStateProductsHandler
+    );
+
+    app.get('/api/actor-state', [requireUser], getActorStateHandler);
+    app.put('/api/actor-state', [requireUser], updateActorStateHandler);
+    app.post('/api/actor-state', [requireUser], createActorStateHandler);
 }
+
 export default routes;

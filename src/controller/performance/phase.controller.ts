@@ -58,11 +58,6 @@ export async function updatePhaseHandler(
             console.log('I FOUND VISITORS: ', visitors.length);
             const phaseGame = await findGame({ _id: phase.phase_game });
             console.log('PHASE_______ ', phase);
-            console.log('PHASE_______ ');
-            console.log('PHASE_______ ');
-            console.log('PHASE_______ ');
-            console.log('PHASE_______ ');
-            console.log('PHASE_______ ');
             for (const visitor of visitors) {
                 console.log(
                     visitor.wardrobe_number,
