@@ -70,8 +70,10 @@ export async function updatePhaseHandler(
                         return qr;
                     }
                 }).length;
+
                 if (addResults === 0) {
                     for (const game_step of phaseGame.game_steps) {
+                        console.log(game_step);
                         if (
                             (visitor.confirmed_humanity_value &&
                                 phaseGame.open_for_colors.includes(
