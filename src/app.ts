@@ -76,10 +76,10 @@ app.use(
 );
 // app.use(cors()); // comment this for deploy
 // and do app.listen for deploy
-// const key = fs.readFileSync('./localhost-key.pem');
-// const cert = fs.readFileSync('./localhost.pem');
-// const server = https.createServer({ key: key, cert: cert }, app);
-//
+const key = fs.readFileSync('./localhost-key.pem');
+const cert = fs.readFileSync('./localhost.pem');
+const server = https.createServer({ key: key, cert: cert }, app);
+
 // server.listen(port, async () => {
 app.listen(port, async () => {
     console.log('Broo;');
