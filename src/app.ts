@@ -60,6 +60,10 @@ app.use(
             'https://192.168.95.106:8080/',
             'https://192.168.95.106:8080',
             'https://vat-vivaarium.herokuapp.com/',
+            'https://www.vat-vivaarium.ee',
+            'http://www.vat-vivaarium.ee',
+            'https://vat-vivaarium.ee',
+            'http://vat-vivaarium.ee',
             herokuapi,
             corsAnywhere,
             vatheroku,
@@ -70,7 +74,7 @@ app.use(
         credentials: true,
     })
 );
-app.use(cors()); // comment this for deploy
+// app.use(cors()); // comment this for deploy
 // and do app.listen for deploy
 // const key = fs.readFileSync('./localhost-key.pem');
 // const cert = fs.readFileSync('./localhost.pem');
