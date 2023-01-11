@@ -315,6 +315,9 @@ function routes(app: Express) {
         deleteBasketHandler
     );
 
+    app.get('/api/actor-state', [requireUser], getActorStateHandler);
+    app.put('/api/actor-state', [requireUser], updateActorStateHandler);
+    app.post('/api/actor-state', [requireUser], createActorStateHandler);
     app.get(
         '/api/actor-state/audience-list',
         [requireUser],
@@ -325,10 +328,6 @@ function routes(app: Express) {
         [requireUser],
         getActorStateProductsHandler
     );
-
-    app.get('/api/actor-state', [requireUser], getActorStateHandler);
-    app.put('/api/actor-state', [requireUser], updateActorStateHandler);
-    app.post('/api/actor-state', [requireUser], createActorStateHandler);
 }
 
 export default routes;

@@ -34,7 +34,7 @@ export async function getActorStateAudienceListHandler(
                     path: 'products',
                 },
             })
-            .populate({ path: 'quiz_results', populate: 'step' });
+            .populate({ path: 'quiz_results', populate: { path: 'step' } });
 
         return res.send(actorColorVisitors);
     } catch (err) {
@@ -110,11 +110,12 @@ export async function getActorStateHandler(
         const actorColour = req.query.colour;
         console.log(actorColour);
 
-        const actorColorVisitors = await ActorStateModel.findOne({
-            colour: actorColour,
-        });
+        const actorState = await ActorStateModel.findOne({});
+        if (actorColour !== 'all') {
+            console.log('idk, todo return actor phases. i guess not necessary');
+        }
 
-        return res.send(actorColorVisitors);
+        return res.send(actorState);
     } catch (err) {
         console.error(err);
         return res.sendStatus(400);
@@ -144,13 +145,11 @@ export async function updateActorStateHandler(
     res: Response
 ) {
     try {
-        console.log(req);
-        const actorColor = req.query.colour;
-        console.log(actorColor);
-
-        const actorColorVisitors = await VisitorModel.find({
-            confirmed_humanity_value: actorColor,
-        });
+        console.log(req.body);
+        const actorColorVisitors = await ActorStateModel.findOneAndUpdate(
+            {},
+            req.body
+        );
 
         return res.send(actorColorVisitors);
     } catch (err) {

@@ -1,6 +1,7 @@
 // these are basically quiz type questions i guess
 import mongoose from 'mongoose';
 import { customAlphabet } from 'nanoid';
+import { array, object } from 'zod';
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz0123456789', 10);
 
 export class Timer {
