@@ -252,7 +252,7 @@ export async function deleteVisitorHandler(
     res: Response
 ) {
     try {
-        const userId = res.locals.user._id;
+        // const userId = res.locals.user._id;
         const visitorId = req.params.visitorId;
 
         const visitor = await findVisitor({ visitorId });
@@ -261,9 +261,9 @@ export async function deleteVisitorHandler(
             return res.sendStatus(404);
         }
 
-        if (String(visitor.user) !== userId) {
-            return res.sendStatus(403);
-        }
+        // if (String(visitor.user) !== userId) {
+        //     return res.sendStatus(403);
+        // }
 
         await deleteVisitor({ visitorId });
 
