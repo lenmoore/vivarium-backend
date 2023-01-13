@@ -48,6 +48,33 @@ export async function findPerformance(
         console.error(e);
     }
 }
+export async function findPerformanceByDate(
+    query: FilterQuery<PerformanceDocument>,
+    options: QueryOptions = {}
+) {
+    const metricsLabels = {
+        operation: 'findPerformance',
+    };
+    console.log(query);
+    const timer = databaseResponseTimeHistogram.startTimer();
+    try {
+        const result = await PerformanceModel.findOne(
+            { date: query.date },
+            {},
+            options
+        )
+            .populate('phases')
+            .populate('visitors');
+
+        timer({ ...metricsLabels, success: 'true' });
+        console.log('result findperformances: ', result);
+        return result;
+    } catch (e) {
+        timer({ ...metricsLabels, success: 'false' });
+
+        console.error(e);
+    }
+}
 
 export async function findAndUpdatePerformance(
     query: FilterQuery<PerformanceDocument>,

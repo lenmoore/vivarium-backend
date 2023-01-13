@@ -65,6 +65,7 @@ import {
     createVisitorHandler,
     deleteVisitorHandler,
     getPerformanceVisitorsHandler,
+    getVisitorByDateNumberHandler,
     getVisitorHandler,
     getVisitorsHandler,
     updateVisitorColorsHandler,
@@ -257,6 +258,13 @@ function routes(app: Express) {
         '/api/visitors/:visitorId',
         validateResource(getVisitorSchema),
         getVisitorHandler
+    );
+
+    // .get(`/performance/visitors/${date}/${wardrobeNumber}`)
+    app.get(
+        '/api/performance/visitors/:date/:wardrobeNumber',
+        validateResource(getVisitorSchema),
+        getVisitorByDateNumberHandler
     );
 
     app.put(

@@ -204,6 +204,34 @@ export async function getVisitorHandler(
     }
 }
 
+export async function getVisitorByDateNumberHandler(
+    req: Request,
+    res: Response
+) {
+    try {
+        const date = new Date(req.params.date);
+        const wardrobe_number = req.params.wardrobeNumber;
+        console.log(date, wardrobe_number, '<<<< trying to find this visitor');
+        const performance = await PerformanceModel.findOne(
+            { date: date },
+            {},
+            {}
+        );
+        console.log('found performance: ', performance);
+
+        const visitor = await findVisitor({
+            performance: performance._id,
+            wardrobe_number: wardrobe_number,
+        });
+        console.log(visitor);
+
+        return res.send(visitor);
+    } catch (err) {
+        console.error(err);
+        return res.sendStatus(400);
+    }
+}
+
 export async function getPerformanceVisitorsHandler(
     req: Request,
     res: Response
