@@ -241,7 +241,7 @@ export async function getVisitorByDateHandler(req: Request, res: Response) {
         );
         console.log('found performance: ', performance);
 
-        const visitor = await findVisitor({
+        const visitor = await VisitorModel.find({
             performance: performance._id,
         });
         console.log(visitor);
