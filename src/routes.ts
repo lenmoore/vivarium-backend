@@ -267,11 +267,7 @@ function routes(app: Express) {
         validateResource(getVisitorSchema),
         getVisitorByDateNumberHandler
     );
-    app.get(
-        '/api/performance/visitors/:date',
-        validateResource(getVisitorSchema),
-        getVisitorByDateHandler
-    );
+    app.get('/api/performance/visitors/:date', getVisitorByDateHandler);
 
     app.put(
         '/api/performances/:id/archive-visitors',
