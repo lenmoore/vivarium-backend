@@ -65,6 +65,7 @@ import {
     createVisitorHandler,
     deleteVisitorHandler,
     getPerformanceVisitorsHandler,
+    getVisitorByDateHandler,
     getVisitorByDateNumberHandler,
     getVisitorHandler,
     getVisitorsHandler,
@@ -265,6 +266,11 @@ function routes(app: Express) {
         '/api/performance/visitors/:date/:wardrobeNumber',
         validateResource(getVisitorSchema),
         getVisitorByDateNumberHandler
+    );
+    app.get(
+        '/api/performance/visitors/:date',
+        validateResource(getVisitorSchema),
+        getVisitorByDateHandler
     );
 
     app.put(

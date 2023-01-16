@@ -231,6 +231,27 @@ export async function getVisitorByDateNumberHandler(
         return res.sendStatus(400);
     }
 }
+export async function getVisitorByDateHandler(req: Request, res: Response) {
+    try {
+        const date = new Date(req.params.date);
+        const performance = await PerformanceModel.findOne(
+            { date: date },
+            {},
+            {}
+        );
+        console.log('found performance: ', performance);
+
+        const visitor = await findVisitor({
+            performance: performance._id,
+        });
+        console.log(visitor);
+
+        return res.send(visitor);
+    } catch (err) {
+        console.error(err);
+        return res.sendStatus(400);
+    }
+}
 
 export async function getPerformanceVisitorsHandler(
     req: Request,
