@@ -4,6 +4,9 @@ import VisitorModel, {
     VisitorDocument,
 } from '../../models/performance/visitor.model';
 import { FilterQuery, QueryOptions, UpdateQuery } from 'mongoose';
+import StepModel from '../../models/performance/step.model';
+import QuizResultModel from '../../models/performance/quiz-results.model';
+import GameModel from '../../models/performance/game.model';
 
 export async function createVisitor(input: CreateVisitorInput) {
     const metricsLabels = {
@@ -13,6 +16,39 @@ export async function createVisitor(input: CreateVisitorInput) {
 
     try {
         const result = await VisitorModel.create(input);
+
+        const allGamesEver = await GameModel.find();
+        const addQuizResults = [];
+
+        for (const game of allGamesEver) {
+            for (const game_step of game.game_steps) {
+                const createResult = await QuizResultModel.create({
+                    step: game_step,
+                    game: game,
+                    result_text: '-',
+                    result_humanity_values: {
+                        lime: 0,
+                        fuchsia: 0,
+                        silver: 0,
+                        turq: 0,
+                    },
+                    visitor: result._id,
+                });
+                addQuizResults.push(createResult);
+                result.quiz_results.push(createResult);
+            }
+        }
+
+        await findAndUpdateVisitor(
+            { visitorId: result._id },
+            {
+                quiz_results: addQuizResults,
+            },
+            {
+                new: true,
+            }
+        );
+        result.save();
         timer({ ...metricsLabels, success: 'true' });
         console.log('im really creating a visitor->', result);
 
