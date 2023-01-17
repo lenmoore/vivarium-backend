@@ -61,6 +61,8 @@ app.use(
             'https://192.168.95.106:8080',
             'https://vat-vivaarium.herokuapp.com/',
             'https://www.vat-vivaarium.ee',
+            'https://www.vivaarium.ee',
+            'https://vivaarium.ee',
             'https://vat-vivaarium.ee',
             'http://vat-vivaarium.ee',
             herokuapi,
