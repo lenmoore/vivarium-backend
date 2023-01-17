@@ -122,6 +122,20 @@ export async function archiveVisitors(update: any) {
     }
 }
 
+export async function updateQuizResult(req: Request, res: Response) {
+    try {
+        console.log(req);
+        const body = req.body;
+        const quizResult = await QuizResultModel.findByIdAndUpdate(
+            body._id,
+            body
+        );
+        res.send(quizResult);
+    } catch (e) {
+        console.error(e);
+    }
+}
+
 export async function updateVisitorHandler(
     req: Request<UpdateVisitorInput['params']>,
     res: Response

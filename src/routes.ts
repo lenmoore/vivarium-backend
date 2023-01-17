@@ -69,6 +69,7 @@ import {
     getVisitorByDateNumberHandler,
     getVisitorHandler,
     getVisitorsHandler,
+    updateQuizResult,
     updateVisitorColorsHandler,
     updateVisitorHandler,
 } from './controller/performance/visitor.controller';
@@ -279,6 +280,7 @@ function routes(app: Express) {
         [validateResource(updateVisitorSchema)],
         updateVisitorHandler
     );
+    app.put('/api/quizresults/:id', updateQuizResult);
 
     // app.put(
     //     '/api/visitors/:visitorId/quiz-results/:stepId',
