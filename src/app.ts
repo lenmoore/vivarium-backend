@@ -63,6 +63,7 @@ app.use(
             'https://www.vat-vivaarium.ee',
             'https://www.vivaarium.ee',
             'https://vivaarium.ee',
+            'https://vivarium.vainmaa.ee',
             'https://vat-vivaarium.ee',
             'http://vat-vivaarium.ee',
             herokuapi,
