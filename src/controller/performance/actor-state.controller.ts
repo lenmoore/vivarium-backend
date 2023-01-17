@@ -19,7 +19,7 @@ export async function getActorStateAudienceListHandler(
 ) {
     try {
         const actorColor = req.query.colour;
-        console.log(actorColor, ' get actor state -> visitors summary');
+        // console.log(actorColor, ' get actor state -> visitors summary');
         const activePerformance = await PerformanceModel.find({ active: true });
 
         const filter: any = {};
@@ -48,7 +48,7 @@ export async function getActorStateProductsHandler(
 ) {
     try {
         const actorColor = req.query.colour;
-        console.log(actorColor, ' get actor state -> products');
+        // console.log(actorColor, ' get actor state -> products');
         const activePerformance = await PerformanceModel.find({ active: true });
 
         const actorColorVisitors = await VisitorModel.find({
@@ -108,11 +108,11 @@ export async function getActorStateHandler(
 ) {
     try {
         const actorColour = req.query.colour;
-        console.log(actorColour);
+        // console.log(actorColour);
 
         const actorState = await ActorStateModel.findOne({});
         if (actorColour !== 'all') {
-            console.log('idk, todo return actor phases. i guess not necessary');
+            // console.log('idk, todo return actor phases. i guess not necessary');
         }
 
         return res.send(actorState);
@@ -128,8 +128,8 @@ export async function createActorStateHandler(
     try {
         const body = req.body;
         const actorColor = req.query.colour;
-        console.log(actorColor);
-        console.log(body);
+        // console.log(actorColor);
+        // console.log(body);
 
         const result = await ActorStateModel.create(body);
 
@@ -145,7 +145,7 @@ export async function updateActorStateHandler(
     res: Response
 ) {
     try {
-        console.log(req.body);
+        // console.log(req.body);
         const actorColorVisitors = await ActorStateModel.findOneAndUpdate(
             {},
             req.body

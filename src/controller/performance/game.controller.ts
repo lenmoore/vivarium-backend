@@ -25,7 +25,7 @@ export async function createGameHandler(
 ) {
     const body = req.body;
 
-    console.log(body);
+    // console.log(body);
     const Game = await createGame({
         ...body,
         open_for_colors: body.open_for_colors.split(','),
@@ -43,13 +43,13 @@ export async function updateGameHandler(
         let update = req.body;
         const stepIds = [];
         const game = await findGame({ gameId });
-        console.log(req.body);
+        // console.log(req.body);
         if (req.body.game_steps) {
             const steps = req.body.game_steps;
             for (const requestStep of steps) {
                 if (requestStep._id) {
                     // if the game step is not a new one
-                    console.log('trying to update a step: ', requestStep);
+                    // console.log('trying to update a step: ', requestStep);
                     stepIds.push(requestStep._id);
 
                     await findAndUpdateStep(
@@ -120,7 +120,7 @@ export async function deleteGameHandler(
         const gameId = req.params.gameId;
 
         const game = await findGame({ gameId });
-        console.log(game);
+        // console.log(game);
 
         if (!game) {
             return res.sendStatus(404);

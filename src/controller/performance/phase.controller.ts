@@ -55,11 +55,11 @@ export async function updatePhaseHandler(
 
         // if (update.active === true) {
         //     const visitors = await getAllVisitors({ archived: false });
-        //     console.log('I FOUND VISITORS: ', visitors.length);
+        //     // console.log('I FOUND VISITORS: ', visitors.length);
         //     const phaseGame = await findGame({ _id: phase.phase_game });
-        //     console.log('PHASE_______ ', phase);
+        //     // console.log('PHASE_______ ', phase);
         //     for (const visitor of visitors) {
-        //         console.log(
+        //         // console.log(
         //             visitor.wardrobe_number,
         //             visitor.confirmed_humanity_value
         //         );
@@ -73,7 +73,7 @@ export async function updatePhaseHandler(
         //
         //         if (addResults === 0) {
         // for (const game_step of phaseGame.game_steps) {
-        //     console.log(game_step);
+        //     // console.log(game_step);
         //     if (
         //         (visitor.confirmed_humanity_value &&
         //             phaseGame.open_for_colors.includes(
@@ -111,7 +111,7 @@ export async function updatePhaseHandler(
         //         }
         //     }
         // }
-        // console.log('done activating phase.');
+        // // console.log('done activating phase.');
         const updatedPhase = await findAndUpdatePhase({ phaseId }, update, {
             new: true,
         });
@@ -162,7 +162,7 @@ export async function deletePhaseHandler(
         const phaseId = req.params.phaseId;
 
         const phase = await findPhase({ phaseId });
-        console.log(phase);
+        // console.log(phase);
 
         if (!phase) {
             return res.sendStatus(404);

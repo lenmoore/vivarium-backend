@@ -47,7 +47,7 @@ export async function reIssueAccessToken({
         'accessTokenPrivateKeyEncoded'
     );
 
-    console.log('NEW ACCESS TOKEN > ', accessToken);
+    // console.log('NEW ACCESS TOKEN > ', accessToken);
 
     return accessToken;
 }

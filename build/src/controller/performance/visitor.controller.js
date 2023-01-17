@@ -295,7 +295,7 @@ function createVisitorHandler(req, res) {
                     ];
                 case 7:
                     _a.sent();
-                    console.log('i created this visitor', visitor);
+                    // console.log('i created this visitor', visitor);
                     visitor.accessToken = accessToken; // just in case
                     return [2 /*return*/, res.send(visitor)];
                 case 8:
@@ -340,14 +340,14 @@ function archiveVisitorsHandler(req, res) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    console.log('trying to archive vistiors');
+                    // console.log('trying to archive vistiors');
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
                     return [4 /*yield*/, archiveVisitors(req.body)];
                 case 2:
                     _a.sent();
-                    console.log(req.body);
+                    // console.log(req.body);
                     return [2 /*return*/, res.sendStatus(204)];
                 case 3:
                     e_3 = _a.sent();
@@ -367,7 +367,7 @@ function archiveVisitors(update) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    console.log('update:', update);
+                    // console.log('update:', update);
                     return [
                         4 /*yield*/,
                         visitor_model_1.default.updateMany(
@@ -423,17 +423,17 @@ function updateVisitorHandler(req, res) {
                     addQuizResults = [];
                     if (!update.quiz_results) return [3 /*break*/, 7];
                     quizResults = update.quiz_results;
-                    console.log(quizResults);
+                    // console.log(quizResults);
                     (_i = 0), (quizResults_1 = quizResults);
                     _a.label = 2;
                 case 2:
                     if (!(_i < quizResults_1.length)) return [3 /*break*/, 7];
                     qr = quizResults_1[_i];
-                    console.log(
+                    // console.log(
                         'QUIZ RESULT QUIZ RESULT ------------------',
                         qr
                     );
-                    console.log(qr._id);
+                    // console.log(qr._id);
                     if (!(qr._id == null)) return [3 /*break*/, 4];
                     return [
                         4 /*yield*/,
@@ -451,7 +451,7 @@ function updateVisitorHandler(req, res) {
                     ];
                 case 3:
                     result = _a.sent();
-                    console.log(result);
+                    // console.log(result);
                     addQuizResults.push(result);
                     return [3 /*break*/, 6];
                 case 4:
@@ -465,7 +465,7 @@ function updateVisitorHandler(req, res) {
                 case 5:
                     result = _a.sent();
                     addQuizResults.push(result);
-                    console.log('SHOULD HAVE UPDATED', result);
+                    // console.log('SHOULD HAVE UPDATED', result);
                     _a.label = 6;
                 case 6:
                     _i++;
@@ -535,7 +535,7 @@ function getPerformanceVisitorsHandler(req, res) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    console.log(req.params);
+                    // console.log(req.params);
                     return [
                         4 /*yield*/,
                         (0, visitor_service_1.getAllVisitors)({

@@ -73,7 +73,7 @@ export async function refreshAccessTokenHandler(req: Request, res: Response) {
             return res.status(401).send('Could not refresh access token');
         }
 
-        console.log(decoded);
+        // console.log(decoded);
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         const session = await findSessionById((await decoded).payload.session);

@@ -111,13 +111,13 @@ function routes(app: Express) {
     });
 
     app.get('/api/health-check', cors(), (req: Request, res: Response) => {
-        console.log('yo');
-        console.log('im hot reload');
+        // console.log('yo');
+        // console.log('im hot reload');
         res.sendStatus(200);
     });
 
     app.get('/api/products-vis', cors(), (req: Request, res: Response) => {
-        console.log('yo');
+        // console.log('yo');
         getDataVisInfo(req, res);
     });
 

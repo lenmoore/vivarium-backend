@@ -37,7 +37,7 @@ const deserializeUser = async (
 
         const isExpired = Date.now() >= expirationDatetimeInSeconds;
 
-        console.log('is expired? ', isExpired);
+        // console.log('is expired? ', isExpired);
         if (exp && isExpired && refreshToken) {
             const newAccessToken = await reIssueAccessToken({
                 refreshToken: refreshToken[0],

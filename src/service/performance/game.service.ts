@@ -11,7 +11,7 @@ export async function createGame(input: CreateGameInput) {
 
     try {
         const result = await GameModel.create(input);
-        console.log(result);
+        // console.log(result);
         timer({ ...metricsLabels, success: 'true' });
         return result;
     } catch (e) {
@@ -27,14 +27,14 @@ export async function findGame(
     const metricsLabels = {
         operation: 'findGame',
     };
-    console.log(query);
+    // console.log(query);
     const timer = databaseResponseTimeHistogram.startTimer();
     try {
         const result = await GameModel.findOne(query, {}, options).populate(
             'game_steps'
         );
         timer({ ...metricsLabels, success: 'true' });
-        console.log(result);
+        // console.log(result);
         return result;
     } catch (e) {
         timer({ ...metricsLabels, success: 'false' });

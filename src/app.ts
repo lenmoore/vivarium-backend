@@ -12,7 +12,7 @@ import bodyParser from 'body-parser';
 
 const port = process.env.PORT || 3000;
 // const port = config.get<number>('port');
-console.log(port);
+// console.log(port);
 const app = express();
 app.use(deserializeUser); // on every single request
 
@@ -81,7 +81,7 @@ const server = https.createServer({ key: key, cert: cert }, app);
 
 // server.listen(port, async () => {
 app.listen(port, async () => {
-    console.log('Broo;');
+    // console.log('Broo;');
     logger.info('running on port ' + port);
 
     routes(app);

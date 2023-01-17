@@ -44,7 +44,7 @@ export async function updateBasketHandler(
     res: Response
 ) {
     try {
-        console.log(req.params);
+        // console.log(req.params);
         const basketId = req.params.basketId;
         const update = req.body;
 
@@ -93,7 +93,7 @@ export async function getBasketByVisitorIdHandler(
 ) {
     try {
         const visitorId = req.params.visitorId;
-        console.log(visitorId);
+        // console.log(visitorId);
         const basket = await findBasket({ visitor: visitorId });
 
         if (!basket) {
@@ -127,7 +127,7 @@ export async function deleteBasketHandler(
         const basketId = req.params.basketId;
 
         const basket = await findProduct({ basketId });
-        console.log(basket);
+        // console.log(basket);
 
         if (!basket) {
             return res.sendStatus(404);

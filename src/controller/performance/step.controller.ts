@@ -92,7 +92,7 @@ export async function deleteStepHandler(
         const stepId = req.params.stepId;
 
         const step = await findStep({ stepId });
-        console.log(step);
+        // console.log(step);
 
         if (!step) {
             return res.sendStatus(404);

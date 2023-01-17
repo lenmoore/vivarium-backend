@@ -9,13 +9,13 @@ export async function signJwt(
 ) {
     const signingKey = Buffer.from(config.get(keyName));
 
-    console.log('im trying to sign this:', object);
+    // console.log('im trying to sign this:', object);
     const signed = await new jose.SignJWT(object)
         .setExpirationTime(config.get('accessTokenTtl'))
         .setProtectedHeader({ alg: 'HS256' })
         .sign(signingKey);
 
-    console.log(signed);
+    // console.log(signed);
     return signed;
 }
 
@@ -26,13 +26,13 @@ export async function signVisitorJwt(
 ) {
     try {
         const signingKey = Buffer.from(config.get(keyName));
-        console.log('im trying to sign this visitors token', object);
+        // console.log('im trying to sign this visitors token', object);
         const signed = await new jose.SignJWT(object)
             .setExpirationTime('1d')
             .setProtectedHeader({ alg: 'HS256' })
             .sign(signingKey);
 
-        console.log(signed);
+        // console.log(signed);
         return signed;
     } catch (e) {
         console.error(e);
@@ -50,8 +50,8 @@ export async function verifyJwt(
             publicKey,
             {}
         );
-        console.log(payload);
-        console.log(protectedHeader);
+        // console.log(payload);
+        // console.log(protectedHeader);
         return { payload, protectedHeader };
     } catch (e) {
         return null;
@@ -79,17 +79,17 @@ export async function verifyJwt(
 //     token: string,
 //     keyName: 'accessTokenPublicKey' | 'refreshTokenPublicKey'
 // ): any {
-//     console.log('verify jwt', token);
+//     // console.log('verify jwt', token);
 //     let publicKey = config.get<string>(keyName).toString();
 //
 //     publicKey = Buffer.from(publicKey, 'base64url').toString();
 //     try {
 //         const decoded = jwt.verify(token, publicKey);
 //
-//         console.log('decoded', decoded);
+//         // console.log('decoded', decoded);
 //         return decoded;
 //     } catch (e) {
-//         console.log(e);
+//         // console.log(e);
 //         return null;
 //     }
 // }

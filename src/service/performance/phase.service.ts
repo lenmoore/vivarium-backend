@@ -12,9 +12,9 @@ export async function createPhase(input: CreatePhaseInput) {
     const timer = databaseResponseTimeHistogram.startTimer();
 
     try {
-        console.log('Bro');
+        // console.log('Bro');
         const result = await PhaseModel.create(input);
-        console.log(input, result);
+        // console.log(input, result);
         timer({ ...metricsLabels, success: 'true' });
         return result;
     } catch (e) {
@@ -30,12 +30,12 @@ export async function findPhase(
     const metricsLabels = {
         operation: 'findPhase',
     };
-    console.log(query);
+    // console.log(query);
     const timer = databaseResponseTimeHistogram.startTimer();
     try {
         const result = await PhaseModel.findOne(query, {}, options);
         timer({ ...metricsLabels, success: 'true' });
-        console.log(result);
+        // console.log(result);
         return result;
     } catch (e) {
         timer({ ...metricsLabels, success: 'false' });

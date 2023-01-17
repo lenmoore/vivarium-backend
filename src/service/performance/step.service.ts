@@ -26,12 +26,12 @@ export async function findStep(
     const metricsLabels = {
         operation: 'findStep',
     };
-    console.log(query);
+    // console.log(query);
     const timer = databaseResponseTimeHistogram.startTimer();
     try {
         const result = await StepModel.findOne(query, {}, options);
         timer({ ...metricsLabels, success: 'true' });
-        console.log(result);
+        // console.log(result);
         return result;
     } catch (e) {
         timer({ ...metricsLabels, success: 'false' });

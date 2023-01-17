@@ -46,7 +46,7 @@ export async function updatePerformanceHandler(
             }
         );
 
-        console.log(updatedPerformance);
+        // console.log(updatedPerformance);
         return res.send(updatedPerformance);
     } catch (e) {
         console.error(e);
@@ -96,7 +96,7 @@ export async function deletePerformanceHandler(
         const performanceId = req.params.performanceId;
 
         const performance = await findPerformance({ performanceId });
-        console.log(performance);
+        // console.log(performance);
 
         if (!performance) {
             return res.sendStatus(404);

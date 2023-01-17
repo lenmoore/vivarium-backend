@@ -1,8 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
 var validate = function (schema) {
     return function (req, res, next) {
-        console.log(req.body);
+        // console.log(req.body);
         try {
             // schema.parse({
             //     body: req.body,
@@ -10,8 +10,7 @@ var validate = function (schema) {
             //     params: req.params,
             // });
             next();
-        }
-        catch (e) {
+        } catch (e) {
             return res.status(400).send(e.errors);
         }
     };

@@ -28,7 +28,7 @@ export async function findPerformance(
     const metricsLabels = {
         operation: 'findPerformance',
     };
-    console.log(query);
+    // console.log(query);
     const timer = databaseResponseTimeHistogram.startTimer();
     try {
         const result = await PerformanceModel.findOne(
@@ -40,7 +40,7 @@ export async function findPerformance(
             .populate('visitors');
 
         timer({ ...metricsLabels, success: 'true' });
-        console.log('result findperformances: ', result);
+        // console.log('result findperformances: ', result);
         return result;
     } catch (e) {
         timer({ ...metricsLabels, success: 'false' });
@@ -55,7 +55,7 @@ export async function findPerformanceByDate(
     const metricsLabels = {
         operation: 'findPerformance',
     };
-    console.log(query);
+    // console.log(query);
     const timer = databaseResponseTimeHistogram.startTimer();
     try {
         const result = await PerformanceModel.findOne(
@@ -67,7 +67,7 @@ export async function findPerformanceByDate(
             .populate('visitors');
 
         timer({ ...metricsLabels, success: 'true' });
-        console.log('result findperformances: ', result);
+        // console.log('result findperformances: ', result);
         return result;
     } catch (e) {
         timer({ ...metricsLabels, success: 'false' });

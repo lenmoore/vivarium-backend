@@ -88,13 +88,13 @@ export async function getDataVisInfo(req: Request, res: Response) {
             }
         }
     });
-    console.log('realgoodkeys: ', realGoodKeys.length, '>>> ', realGoodKeys);
+    // console.log('realgoodkeys: ', realGoodKeys.length, '>>> ', realGoodKeys);
     const contents = shitString.split('\n');
     const products = [];
     let counter = 0;
 
     contents.forEach((row) => {
-        console.log(row);
+        // console.log(row);
         counter = 0;
         const rowItems = row.slice(0, -1).split(',');
         for (let i = 0; i < keys.length; i++) {
@@ -118,7 +118,7 @@ export async function getDataVisInfo(req: Request, res: Response) {
             );
         }
     });
-    console.log('>>>>>>>>>>>>>>>> >>>>>> ', realGoodKeys);
+    // console.log('>>>>>>>>>>>>>>>> >>>>>> ', realGoodKeys);
 
     const usr = (await findUserByEmail(res.locals?.user?.email)) || null;
     realGoodKeys.forEach((realGoodKey) => {
@@ -165,7 +165,7 @@ export async function getDataVisInfo(req: Request, res: Response) {
             archived: false,
             qr_code: '',
         };
-        console.log('fresh product -> ', productToAddToDb);
+        // console.log('fresh product -> ', productToAddToDb);
         createProduct(productToAddToDb);
     });
     return res.send({ realGoodKeys });

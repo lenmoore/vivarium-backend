@@ -82,7 +82,7 @@ export async function createVisitorHandler(
                 new: true,
             }
         );
-        console.log('i created this visitor', visitor);
+        // console.log('i created this visitor', visitor);
         visitor.accessToken = accessToken; // just in case
         return res.send(visitor);
     } catch (e) {
@@ -99,10 +99,10 @@ export async function updateVisitorColorsHandler(req: Request, res: Response) {
     }
 }
 export async function archiveVisitorsHandler(req: Request, res: Response) {
-    console.log('trying to archive vistiors');
+    // console.log('trying to archive vistiors');
     try {
         await archiveVisitors(req.body);
-        console.log(req.body);
+        // console.log(req.body);
         return res.sendStatus(204);
     } catch (e) {
         console.error(e);
@@ -112,7 +112,7 @@ export async function archiveVisitorsHandler(req: Request, res: Response) {
 
 export async function archiveVisitors(update: any) {
     try {
-        console.log('update:', update);
+        // console.log('update:', update);
         await VisitorModel.updateMany(
             { performance: update._id },
             { archived: true }
@@ -139,11 +139,11 @@ export async function updateVisitorHandler(
         const addQuizResults = [];
         if (update.quiz_results) {
             const quizResults = update.quiz_results;
-            console.log(quizResults);
+            // console.log(quizResults);
             for (const qr of quizResults) {
-                console.log('QUIZ RESULT QUIZ RESULT ------------------', qr);
+                // console.log('QUIZ RESULT QUIZ RESULT ------------------', qr);
 
-                console.log(qr._id);
+                // console.log(qr._id);
                 if (qr._id == null) {
                     const result = await QuizResultModel.create({
                         ...qr,
@@ -155,7 +155,7 @@ export async function updateVisitorHandler(
                             turq: 0,
                         },
                     });
-                    console.log(result);
+                    // console.log(result);
                     addQuizResults.push(result);
                 } else {
                     const result = await QuizResultModel.findByIdAndUpdate(
@@ -163,7 +163,7 @@ export async function updateVisitorHandler(
                         qr
                     );
                     addQuizResults.push(result);
-                    console.log('SHOULD HAVE UPDATED', result);
+                    // console.log('SHOULD HAVE UPDATED', result);
                 }
             }
         }
@@ -211,19 +211,19 @@ export async function getVisitorByDateNumberHandler(
     try {
         const date = new Date(req.params.date);
         const wardrobe_number = req.params.wardrobeNumber;
-        console.log(date, wardrobe_number, '<<<< trying to find this visitor');
+        // console.log(date, wardrobe_number, '<<<< trying to find this visitor');
         const performance = await PerformanceModel.findOne(
             { date: date },
             {},
             {}
         );
-        console.log('found performance: ', performance);
+        // console.log('found performance: ', performance);
 
         const visitor = await findVisitor({
             performance: performance._id,
             wardrobe_number: wardrobe_number,
         });
-        console.log(visitor);
+        // console.log(visitor);
 
         return res.send(visitor);
     } catch (err) {
@@ -239,12 +239,12 @@ export async function getVisitorByDateHandler(req: Request, res: Response) {
             {},
             {}
         );
-        console.log('found performance: ', performance);
+        // console.log('found performance: ', performance);
 
         const visitor = await VisitorModel.find({
             performance: performance._id,
         });
-        console.log(visitor);
+        // console.log(visitor);
 
         return res.send(visitor);
     } catch (err) {
@@ -259,7 +259,7 @@ export async function getPerformanceVisitorsHandler(
 ) {
     let visitors = [];
     try {
-        console.log(req.params);
+        // console.log(req.params);
         if (req.params.performance) {
             visitors = await getAllVisitors({
                 performance: req.params.performance,

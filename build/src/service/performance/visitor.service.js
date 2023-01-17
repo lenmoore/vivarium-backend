@@ -194,7 +194,7 @@ function createVisitor(input) {
                             success: 'true',
                         })
                     );
-                    console.log('im really creating a visitor->', result);
+                    // console.log('im really creating a visitor->', result);
                     return [2 /*return*/, result];
                 case 3:
                     e_1 = _a.sent();
@@ -243,7 +243,7 @@ function findVisitor(query, options) {
                     ];
                 case 2:
                     result = _a.sent();
-                    console.log('VISITOR RESULT', result);
+                    // console.log('VISITOR RESULT', result);
                     timer(
                         __assign(__assign({}, metricsLabels), {
                             success: 'true',
@@ -269,9 +269,9 @@ exports.findVisitor = findVisitor;
 function findAndUpdateVisitor(query, update, options) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            // console.log('updada');
+            // // console.log('updada');
             try {
-                console.log(update);
+                // console.log(update);
                 return [
                     2 /*return*/,
                     visitor_model_1.default
@@ -304,8 +304,8 @@ function confirmVisitorColors(update) {
                 case 1:
                     if (!(_i < update_1.length)) return [3 /*break*/, 4];
                     visitor = update_1[_i];
-                    console.log(visitor);
-                    console.log(visitor != undefined);
+                    // console.log(visitor);
+                    // console.log(visitor != undefined);
                     return [
                         4 /*yield*/,
                         visitor_model_1.default.findOneAndUpdate(
@@ -353,7 +353,7 @@ function getAllVisitors(query, options) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    console.log('see ju');
+                    // console.log('see ju');
                     return [
                         4 /*yield*/,
                         visitor_model_1.default
@@ -368,7 +368,7 @@ function getAllVisitors(query, options) {
                     ];
                 case 1:
                     result = _a.sent();
-                    console.log(result.length, ' found');
+                    // console.log(result.length, ' found');
                     return [2 /*return*/, result];
             }
         });

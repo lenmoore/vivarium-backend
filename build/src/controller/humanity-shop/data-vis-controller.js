@@ -235,7 +235,7 @@ function getDataVisInfo(req, res) {
                             }
                         }
                     });
-                    console.log(
+                    // console.log(
                         'realgoodkeys: ',
                         realGoodKeys.length,
                         '>>> ',
@@ -245,7 +245,7 @@ function getDataVisInfo(req, res) {
                     products = [];
                     counter = 0;
                     contents.forEach(function (row) {
-                        console.log(row);
+                        // console.log(row);
                         counter = 0;
                         var rowItems = row.slice(0, -1).split(',');
                         var _loop_1 = function (i) {
@@ -277,7 +277,7 @@ function getDataVisInfo(req, res) {
                             _loop_1(i);
                         }
                     });
-                    console.log('>>>>>>>>>>>>>>>> >>>>>> ', realGoodKeys);
+                    // console.log('>>>>>>>>>>>>>>>> >>>>>> ', realGoodKeys);
                     return [
                         4 /*yield*/,
                         (0, user_service_1.findUserByEmail)(
@@ -348,7 +348,7 @@ function getDataVisInfo(req, res) {
                             archived: false,
                             qr_code: '',
                         };
-                        console.log('fresh product -> ', productToAddToDb);
+                        // console.log('fresh product -> ', productToAddToDb);
                         (0, product_service_1.createProduct)(productToAddToDb);
                     });
                     return [

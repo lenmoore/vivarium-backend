@@ -38,32 +38,32 @@ export async function signRefreshToken({ userId }: { userId: string }) {
         }
     );
 
-    console.log('signed refresh token', refreshToken);
+    // console.log('signed refresh token', refreshToken);
 
     return refreshToken;
 }
 
 export async function signAccessToken(user: UserDocument) {
     const payload = user.toJSON();
-    console.log(user);
+    // console.log(user);
 
     const accessToken = await signJwt(payload, 'accessTokenPrivateKeyEncoded');
 
-    console.log('signed accessToken', accessToken);
+    // console.log('signed accessToken', accessToken);
 
     return accessToken;
 }
 
 export async function signVisitorAccessToken(visitor: any) {
     const payload = visitor;
-    console.log(visitor);
+    // console.log(visitor);
 
     const accessToken = await signVisitorJwt(
         payload,
         'accessTokenPrivateKeyEncoded'
     );
 
-    console.log('signed accessToken', accessToken);
+    // console.log('signed accessToken', accessToken);
 
     return accessToken;
 }

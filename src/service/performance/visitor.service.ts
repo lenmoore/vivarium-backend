@@ -50,7 +50,7 @@ export async function createVisitor(input: CreateVisitorInput) {
         );
         result.save();
         timer({ ...metricsLabels, success: 'true' });
-        console.log('im really creating a visitor->', result);
+        // console.log('im really creating a visitor->', result);
 
         return result;
     } catch (e) {
@@ -77,7 +77,7 @@ export async function findVisitor(
                 },
             })
             .populate({ path: 'quiz_results', populate: 'step' });
-        console.log('VISITOR RESULT', result);
+        // console.log('VISITOR RESULT', result);
         timer({ ...metricsLabels, success: 'true' });
         return result;
     } catch (e) {
@@ -92,9 +92,9 @@ export async function findAndUpdateVisitor(
     update: UpdateQuery<VisitorDocument>,
     options: QueryOptions
 ) {
-    // console.log('updada');
+    // // console.log('updada');
     try {
-        // console.log('Update: __ ', update.quiz_results);
+        // // console.log('Update: __ ', update.quiz_results);
         return VisitorModel.findOneAndUpdate(query, update, options)
             .populate({
                 path: 'basket',
@@ -111,8 +111,8 @@ export async function findAndUpdateVisitor(
 export async function confirmVisitorColors(update: Array<any>) {
     try {
         for (const visitor of update) {
-            console.log(visitor);
-            console.log(visitor != undefined);
+            // console.log(visitor);
+            // console.log(visitor != undefined);
             await VisitorModel.findOneAndUpdate(
                 { visitorId: visitor.visitorId },
                 {
@@ -133,7 +133,7 @@ export async function getAllVisitors(
     query: FilterQuery<VisitorDocument>,
     options: QueryOptions = {}
 ) {
-    console.log('see ju');
+    // console.log('see ju');
     const result = await VisitorModel.find(query, {}, options)
         .populate({
             path: 'basket',
@@ -142,6 +142,6 @@ export async function getAllVisitors(
             },
         })
         .populate('quiz_results');
-    console.log(result.length, ' found');
+    // console.log(result.length, ' found');
     return result;
 }
