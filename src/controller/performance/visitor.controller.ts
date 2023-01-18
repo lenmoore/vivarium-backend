@@ -124,7 +124,7 @@ export async function archiveVisitors(update: any) {
 
 export async function updateQuizResult(req: Request, res: Response) {
     try {
-        console.log(req);
+        console.log(req.body.result_text);
         const body = req.body;
         const quizResult = await QuizResultModel.findByIdAndUpdate(
             body._id,
