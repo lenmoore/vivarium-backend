@@ -255,12 +255,15 @@ export async function getVisitorByDateHandler(req: Request, res: Response) {
         );
         // console.log('found performance: ', performance);
 
-        const visitor = await VisitorModel.find({
+        const visitors = await VisitorModel.find({
             performance: performance._id,
         });
         // console.log(visitor);
 
-        return res.send(visitor);
+        const sortedVisitors = visitors.sort(
+            (a, b) => a.wardrobe_number - b.wardrobe_number
+        );
+        return res.send(sortedVisitors);
     } catch (err) {
         console.error(err);
         return res.sendStatus(400);
