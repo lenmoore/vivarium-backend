@@ -65,6 +65,7 @@ import {
     createVisitorHandler,
     deleteVisitorHandler,
     getPerformanceVisitorsHandler,
+    getSummaryByDate,
     getVisitorByDateHandler,
     getVisitorByDateNumberHandler,
     getVisitorHandler,
@@ -269,6 +270,7 @@ function routes(app: Express) {
         getVisitorByDateNumberHandler
     );
     app.get('/api/performance/visitors/:date', getVisitorByDateHandler);
+    app.get('/api/performance/summary/:date', getSummaryByDate);
 
     app.put(
         '/api/performances/:id/archive-visitors',

@@ -56,5 +56,5 @@ export async function deletePhase(query: FilterQuery<PhaseDocument>) {
     return PhaseModel.deleteOne(query);
 }
 export async function getAllPhases() {
-    return PhaseModel.find().populate('phase_game');
+    return PhaseModel.find().populate('phase_game').sort({ createdAt: 1 });
 }

@@ -56,5 +56,5 @@ export async function deleteGame(query: FilterQuery<GameDocument>) {
 }
 
 export async function getAllGames() {
-    return GameModel.find().populate('game_steps');
+    return GameModel.find().populate('game_steps').sort({ createdAt: 1 });
 }

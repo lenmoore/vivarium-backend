@@ -30,6 +30,7 @@ import quizResultsModel from '../../models/performance/quiz-results.model';
 import VisitorModel from '../../models/performance/visitor.model';
 import performanceModel from '../../models/performance/performance.model';
 import PerformanceModel from '../../models/performance/performance.model';
+import phaseModel from '../../models/performance/phase.model';
 
 export async function createVisitorHandler(
     req: Request<CreateVisitorInput>,
@@ -264,6 +265,64 @@ export async function getVisitorByDateHandler(req: Request, res: Response) {
             (a, b) => a.wardrobe_number - b.wardrobe_number
         );
         return res.send(sortedVisitors);
+    } catch (err) {
+        console.error(err);
+        return res.sendStatus(400);
+    }
+}
+
+export async function getSummaryByDate(req: Request, res: Response) {
+    try {
+        const date = new Date(req.params.date);
+        const performance = await PerformanceModel.findOne(
+            { date: date },
+            {},
+            {}
+        ).populate({
+            path: 'phases',
+            populate: {
+                path: 'phase_game',
+            },
+        });
+
+        const olenUsunId = '63bfe34e28a69a85e5bb5048';
+        const jahEiId = '63bfe35728a69a85e5bb5056';
+        console.log(performance.phases.length);
+        const gamesPreCapsule = performance.phases.filter((phase) =>
+            [olenUsunId, jahEiId].includes(phase._id.toString())
+        );
+
+        const visitors = await VisitorModel.find({
+            performance: performance._id,
+        })
+            .populate('quiz_results')
+            .populate({
+                path: 'basket',
+                populate: { path: 'products' },
+            });
+        const humanityValuesByHighest = {};
+        const visitorsWereDividedIn = {
+            turq: visitors.filter((v) => v.confirmed_humanity_value === 'turq')
+                .length,
+            silver: visitors.filter(
+                (v) => v.confirmed_humanity_value === 'silver'
+            ).length,
+            fuchsia: visitors.filter(
+                (v) => v.confirmed_humanity_value === 'fuchsia'
+            ).length,
+            lime: visitors.filter((v) => v.confirmed_humanity_value === 'lime')
+                .length,
+        };
+        const performanceSummary = {
+            performance: performance,
+            amountOfVisitors: visitors.length,
+            visitors: visitors,
+            humanityValuesByHighest,
+            visitorsWereDividedIn,
+            gamesPreCapsule,
+        };
+
+        return res.send(performanceSummary);
     } catch (err) {
         console.error(err);
         return res.sendStatus(400);
