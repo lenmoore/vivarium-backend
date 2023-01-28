@@ -248,13 +248,14 @@ export async function getVisitorByDateNumberHandler(
 }
 export async function getVisitorByDateHandler(req: Request, res: Response) {
     try {
+        console.log(req.params);
         const date = new Date(req.params.date);
         const performance = await PerformanceModel.findOne(
             { date: date },
             {},
             {}
         );
-        // console.log('found performance: ', performance);
+        console.log('found performance: ', performance);
 
         const visitors = await VisitorModel.find({
             performance: performance._id,
