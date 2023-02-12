@@ -373,6 +373,7 @@ export async function getSummaryByDate(req: Request, res: Response) {
             path: 'phases',
             populate: {
                 path: 'phase_game',
+                populate: { path: 'game_steps' },
             },
         });
         const products = await ProductModel.find();
@@ -400,7 +401,11 @@ export async function getSummaryByDate(req: Request, res: Response) {
         const capsuleProducts = [];
         visitors.forEach((vis) => {
             vis.basket.products.forEach((product) => {
-                productsInCapsule.push(product);
+                productsInCapsule.push({
+                    title: product.title,
+                    image: product.image,
+                    visitorColor: vis.confirmed_humanity_value,
+                });
             });
         });
         products.forEach((cP) => {
@@ -409,6 +414,22 @@ export async function getSummaryByDate(req: Request, res: Response) {
                 image: cP.image,
                 count: productsInCapsule.filter((p) => p.image === cP.image)
                     .length,
+                colors: {
+                    turq: productsInCapsule.filter(
+                        (p) => p.visitorColor === 'turq' && p.image === cP.image
+                    ).length,
+                    silver: productsInCapsule.filter(
+                        (p) =>
+                            p.visitorColor === 'silver' && p.image === cP.image
+                    ).length,
+                    fuchsia: productsInCapsule.filter(
+                        (p) =>
+                            p.visitorColor === 'fuchsia' && p.image === cP.image
+                    ).length,
+                    lime: productsInCapsule.filter(
+                        (p) => p.visitorColor === 'lime' && p.image === cP.image
+                    ).length,
+                },
             };
             capsuleProducts.push(prod);
         });
