@@ -24,6 +24,7 @@ import QuizResultModel from '../../models/performance/quiz-results.model';
 import VisitorModel from '../../models/performance/visitor.model';
 import PerformanceModel from '../../models/performance/performance.model';
 import { cloneDeep } from 'lodash';
+import ProductModel from '../../models/humanity-shop/product.model';
 
 export async function createVisitorHandler(
     req: Request<CreateVisitorInput>,
@@ -296,6 +297,7 @@ function getVisitorHighest(visitor) {
     const silverProducts = [];
     const limeProducts = [];
     const turqProducts = [];
+    // todo something got fucked up here idkkk.
     // redProducts = allProducts.map(
     //     (p) =>
     //         p?.humanity_values?.fuchsia?.average ||
@@ -373,6 +375,7 @@ export async function getSummaryByDate(req: Request, res: Response) {
                 path: 'phase_game',
             },
         });
+        const products = await ProductModel.find();
 
         const olenUsunId = '63bfe34e28a69a85e5bb5048';
         const jahEiId = '63bfe35728a69a85e5bb5056';
@@ -393,6 +396,22 @@ export async function getSummaryByDate(req: Request, res: Response) {
             ...v,
             highest: getVisitorHighest(v),
         }));
+        const productsInCapsule = [];
+        const capsuleProducts = [];
+        visitors.forEach((vis) => {
+            vis.basket.products.forEach((product) => {
+                productsInCapsule.push(product);
+            });
+        });
+        products.forEach((cP) => {
+            const prod = {
+                title: cP.title,
+                image: cP.image,
+                count: productsInCapsule.filter((p) => p.image === cP.image)
+                    .length,
+            };
+            capsuleProducts.push(prod);
+        });
 
         const humanityValuesByHighest = {
             turq: highestValuesVisitors.filter((v) => v.highest === 'turq')
@@ -423,6 +442,7 @@ export async function getSummaryByDate(req: Request, res: Response) {
             visitors: visitors,
             humanityValuesByHighest,
             visitorsWereDividedIn,
+            capsuleProducts,
             gamesPreCapsule,
         };
 
