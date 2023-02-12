@@ -14,23 +14,16 @@ import {
     getAllVisitors,
 } from '../../service/performance/visitor.service';
 import { createUser } from '../../service/user.service';
-import {
-    createSession,
-    signAccessToken,
-    signRefreshToken,
-    signVisitorAccessToken,
-} from '../../service/auth.service';
+import { signVisitorAccessToken } from '../../service/auth.service';
 import { createBasket } from '../../service/humanity-shop/basket.service';
 import {
     findAndUpdatePerformance,
     findPerformance,
 } from '../../service/performance/performance.service';
 import QuizResultModel from '../../models/performance/quiz-results.model';
-import quizResultsModel from '../../models/performance/quiz-results.model';
 import VisitorModel from '../../models/performance/visitor.model';
-import performanceModel from '../../models/performance/performance.model';
 import PerformanceModel from '../../models/performance/performance.model';
-import phaseModel from '../../models/performance/phase.model';
+import { cloneDeep } from 'lodash';
 
 export async function createVisitorHandler(
     req: Request<CreateVisitorInput>,
@@ -272,6 +265,101 @@ export async function getVisitorByDateHandler(req: Request, res: Response) {
     }
 }
 
+function getVisitorHighest(visitor) {
+    // console.log(visitor);
+    // console.log(visitor.basket);
+    // console.log('-----\n', visitor.wardrobe_number);
+    const basket = visitor.basket;
+
+    const redQuiz = visitor?.quiz_results
+        ? visitor?.quiz_results?.map((qR) => {
+              return qR?.result_humanity_values?.fuchsia;
+          })
+        : [];
+    const greenQuiz = visitor?.quiz_results
+        ? visitor?.quiz_results?.map((qR) => {
+              return qR?.result_humanity_values?.lime;
+          })
+        : [];
+    const blueQuiz = visitor?.quiz_results
+        ? visitor?.quiz_results?.map((qR) => {
+              return qR?.result_humanity_values?.silver;
+          })
+        : [];
+    const orangeQuiz = visitor?.quiz_results
+        ? visitor?.quiz_results?.map((qR) => {
+              return qR?.result_humanity_values?.turq;
+          })
+        : [];
+
+    const redProducts = [];
+    const silverProducts = [];
+    const limeProducts = [];
+    const turqProducts = [];
+    // redProducts = allProducts.map(
+    //     (p) =>
+    //         p?.humanity_values?.fuchsia?.average ||
+    //         p?.humanity_values?.red?.average ||
+    //         0
+    // );
+    // silverProducts = allProducts.map(
+    //     (p) =>
+    //         p?.humanity_values?.blue?.average ||
+    //         p?.humanity_values?.silver?.average ||
+    //         0
+    // );
+    // limeProducts = allProducts.map(
+    //     (p) =>
+    //         p?.humanity_values?.lime?.average ||
+    //         p?.humanity_values?.green?.average ||
+    //         0
+    // );
+    // turqProducts = allProducts.map(
+    //     (p) =>
+    //         p?.humanity_values?.turq?.average ||
+    //         p?.humanity_values?.orange?.average ||
+    //         0
+    // );
+    const fuchsia = [...redQuiz, ...redProducts];
+    const lime = [...greenQuiz, ...limeProducts];
+    const silver = [...blueQuiz, ...silverProducts];
+    const turq = [...orangeQuiz, ...turqProducts];
+    const absolute_hum_values = {
+        lime: lime?.reduce((a, b) => a + b, 0),
+        fuchsia: fuchsia?.reduce((a, b) => a + b, 0),
+        silver: silver?.reduce((a, b) => a + b, 0),
+        turq: turq?.reduce((a, b) => a + b, 0),
+    };
+
+    const sum =
+        absolute_hum_values.fuchsia +
+        absolute_hum_values.lime +
+        absolute_hum_values.silver +
+        absolute_hum_values.turq;
+    const avg_hum_values = [
+        {
+            color: 'lime',
+            value: absolute_hum_values?.lime / sum,
+        },
+        {
+            color: 'fuchsia',
+            value: absolute_hum_values?.fuchsia / sum,
+        },
+        {
+            color: 'turq',
+            value: absolute_hum_values?.turq / sum,
+        },
+
+        {
+            color: 'silver',
+            value: absolute_hum_values?.silver / sum,
+        },
+    ];
+    const highest = avg_hum_values.sort((a, b) => b.value - a.value)[0].color;
+    // console.log(avg_hum_values);
+    // console.log(highest);
+    return highest;
+}
 export async function getSummaryByDate(req: Request, res: Response) {
     try {
         const date = new Date(req.params.date);
@@ -301,7 +389,22 @@ export async function getSummaryByDate(req: Request, res: Response) {
                 path: 'basket',
                 populate: { path: 'products' },
             });
-        const humanityValuesByHighest = {};
+        const highestValuesVisitors = visitors.map((v) => ({
+            ...v,
+            highest: getVisitorHighest(v),
+        }));
+
+        const humanityValuesByHighest = {
+            turq: highestValuesVisitors.filter((v) => v.highest === 'turq')
+                .length,
+            silver: highestValuesVisitors.filter((v) => v.highest === 'silver')
+                .length,
+            fuchsia: highestValuesVisitors.filter(
+                (v) => v.highest === 'fuchsia'
+            ).length,
+            lime: highestValuesVisitors.filter((v) => v.highest === 'lime')
+                .length,
+        };
         const visitorsWereDividedIn = {
             turq: visitors.filter((v) => v.confirmed_humanity_value === 'turq')
                 .length,

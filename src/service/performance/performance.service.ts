@@ -40,7 +40,7 @@ export async function findPerformance(
             .populate('visitors');
 
         timer({ ...metricsLabels, success: 'true' });
-        // console.log('result findperformances: ', result);
+        console.log('result findperformances: ', result);
         return result;
     } catch (e) {
         timer({ ...metricsLabels, success: 'false' });
