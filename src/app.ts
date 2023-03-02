@@ -10,9 +10,9 @@ import * as fs from 'fs';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || config.get<number>('port') || 3000;
 // const port = config.get<number>('port');
-// console.log(port);
+console.log('PORT---->', port);
 const app = express();
 app.use(deserializeUser); // on every single request
 
