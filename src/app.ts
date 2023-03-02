@@ -10,7 +10,7 @@ import * as fs from 'fs';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 
-const port = process.env.PORT || 3000;
+const port = 3000;
 // const port = config.get<number>('port');
 // console.log(port);
 const app = express();
