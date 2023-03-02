@@ -25,6 +25,7 @@ import VisitorModel from '../../models/performance/visitor.model';
 import PerformanceModel from '../../models/performance/performance.model';
 import { cloneDeep } from 'lodash';
 import ProductModel from '../../models/humanity-shop/product.model';
+import quizResultsModel from '../../models/performance/quiz-results.model';
 
 export async function createVisitorHandler(
     req: Request<CreateVisitorInput>,
@@ -397,6 +398,7 @@ export async function getSummaryByDate(req: Request, res: Response) {
             ...v,
             highest: getVisitorHighest(v),
         }));
+        let allQuizResults = [];
         const productsInCapsule = [];
         const capsuleProducts = [];
         visitors.forEach((vis) => {
@@ -407,6 +409,12 @@ export async function getSummaryByDate(req: Request, res: Response) {
                     visitorColor: vis.confirmed_humanity_value,
                 });
             });
+            allQuizResults = [
+                ...allQuizResults,
+                ...vis.quiz_results.filter(
+                    (res) => res.result_text?.length > 1
+                ),
+            ];
         });
         products.forEach((cP) => {
             const prod = {
@@ -465,6 +473,7 @@ export async function getSummaryByDate(req: Request, res: Response) {
             visitorsWereDividedIn,
             capsuleProducts,
             gamesPreCapsule,
+            allQuizResults,
         };
 
         return res.send(performanceSummary);

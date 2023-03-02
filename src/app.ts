@@ -31,6 +31,8 @@ app.use(
     cors({
         origin: [
             'http://localhost:8080',
+            'http://127.0.0.1:5173',
+            'https://127.0.0.1:5173',
             'https://localhost:8080',
             'https://192.168.1.153:8080',
             'http://192.168.1.153:8080',
@@ -66,6 +68,8 @@ app.use(
             'https://vivarium.vainmaa.ee',
             'https://vat-vivaarium.ee',
             'http://vat-vivaarium.ee',
+            'https://localhost:5173',
+            'http://localhost:5173',
             herokuapi,
             corsAnywhere,
             vatheroku,
