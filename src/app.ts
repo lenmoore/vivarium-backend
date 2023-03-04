@@ -16,7 +16,7 @@ console.log('PORT---->', port);
 const app = express();
 app.use(deserializeUser); // on every single request
 
-app.use(bodyParser({ limit: '1gb' }));
+// app.use(bodyParser({ limit: '1gb' }));
 app.use(express.json({ limit: '1gb' }));
 app.use(express.urlencoded({ limit: '1gb' }));
 app.use(express.json());
@@ -32,6 +32,7 @@ app.use(
         origin: [
             'http://localhost:8080',
             'http://127.0.0.1:5173',
+            'https://vivaarium.herokuapp.com',
             'https://127.0.0.1:5173',
             'https://localhost:8080',
             'https://192.168.1.153:8080',
