@@ -1,5 +1,5 @@
 export default {
-    port: 3000,
+    port: 80,
     dbUri: 'mongodb+srv://len:8ZHT4Yvz66hNfCYe@cluster0.zwqbich.mongodb.net/?retryWrites=true&w=majority',
     saltWorkFactor: 10,
     accessTokenTtl: '15m',
